@@ -22,9 +22,22 @@ full in Section~\ref{sec:app-technical-plans}.
 \label{sec:app-legend}
 % ─────────────────────────────────────────────────────────────
 
-\begin{table}[htbp]
-\caption{Anonymised Backstage entity references and their descriptions.}
-\label{tab:entity-legend}
+Hypotheses in Hypo-Stage are linked to components in the organisation's Backstage
+catalog through \texttt{entityRef} strings (human-readable labels that identify a
+service, worker, platform capability, or template entry). To protect confidentiality
+under the ethical agreement summarised in Section~\ref{sec:ethical-considerations},
+this appendix does not reproduce real catalog identifiers. Instead, each hypothesis
+profile in Section~\ref{sec:app-hypothesis-profiles} lists \emph{anonymised} entity
+references in its \textbf{Entities} row; Table~\ref{tab:entity-legend} explains what
+each anonymised string denotes at a functional level, without recovering the original
+catalog paths or service names.
+
+The table is intentionally typeset here as \emph{non-floating} material so it remains
+with this section even though it occupies most of a page: the goal is to keep the
+legend immediately available when reading the hypothesis profiles, rather than
+deferring it past the large tables in Section~\ref{sec:app-hypothesis-profiles}.
+
+\noindent\begin{minipage}{\linewidth}
 \centering\small
 \setlength{\tabcolsep}{5pt}
 \begin{tabular}{p{5.2cm}p{7.8cm}}
@@ -56,7 +69,10 @@ full in Section~\ref{sec:app-technical-plans}.
     catalog component. \\
 \bottomrule
 \end{tabular}
-\end{table}
+\captionof{table}{Anonymised Backstage entity references and their descriptions.}
+\label{tab:entity-legend}
+\end{minipage}
+\par\bigskip
 
 % ─────────────────────────────────────────────────────────────
 \section{Hypothesis Profiles}
