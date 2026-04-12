@@ -65,9 +65,9 @@ More specifically, this work aims to:
 
 \begin{itemize}
   \item Investigate how software engineering teams appropriate and use Hypo-Stage and ArchHypo in their day-to-day activities when working on an existing, scaled product.
-  \item Derive and implement refinements to Hypo-Stage and its usage guidelines based on empirical findings, with the goal of improving its suitability for supporting architectural work in teams.
   \item Characterize the architectural uncertainties that teams make explicit and manage through Hypo-Stage, and how these uncertainties evolve over time.
   \item Identify benefits and challenges perceived by team members regarding the use of Hypo-Stage, including its learning curve, usability, and fit with existing practices.
+  \item Derive and implement refinements to Hypo-Stage and its usage guidelines based on empirical findings, with the goal of improving its suitability for supporting architectural work in teams.
 \end{itemize}
 
 These objectives deliberately build on, rather than replicate, the previous studies' contributions in the ArchHypo research line. 
@@ -79,12 +79,12 @@ To achieve the above objectives, this work is guided by the following research q
 
 \begin{description}
   \item[RQ1:] How do software engineering teams use Hypo-Stage and the ArchHypo technique when working on a scaled software product in a real-world organization?
-  \item[RQ2:] Which refinements to Hypo-Stage and its usage guidelines emerge from the empirical study, and how do they address the identified challenges?
-  \item[RQ3:] What types and recurring structural shapes of architectural uncertainties do these teams identify, record, and manage using Hypo-Stage, and what patterns emerge from their content and organisational context?
-  \item[RQ4:] What benefits and challenges do team members perceive in using Hypo-Stage to support architectural decision-making and uncertainty management?
+  \item[RQ2:] What types and recurring structural shapes of architectural uncertainties do these teams identify, record, and manage using Hypo-Stage, and what patterns emerge from their content and organisational context?
+  \item[RQ3:] What benefits and challenges do team members perceive in using Hypo-Stage to support architectural decision-making and uncertainty management?
+  \item[RQ4:] Which refinements to Hypo-Stage and its usage guidelines emerge from the empirical study, and how do they address the identified challenges?
 \end{description}
 
-As the empirical design is detailed in Chapter~\ref{chap:research-design}, these questions may be operationalized with different emphases --- for example, with RQ1 and RQ3 focusing more strongly on interaction and process, and RQ2 providing a descriptive view of uncertainty patterns --- to accommodate the different research questions' emphases.
+Chapter~\ref{chap:research-design} operationalises these questions through aligned data sources: participant observation and Hypo-Stage artefacts support RQ1 (tool use) and RQ2 (recorded uncertainties); active listening foregrounds RQ3 (perceived benefits and challenges) while also surfacing needs that motivate refinements under RQ4.
 
 \begin{table}[htbp]
 \centering
@@ -96,11 +96,11 @@ As the empirical design is detailed in Chapter~\ref{chap:research-design}, these
 \midrule
 RQ1 & How do software engineering teams use Hypo-Stage and ArchHypo when working on a scaled product? & Investigate appropriation and use patterns of Hypo-Stage in day-to-day team activities. \\
 \midrule
-RQ2 & Which refinements emerge from the empirical study and how do they address identified challenges? & Derive and implement empirically grounded refinements to Hypo-Stage and its usage guidelines. \\
+RQ2 & What types and recurring structural shapes of architectural uncertainties do teams identify, record, and manage using Hypo-Stage, and what patterns emerge from their content and organisational context? & Characterise architectural uncertainties by source, quality attribute, and lifecycle; identify recurring structural archetypes of hypotheses that emerge from the empirical corpus as a novel contribution to the ArchHypo pattern literature. \\
 \midrule
-RQ3 & What types and recurring structural shapes of architectural uncertainties do teams identify, record, and manage using Hypo-Stage, and what patterns emerge from their content and organisational context? & Characterise architectural uncertainties by source, quality attribute, and lifecycle; identify recurring structural archetypes of hypotheses that emerge from the empirical corpus as a novel contribution to the ArchHypo pattern literature. \\
+RQ3 & What benefits and challenges do team members perceive in using Hypo-Stage? & Identify perceived benefits and challenges related to learning curve, usability, and workflow fit. \\
 \midrule
-RQ4 & What benefits and challenges do team members perceive in using Hypo-Stage? & Identify perceived benefits and challenges related to learning curve, usability, and workflow fit. \\
+RQ4 & Which refinements emerge from the empirical study and how do they address identified challenges? & Derive and implement empirically grounded refinements to Hypo-Stage and its usage guidelines. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -111,9 +111,9 @@ By answering its set of research questions, this work attempts to make the follo
 
 \begin{itemize}
   \item An empirical account of how multiple software engineering teams in a real organization use a tool-supported implementation of ArchHypo (via Hypo-Stage tool) while working on a scaled software product, including observed practices, adaptations, and obstacles as reported in \cite{correa2025}.
-  \item A set of empirically grounded refinements to the Hypo-Stage tool and its usage guidelines, aimed at reducing the learning curve, improving usability, and better integrating the technique into team workflows as reported in \cite{correa2025}.
   \item A characterization of architectural uncertainties managed by these teams, describing their sources, quality attributes, and evolution, as captured through Hypo-Stage as reported in \cite{correa2025}.
   \item A set of five novel \textit{technical architectural hypothesis archetypes} (Group~B patterns) derived from thematic analysis of the thirteen hypotheses registered during the study. These archetypes --- Hypothesis Cluster, Regulatory Trigger Hypothesis, Decoupling Seam Hypothesis, Load-Validated Hypothesis, and Shared Resource Governance Hypothesis --- constitute the first empirically grounded answer to the question of what recurring shapes architectural hypotheses take when ArchHypo is applied in practice, addressing a gap explicitly identified as future work in the prior ArchHypo pattern literature \citep{silva2024patterns}.
+  \item A set of empirically grounded refinements to the Hypo-Stage tool and its usage guidelines, aimed at reducing the learning curve, improving usability, and better integrating the technique into team workflows as reported in \cite{correa2025}.
   \item Reflections on the implications of these findings for supporting distributed architectural work in agile and continuous development settings, connecting the ArchHypo experience to broader concerns about tacit knowledge and tool support in software architecture as reported in \cite{souza2019,infoq2024trends}.
 \end{itemize}
 
@@ -144,14 +144,14 @@ listening sessions), the thematic coding analysis approach, and the criteria use
 establish trustworthiness and ethical conduct.
 
 Chapter~\ref{chap:results} presents the empirical results and refinements of the study.
-The results section reports how teams used Hypo-Stage and ArchHypo in practice: the
-architectural hypotheses and uncertainties they recorded, patterns of tool use and
-non-use, and the benefits and challenges perceived from the perspective of different
-roles. The refinements section is presented as an integral part of the results: each
-refinement is directly linked to an observed difficulty, describes the change implemented
-in Hypo-Stage or its usage guidelines, and connects back to the research questions it
-addresses (primarily RQ2). Presenting results and refinements together makes explicit
-how empirical findings drove iterative tool evolution throughout the observation period.
+The chapter follows the research questions in order: how teams used Hypo-Stage and
+ArchHypo in practice (RQ1); the architectural uncertainties and hypotheses they
+recorded, including corpus-level characterisation and Group~B structural patterns
+(RQ2); the benefits and challenges they perceived (RQ3); and the refinements to
+Hypo-Stage and its usage guidelines that emerged from the study, each traced to
+observations and linked primarily to RQ4. Presenting results and refinements together
+makes explicit how empirical findings drove iterative tool evolution throughout the
+observation period.
 
 Finally, Chapter~\ref{chap:conclusion} builds on the integrated empirical account in Chapter~\ref{chap:results}: it summarizes the main contributions of the work in response to each research question, discusses implications for practitioners adopting
 hypothesis-engineering tools and for researchers studying tool-mediated architectural

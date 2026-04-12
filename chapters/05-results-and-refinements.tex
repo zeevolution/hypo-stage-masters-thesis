@@ -9,9 +9,9 @@
 This chapter presents the empirical findings of the study and the refinements to
 Hypo-Stage that emerged from them. The results are organised around the four
 research questions defined in Chapter~\ref{chap:introduction}: RQ1 addresses how
-teams used the tool and the technique in practice; RQ3 characterises the
-architectural uncertainties they registered; RQ4 reports the benefits and
-challenges perceived by participants; and RQ2 documents each refinement, tracing
+teams used the tool and the technique in practice; RQ2 characterises the
+architectural uncertainties they registered; RQ3 reports the benefits and
+challenges perceived by participants; and RQ4 documents each refinement, tracing
 it to a concrete observation and to the question it addresses.
 Section~\ref{sec:emerging-patterns} goes beyond a direct answer to the four
 questions by drawing two families of \textit{emerging patterns}: team-behaviour
@@ -92,9 +92,9 @@ component an engineer is already viewing, was specifically mentioned as reducing
 the cognitive cost of context-switching into hypothesis management.
 
 % ─────────────────────────────────────────────────────────────
-\section{RQ3 — Architectural Uncertainties Registered}
-\label{sec:rq3-results}
-\label{sec:results-rq3}
+\section{RQ2 — Architectural Uncertainties Registered}
+\label{sec:rq2-results}
+\label{sec:results-rq2}
 % ─────────────────────────────────────────────────────────────
 
 \subsection{Corpus Overview}
@@ -108,6 +108,7 @@ at the end of the observation period, and its uncertainty and impact ratings.
 
 \begin{table}[htbp]
 \caption{Overview of the thirteen registered architectural hypotheses.
+  Req.\ = Requirements-sourced; Sol.\ = Solution-sourced.
   U = Uncertainty level; I = Impact level.
   Ratings: VL = Very Low, M = Medium, H = High, VH = Very High.}
 \label{tab:hypotheses-overview}
@@ -270,9 +271,9 @@ nature of the uncertainties: most concern mid- to long-horizon architectural
 concerns that teams do not expect to resolve within a single sprint cycle.
 
 % ─────────────────────────────────────────────────────────────
-\section{RQ4 — Perceived Benefits and Challenges}
-\label{sec:rq4-results}
-\label{sec:results-rq4}
+\section{RQ3 — Perceived Benefits and Challenges}
+\label{sec:rq3-results}
+\label{sec:results-rq3}
 % ─────────────────────────────────────────────────────────────
 
 \subsection{Perceived Benefits}
@@ -342,9 +343,9 @@ potential of hypothesis engineering would require the team to institutionalise a
 least one touchpoint where the backlog is reviewed together.
 
 % ─────────────────────────────────────────────────────────────
-\section{RQ2 — Refinements to Hypo-Stage}
-\label{sec:rq2-results}
-\label{sec:results-rq2}
+\section{RQ4 — Refinements to Hypo-Stage}
+\label{sec:rq4-results}
+\label{sec:results-rq4}
 \label{sec:refinements}
 % ─────────────────────────────────────────────────────────────
 
@@ -352,8 +353,8 @@ This section presents the refinements implemented in Hypo-Stage from commit
 \texttt{ceee509} (the artefact boundary established by \citealt{correa2025}) to
 commit \texttt{3a53d4e} (HEAD at the time of writing). Each refinement is traced
 to a concrete observation from the study and linked to the research question it
-primarily addresses. All refinements address RQ2 by definition; selected
-refinements also bear on RQ1 (adoption ease) and RQ4 (usability and learning
+primarily addresses. All refinements address RQ4 by definition; selected
+refinements also bear on RQ1 (adoption ease) and RQ3 (usability and learning
 curve).
 
 \subsection{Backstage Integration and Catalog Surfacing}
@@ -408,7 +409,7 @@ with explanatory subtext aligned with ArchHypo's prioritisation model
 \citep{silva2025archhypo}; and (iii)~distribution panels for uncertainty and
 impact Likert values. The dashboard respects entity, team, and component scoping.
 
-\textbf{Impact (RQ4).} The "Can Postpone" segment was specifically cited by
+\textbf{Impact (RQ3).} The "Can Postpone" segment was specifically cited by
 participants as resolving a communication challenge: it provided a principled
 vocabulary for explaining deliberate deferral to non-technical stakeholders.
 
@@ -493,7 +494,7 @@ addresses most directly.
 \begin{tabular}{p{3.8cm}p{4.5cm}ccc}
 \toprule
 \textbf{Refinement} & \textbf{Motivating observation} &
-\textbf{RQ1} & \textbf{RQ2} & \textbf{RQ4} \\
+\textbf{RQ1} & \textbf{RQ4} & \textbf{RQ3} \\
 \midrule
 Backstage catalog tab
   & Infrequent revisit by non-leaders outside native workflow
@@ -546,7 +547,7 @@ hypotheses take in practice.
 \label{sec:group-a-patterns}
 % ─────────────────────────────────────────────────────────────
 
-The four Group~A patterns emerge from triangulating RQ1 and RQ4 findings. They
+The four Group~A patterns emerge from triangulating RQ1 and RQ3 findings. They
 describe organisational and individual-level conditions that the study observed
 to facilitate or obstruct the adoption of hypothesis engineering as a team
 practice. These patterns complement the existing ArchHypo pattern languages
@@ -819,29 +820,29 @@ Security, Interoperability, and Usability are diagnostic markers for this patter
 \label{sec:rq-revisit}
 % ─────────────────────────────────────────────────────────────
 
-\paragraph{On RQ3 and the emerging patterns.}
+\paragraph{On RQ2 and the emerging patterns.}
 
-As stated in Chapter~\ref{chap:introduction}, RQ3 asks: \textit{``What types and
+As stated in Chapter~\ref{chap:introduction}, RQ2 asks: \textit{``What types and
 recurring structural shapes of architectural uncertainties do these teams identify,
 record, and manage using Hypo-Stage, and what patterns emerge from their content and
 organisational context?''}
-Section~\ref{sec:rq3-results} addresses the typological part of this question,
+Section~\ref{sec:rq2-results} addresses the typological part of this question,
 characterising uncertainty by source, quality attribute, and lifecycle.
 The Group~B patterns in Section~\ref{sec:group-b-patterns} address the second part:
 they articulate the \textit{recurring structural shapes} that hypotheses take in
 practice and how those shapes carry implications for how hypotheses should be
 written and managed---a contribution that goes beyond cataloguing observed instances.
-Together, these elements answer RQ3 at the level envisaged when the question was
+Together, these elements answer RQ2 at the level envisaged when the question was
 refined to make the Group~B pattern contribution explicit at the research-question
 level rather than treating it only as a supplementary finding.
 
-\paragraph{On RQ1, RQ2, and RQ4.}
+\paragraph{On RQ1, RQ3, and RQ4.}
 
 The four Group~A patterns (Section~\ref{sec:group-a-patterns}) emerge from the
-intersection of RQ1 and RQ4 findings: they describe the organisational conditions
+intersection of RQ1 and RQ3 findings: they describe the organisational conditions
 under which hypothesis engineering adoption was observed to succeed or fail.
 These patterns are consistent with the current formulations of RQ1 (tool use
-in practice) and RQ4 (perceived benefits and challenges) and do not require
-reformulation of those questions. RQ2 is fully addressed by the nine categories
-of Hypo-Stage refinements documented in Section~\ref{sec:rq2-results}, each
+in practice) and RQ3 (perceived benefits and challenges) and do not require
+reformulation of those questions. RQ4 is fully addressed by the nine categories
+of Hypo-Stage refinements documented in Section~\ref{sec:rq4-results}, each
 traced to a specific observation.
