@@ -82,6 +82,8 @@ deferring it past the large tables in Section~\ref{sec:app-hypothesis-registers}
 Each hypothesis is typeset as a single register table: fixed metadata rows, a
 full-width statement row, then author notes and technical-plan references (see
 Section~\ref{sec:app-technical-plans}).
+The bold header on each register repeats the hypothesis identifier and short label
+exactly as in Table~\ref{tab:hypotheses-overview} of Chapter~\ref{chap:results}.
 
 % #1 ID … #8 Uncertainty/Impact; #9 statement. Then call \hypoboxtail{notes}{plans}.
 \newcommand{\hypoboxnine}[9]{%
@@ -91,7 +93,8 @@ Section~\ref{sec:app-technical-plans}).
   \setlength{\tabcolsep}{6pt}%
   \begin{tabular}{@{} >{\bfseries\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-3.4cm-6\tabcolsep} @{}}
   \toprule
-  \multicolumn{2}{@{}l@{}}{\large #1} \\
+  \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{\dimexpr\textwidth-4\tabcolsep}@{}}{%
+    \large\textbf{#1}} \\
   \midrule
   Team & #2 \\
   Registered & #3 \\
@@ -118,7 +121,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H01 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H01}%
+  {H01 --- Kotlin/JOOQ/Spring template readiness}%
   {Product}%
   {2026-03-18}%
   {Open}%
@@ -136,7 +139,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H02 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H02}%
+  {H02 --- Kafka direct exposure via platform framework}%
   {Platform}%
   {2026-02-11}%
   {Open}%
@@ -152,7 +155,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H03 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H03}%
+  {H03 --- Decouple eng.\ logs from security/compliance audit}%
   {Platform}%
   {2026-02-19}%
   {Open}%
@@ -171,7 +174,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H04 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H04}%
+  {H04 --- Blob storage GDPR right-to-erasure}%
   {Product}%
   {2026-03-18}%
   {Open}%
@@ -189,7 +192,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H05 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H05}%
+  {H05 --- Credit-bureau decoupling seam}%
   {Product}%
   {2026-03-18}%
   {In Review}%
@@ -210,7 +213,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H06 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H06}%
+  {H06 --- Billing aggregation chunked keyset pagination}%
   {Product}%
   {2026-02-24}%
   {Open}%
@@ -231,7 +234,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H07 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H07}%
+  {H07 --- Blob ownership transfer across service domains}%
   {Product}%
   {2026-04-07}%
   {Validated}%
@@ -248,7 +251,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H08 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H08}%
+  {H08 --- Blob cross-client sharing governance}%
   {Product}%
   {2026-03-18}%
   {Validated}%
@@ -266,7 +269,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H09 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H09}%
+  {H09 --- DLT for audit vs.\ offset-based replay}%
   {Platform}%
   {2026-04-12}%
   {Open}%
@@ -284,7 +287,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H10 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H10}%
+  {H10 --- Synchronous retry for transient consumer failures}%
   {Platform}%
   {2026-04-12}%
   {Open}%
@@ -302,7 +305,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H11 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H11}%
+  {H11 --- Failure state inside vs.\ outside Kafka flow}%
   {Platform}%
   {2026-04-12}%
   {Open}%
@@ -321,7 +324,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H12 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H12}%
+  {H12 --- Error classification before retry}%
   {Platform}%
   {2026-04-12}%
   {Open}%
@@ -339,7 +342,7 @@ Section~\ref{sec:app-technical-plans}).
 
 % ── H13 ─────────────────────────────────────────────────────
 \hypoboxnine%
-  {H13}%
+  {H13 --- Payload immutability before re-enqueueing}%
   {Platform}%
   {2026-04-12}%
   {Open}%
@@ -419,7 +422,7 @@ out-of-memory failures; stable sawtooth heap profile; healthy database
 CPU/I/O via index scans.
 
 %% ─── H07 plan ─────────────────────────────────────────────
-\paragraph{TP-07-A \textnormal{(H07 — Blob ownership transfer)}}
+\paragraph{TP-07-A \textnormal{(H07 — Blob ownership transfer across service domains)}}
 \textit{Action type:} Architectural Spike \quad \textit{Target date:} 2026-04-30 \\
 \textit{Description:} Technical discovery to define the transfer capability on
 the blob storage API. \\
@@ -427,7 +430,7 @@ the blob storage API. \\
 feature.
 
 %% ─── H08 plan ─────────────────────────────────────────────
-\paragraph{TP-08-A \textnormal{(H08 — Blob cross-client sharing)}}
+\paragraph{TP-08-A \textnormal{(H08 — Blob cross-client sharing governance)}}
 \textit{Action type:} Guideline Implementation \quad \textit{Target date:} 2026-04-06 \\
 \textit{Description:} Alignment session on cross-domain sharing and transfers
 so that long-lived access (e.g., messaging history) does not require definitive
@@ -436,7 +439,7 @@ ownership by every consumer. \\
 sharing and transfer implementation work.
 
 %% ─── H09 plans ────────────────────────────────────────────
-\paragraph{TP-09-A \textnormal{(H09 — DLT for audit vs.\ offset replay)}}
+\paragraph{TP-09-A \textnormal{(H09 — DLT for audit vs.\ offset-based replay)}}
 \textit{Action type:} Guideline Implementation \quad \textit{Target date:} 2026-06-30 \\
 \textit{Description:} Produce a runbook for reprocessing by offset with minimal
 tooling for controlled replay. \\
