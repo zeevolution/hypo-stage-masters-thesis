@@ -1,7 +1,7 @@
 %!TeX root=../thesis.tex
 
 % ============================================================
-%  Appendix B — Registered Hypotheses Data (Anonymised)
+%  Appendix B — Registered Hypotheses Data (Anonymized)
 %  Master's Thesis: Evaluating and Refining Hypo-Stage
 %  José Gonçalves Lima Neto — IME-USP, 2026
 % ============================================================
@@ -11,25 +11,25 @@
 
 This appendix presents the complete set of thirteen architectural hypotheses
 registered by the two participating teams in Hypo-Stage during the observation
-period. All entity references, service names, and internal artefact links have
-been anonymised in accordance with the ethical agreement described in
-Section~\ref{sec:ethical-considerations}. The anonymisation legend is provided
+period. All entity references, service names, and internal artifact links have
+been anonymized in accordance with the ethical agreement described in
+Section~\ref{sec:ethical-considerations}. The anonymization legend is provided
 in Table~\ref{tab:entity-legend}. Technical planning entries are reproduced in
 full in Section~\ref{sec:app-technical-plans}.
 
 % ─────────────────────────────────────────────────────────────
-\section{Anonymisation Legend}
+\section{Anonymization Legend}
 \label{sec:app-legend}
 % ─────────────────────────────────────────────────────────────
 
 Hypotheses in Hypo-Stage are linked to components in the organization's Backstage
 catalog through \texttt{entityRef} strings (human-readable labels that identify a
 service, worker, platform capability, or template entry). To protect confidentiality
-under the ethical agreement summarised in Section~\ref{sec:ethical-considerations},
+under the ethical agreement summarized in Section~\ref{sec:ethical-considerations},
 this appendix does not reproduce real catalog identifiers. Instead, each hypothesis
-table in Section~\ref{sec:app-hypothesis-registers} lists \emph{anonymised} entity
+table in Section~\ref{sec:app-hypothesis-registers} lists \emph{anonymized} entity
 references in its \textbf{Entities} row; Table~\ref{tab:entity-legend} explains what
-each anonymised string denotes at a functional level, without recovering the original
+each anonymized string denotes at a functional level, without recovering the original
 catalog paths or service names.
 
 The table is intentionally typeset here as \emph{non-floating} material so it remains
@@ -42,7 +42,7 @@ deferring it past the large tables in Section~\ref{sec:app-hypothesis-registers}
 \setlength{\tabcolsep}{5pt}
 \begin{tabular}{p{5.2cm}p{7.8cm}}
 \toprule
-\textbf{Anonymised entity reference} & \textbf{Description} \\
+\textbf{Anonymized entity reference} & \textbf{Description} \\
 \midrule
 \texttt{catalog: Kotlin + JOOQ + Spring service template}
   & Internal catalog entry for the JVM service scaffold using Kotlin, JOOQ, and
@@ -65,11 +65,11 @@ deferring it past the large tables in Section~\ref{sec:app-hypothesis-registers}
 \texttt{worker: high-volume billing aggregation}
   & Long-running worker that aggregates large billing datasets. \\[4pt]
 \texttt{platform: shared streaming infrastructure}
-  & Shared Kafka streaming platform and consumption standards, modelled as a
+  & Shared Kafka streaming platform and consumption standards, modeled as a
     catalog component. \\
 \bottomrule
 \end{tabular}
-\captionof{table}{Anonymised Backstage entity references and their descriptions.}
+\captionof{table}{Anonymized Backstage entity references and their descriptions.}
 \label{tab:entity-legend}
 \end{minipage}
 \par\bigskip
@@ -246,7 +246,7 @@ exactly as in Table~\ref{tab:hypotheses-overview} of Chapter~\ref{chap:results}.
    domains so blobs can move from one owning service to another.}%
 \hypoboxtail%
   {Validated through a technical discovery spike that defined the transfer
-   capability and produced a prioritised implementation backlog.}%
+   capability and produced a prioritized implementation backlog.}%
   {TP-07-A (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H08 ─────────────────────────────────────────────────────
@@ -365,7 +365,7 @@ exactly as in Table~\ref{tab:hypotheses-overview} of Chapter~\ref{chap:results}.
 The following entries reproduce all technical plans registered in Hypo-Stage
 during the observation period. Each entry is identified by a plan code
 (e.g., TP-03-A), the parent hypothesis, the action type, the target date, a
-description of the planned action, and the expected outcome. Internal artefact
+description of the planned action, and the expected outcome. Internal artifact
 links (tickets, pull requests, design documents) have been redacted.
 
 \vspace{6pt}
@@ -382,7 +382,7 @@ ID fields; applications using the framework obtain audit-ready context without
 custom wiring.
 
 \paragraph{TP-03-B \textnormal{(H03)}}
-\textit{Action type:} Modularisation / Flexibility \quad \textit{Target date:} 2026-03-31 \\
+\textit{Action type:} Modularization / Flexibility \quad \textit{Target date:} 2026-03-31 \\
 \textit{Description:} Extend framework logging to worker modules so critical
 database transactions in workers log with the same context (transaction IDs,
 correlation) as request paths. \\
@@ -391,7 +391,7 @@ aligned with the Request Log infrastructure; audit coverage for
 asynchronous/background work.
 
 \paragraph{TP-03-C \textnormal{(H03)}}
-\textit{Action type:} Modularisation / Flexibility \quad \textit{Target date:} 2026-03-31 \\
+\textit{Action type:} Modularization / Flexibility \quad \textit{Target date:} 2026-03-31 \\
 \textit{Description:} Stream database transaction properties to the same log
 buckets and pipeline as Request and Application logs for a single
 audit/observability backbone. \\
@@ -406,7 +406,7 @@ ingestion and retention path as Request logs; no separate audit-only pipeline.
 proposal (contract free of domain concepts, accepting only minimal provider
 identifiers and bureau outputs); (3)~migration sequencing (which flows can
 isolate immediately vs.\ requiring deeper business-logic refactors). \\
-\textit{Expected outcome:} A prioritised integration decoupling plan and a
+\textit{Expected outcome:} A prioritized integration decoupling plan and a
 draft interface contract.
 
 %% ─── H06 plan ─────────────────────────────────────────────
@@ -435,7 +435,7 @@ feature.
 \textit{Description:} Alignment session on cross-domain sharing and transfers
 so that long-lived access (e.g., messaging history) does not require definitive
 ownership by every consumer. \\
-\textit{Expected outcome:} A governance decision enabling prioritisation of
+\textit{Expected outcome:} A governance decision enabling prioritization of
 sharing and transfer implementation work.
 
 %% ─── H09 plans ────────────────────────────────────────────

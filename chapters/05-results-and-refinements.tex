@@ -9,12 +9,12 @@
 This chapter presents the empirical findings of the study and the refinements to
 Hypo-Stage that emerged from them. The results are organized around the four
 research questions defined in Chapter~\ref{chap:introduction}: RQ1 addresses how
-teams used the tool and the technique in practice; RQ2 characterises the
+teams used the tool and the technique in practice; RQ2 characterizes the
 architectural uncertainties they registered; RQ3 reports the benefits and
 challenges perceived by participants; and RQ4 documents each refinement, tracing
 it to a concrete observation and to the question it addresses.
 Section~\ref{sec:emerging-patterns} goes beyond a direct answer to the four
-questions by drawing two families of \textit{emerging patterns}: team-behaviour
+questions by drawing two families of \textit{emerging patterns}: team-behavior
 patterns (Group~A) and a set of novel technical architectural patterns for
 hypothesis engineers (Group~B). The latter constitutes a distinct contribution
 of this work, addressing a gap left open by prior research in the ArchHypo line,
@@ -58,7 +58,7 @@ were described as significant barriers to adoption
 Participant observation and the active listening sessions revealed a clear
 stratification in how different roles engaged with Hypo-Stage during the study
 period. Senior engineers treated the tool as a decision-support instrument:
-they used it to externalise concerns that had until then existed only as tacit
+they used it to externalize concerns that had until then existed only as tacit
 knowledge, and they referenced the hypothesis backlog when discussing
 architectural trade-offs in planning sessions. Mid-level and junior engineers
 were aware of the tool's existence and attended the training session, but
@@ -85,7 +85,7 @@ occurred within the observation window.
 
 The integration of Hypo-Stage into the Backstage Internal Developer Portal was
 cited by both teams as a meaningful enabler of adoption. Because Backstage is
-already the daily entry point for service catalogue, documentation, and CI/CD
+already the daily entry point for service catalog, documentation, and CI/CD
 status, engineers encountered Hypo-Stage without navigating to a separate tool.
 The EntityHypothesesTab, which surfaces only the hypotheses linked to the
 component an engineer is already viewing, was specifically mentioned as reducing
@@ -101,7 +101,7 @@ the cognitive cost of context-switching into hypothesis management.
 \label{subsec:data-overview}
 
 Table~\ref{tab:hypotheses-overview} presents the thirteen hypotheses registered
-during the study, anonymised in accordance with the ethical agreement described
+during the study, anonymized in accordance with the ethical agreement described
 in Section~\ref{sec:ethical-considerations}. Full exported records (statements,
 ratings, entity links, and author notes) appear in Appendix~\ref{app:hypotheses-data}. Each hypothesis is identified by a
 short label, its source type (Requirements or Solution), its lifecycle status
@@ -154,7 +154,7 @@ specific implementation choices for a shared infrastructure component.
 \subsection{Quality Attribute Distribution}
 \label{subsec:qa-distribution}
 
-Table~\ref{tab:qa-distribution} summarises the frequency of quality attributes
+Table~\ref{tab:qa-distribution} summarizes the frequency of quality attributes
 across the thirteen hypotheses. Attributes were assigned by the hypothesis authors
 using the multi-select form in Hypo-Stage; a hypothesis may carry more than one
 attribute.
@@ -191,7 +191,7 @@ forces: the organization's internal security audit requirements, which drove H03
 and the applicable privacy regulation governing binary document storage (H04),
 as well as the Kafka immutability and DLT governance questions (H09, H13).
 This concentration reveals a recurring archetype in which external compliance
-obligations crystallise into architectural hypotheses — a pattern discussed in
+obligations crystallize into architectural hypotheses — a pattern discussed in
 Section~\ref{sec:group-b-patterns} as the \textit{Regulatory Trigger Hypothesis}.
 
 \subsection{Uncertainty and Impact Profile}
@@ -209,7 +209,7 @@ The combination of Very Low uncertainty and Very High impact (H06, H07, H08,
 H13) is particularly instructive. In ArchHypo's model, this quadrant maps to
 hypotheses that \textit{can be postponed} — the team already has sufficient
 evidence to act, so the immediate risk is low — yet the downstream consequences
-of acting incorrectly are severe. Hypo-Stage's prioritisation dashboard surfaced
+of acting incorrectly are severe. Hypo-Stage's prioritization dashboard surfaced
 these hypotheses in the "Can Postpone" segment of its focus panel, enabling
 teams to consciously defer them without losing visibility. This represents
 a practical instance of the \textit{Postpone Uncertain Decisions} pattern
@@ -222,7 +222,7 @@ Seven of the thirteen hypotheses had at least one associated technical plan at
 the end of the observation period. Together these seven hypotheses carried thirteen
 individual technical planning entries. The complete catalog of plan titles and
 strategies is reproduced in Section~\ref{sec:app-technical-plans} of Appendix~B.
-Table~\ref{tab:plan-strategies} summarises
+Table~\ref{tab:plan-strategies} summarizes
 the strategies used.
 
 \begin{table}[htbp]
@@ -235,7 +235,7 @@ the strategies used.
 \midrule
 Guideline Implementation & 3 & 3 \\
 Spike (Architectural Spike) & 3 & 2 \\
-Modularisation / Flexibility & 2 & 1 \\
+Modularization / Flexibility & 2 & 1 \\
 Experiment & 2 & 2 \\
 Tracer Bullet & 1 & 1 \\
 Software Analytics (Trigger) & 1 & 1 \\
@@ -286,7 +286,7 @@ Active listening sessions with all four interviewed participants (the two
 technical leaders from each team) converged on three recurring themes regarding
 the perceived value of using Hypo-Stage.
 
-\paragraph{Externalisation of tacit architectural knowledge.}
+\paragraph{Externalization of tacit architectural knowledge.}
 Both teams described the act of registering a hypothesis as valuable independent
 of what the tool subsequently did with the record. Articulating an uncertainty
 in falsifiable form forced a degree of precision that normal sprint conversations
@@ -295,7 +295,7 @@ an explicit uncertainty rating, an impact rating, and a related quality attribut
 — made it easier to share the concern with colleagues who had not been involved
 in the original discussion.
 
-\paragraph{Prioritisation support.}
+\paragraph{Prioritization support.}
 The \textit{Where to Focus} panel of the Hypo-Stage dashboard — distinguishing
 hypotheses that \textit{Need Attention} (high uncertainty and high impact) from
 those that \textit{Can Postpone} (low impact) — was described by both technical
@@ -341,8 +341,8 @@ re-emerges in a future context.
 Neither team had established a recurring ceremony — such as an architectural
 review or a hypothesis triage meeting — in which Hypo-Stage records were consulted
 as a team. Tool usage remained largely individual during the observation period.
-Both technical leaders expressed the view that realising the collaborative
-potential of hypothesis engineering would require the team to institutionalise at
+Both technical leaders expressed the view that realizing the collaborative
+potential of hypothesis engineering would require the team to institutionalize at
 least one touchpoint where the backlog is reviewed together.
 
 % ─────────────────────────────────────────────────────────────
@@ -353,7 +353,7 @@ least one touchpoint where the backlog is reviewed together.
 % ─────────────────────────────────────────────────────────────
 
 This section presents the refinements implemented in Hypo-Stage from commit
-\texttt{ceee509} (the artefact boundary established by \citealt{correa2025}) to
+\texttt{ceee509} (the artifact boundary established by \citealt{correa2025}) to
 commit \texttt{3a53d4e} (HEAD at the time of writing). Each refinement is traced
 to a concrete observation from the study and linked to the research question it
 primarily addresses. All refinements address RQ4 by definition; selected
@@ -395,7 +395,7 @@ the component filter without listing the entire catalog; and
 (iii)~\texttt{GET /hypotheses/teams} deriving team names from catalog metadata
 for components referenced by hypotheses.
 
-\subsection{Prioritisation Dashboard}
+\subsection{Prioritization Dashboard}
 \label{subsec:refinement-dashboard}
 
 \textbf{Observation.} Both technical leaders expressed the desire to quickly
@@ -408,7 +408,7 @@ above the hypothesis table, presenting: (i)~overview cards with total count,
 validated count, and hypotheses created in the last thirty days;
 (ii)~a \textit{Where to Focus} section distinguishing \textit{Need Attention}
 (high uncertainty and high impact) from \textit{Can Postpone} (low impact),
-with explanatory subtext aligned with ArchHypo's prioritisation model
+with explanatory subtext aligned with ArchHypo's prioritization model
 \citep{silva2025archhypo}; and (iii)~distribution panels for uncertainty and
 impact Likert values. The dashboard respects entity, team, and component scoping.
 
@@ -428,7 +428,7 @@ this race condition had occurred in practice.
 \textbf{Refinements.} Create and update paths were refactored to use explicit
 database transactions. Delete was extended to cascade to technical planning rows
 and events, with clear API semantics and a confirmation dialog that requires the
-exact hypothesis statement before proceeding (paste-enabled to avoid penalising
+exact hypothesis statement before proceeding (paste-enabled to avoid penalizing
 users with long statements). Success and error toast notifications were added
 for destructive operations.
 
@@ -484,7 +484,7 @@ improved list editor with add/remove and basic URL validation.
 \subsection{Summary: Refinements Mapped to Observations}
 \label{subsec:refinement-summary}
 
-Table~\ref{tab:refinements-map} summarises the nine categories of refinements,
+Table~\ref{tab:refinements-map} summarizes the nine categories of refinements,
 the primary observation that motivated each, and the research question each
 addresses most directly.
 
@@ -505,7 +505,7 @@ Backstage catalog tab
 Backend API filtering
   & Cross-team users needed scoped views as hypothesis data grew
   & S & P & — \\
-Prioritisation dashboard
+Prioritization dashboard
   & Manual scanning of full backlog was cognitively costly
   & — & P & S \\
 Lifecycle transaction consistency
@@ -537,7 +537,7 @@ Toast notifications
 
 Beyond the direct answers to RQ1–RQ4, thematic analysis of observation notes,
 active listening transcripts, and the combined hypothesis data produced two
-families of patterns. Group~A describes team-behaviour conditions that shape
+families of patterns. Group~A describes team-behavior conditions that shape
 whether hypothesis engineering becomes a sustainable practice. Group~B describes
 recurring structural archetypes in the content of the architectural hypotheses
 themselves. These two families address orthogonal dimensions: Group~A asks
@@ -568,13 +568,13 @@ authored by senior technical leaders — engineers who carried explicit
 architectural responsibility and whose work horizon extended beyond the current
 sprint. Non-senior engineers did not sustain independent hypothesis registration
 after the initial training episode. The hypotheses that were registered shared
-a common trait: they concerned uncertainties whose consequences would materialise
+a common trait: they concerned uncertainties whose consequences would materialize
 weeks or months in the future, making them invisible to typical sprint-scope
 review practices.
 
 \textbf{Solution.} Assign senior engineers as the primary curators of the
 hypothesis backlog. Their architectural horizon and organizational authority
-position them to recognise which uncertainties are worth formalising. Non-senior
+position them to recognize which uncertainties are worth formalizing. Non-senior
 participation should be enabled by the tool but cannot be assumed to be
 self-sustaining in the early phases of adoption.
 
@@ -613,7 +613,7 @@ across normal sprint work.
 
 \textbf{Solution.} Treat hypothesis registration as a deliberate activity
 requiring protected time — a recurring architectural hygiene session, separate
-from sprint ceremonies, where engineers externalise concerns that have been
+from sprint ceremonies, where engineers externalize concerns that have been
 accumulating in tacit knowledge. The IDP integration of Hypo-Stage reduces
 navigation cost but does not substitute for protected cognitive time.
 
@@ -656,7 +656,7 @@ hypotheses registered in practice:
 \textit{What recurring shapes do architectural hypotheses take when teams apply
 ArchHypo to real systems? And what structural properties of a hypothesis — its
 source type, quality-attribute profile, and relation to its organizational
-context — should an engineer recognise in order to write and manage it more
+context — should an engineer recognize in order to write and manage it more
 effectively?}
 \end{quote}
 
@@ -669,7 +669,7 @@ study constitutes the first empirical dataset that enables such identification.
 The five patterns described below are therefore a \textbf{novel contribution}
 of this work: they are grounded in real hypothesis data, not derived
 from theoretical analysis, and they provide a vocabulary that hypothesis
-engineers can use both to recognise familiar situations more quickly and to
+engineers can use both to recognize familiar situations more quickly and to
 communicate about hypothesis types across teams.
 
 \paragraph{B1 — Hypothesis Cluster.}
@@ -772,7 +772,7 @@ the implementation is still in progress.
 (Very Low) while retaining the highest impact rating (Very High), reflecting a
 situation where the team \textit{knows} the solution works but the architectural
 commitment is still consequential. The hypothesis must be tracked until
-implementation is complete, yet its characterisation as "Open" may suggest
+implementation is complete, yet its characterization as "Open" may suggest
 unresolved doubt that no longer exists.
 
 \textbf{Observed evidence.} H06 (billing aggregation chunked keyset pagination)
@@ -791,7 +791,7 @@ Open status with a Very Low uncertainty rating and document the validation
 evidence in the hypothesis notes. Plan the hypothesis lifecycle so that it
 transitions to Validated upon completion of the production implementation, not
 upon completion of the test. The hypothesis note field should reference the
-capacity test artefact explicitly, preserving the evidentiary chain.
+capacity test artifact explicitly, preserving the evidentiary chain.
 
 \paragraph{B5 — Shared Resource Governance Hypothesis.}
 \textbf{Context.} A platform service manages a shared resource — binary objects,
@@ -815,7 +815,7 @@ in which a customer-facing channel receives documents that are later routed to
 support tooling; the support team needs read access without breaking the blob
 vault's ownership invariants. Both hypotheses were validated through a Guideline
 technical plan — an alignment session that produced a governance decision enabling
-prioritisation of the transfer and sharing implementation work. Quality attributes
+prioritization of the transfer and sharing implementation work. Quality attributes
 Security, Interoperability, and Usability are diagnostic markers for this pattern.
 
 % ─────────────────────────────────────────────────────────────
@@ -831,7 +831,7 @@ organization of the chapter legible relative to those questions.
 
 \subsection{Correspondence between research questions and chapter sections}
 
-Table~\ref{tab:rq-chapter-map} summarises where each research question is principally
+Table~\ref{tab:rq-chapter-map} summarizes where each research question is principally
 addressed in this chapter, and where integrated interpretation (Group~A/B) extends
 the principal sections.
 
@@ -864,7 +864,7 @@ RQ4 & Section~\ref{sec:rq4-results} (nine refinement categories, observation-led
 \subsection{Brief interpretive synthesis}
 
 For RQ2, the question couples a typological obligation with a structural one.
-Section~\ref{sec:rq2-results} discharges the former by characterising what was
+Section~\ref{sec:rq2-results} discharges the former by characterizing what was
 registered; Section~\ref{sec:group-b-patterns} discharges the latter by articulating
 recurrent structural forms in the data. Jointly, they satisfy the formulation of
 RQ2 adopted in Chapter~\ref{chap:introduction}.
@@ -876,5 +876,5 @@ examined together. The wording of RQ1 and RQ3 is not revised here; the contribut
 is to clarify what an adequate empirical answer must cover in the present setting.
 
 For RQ4, Section~\ref{sec:rq4-results} reports refinements in the manner expected
-in design-science accounts of artefact evolution, that is, as outcomes grounded in
+in design-science accounts of artifact evolution, that is, as outcomes grounded in
 observations rather than as a separate implementation chronicle.
