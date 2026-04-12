@@ -97,13 +97,13 @@ the cognitive cost of context-switching into hypothesis management.
 \label{sec:results-rq2}
 % ─────────────────────────────────────────────────────────────
 
-\subsection{Corpus Overview}
-\label{subsec:corpus-overview}
+\subsection{Data Overview}
+\label{subsec:data-overview}
 
 Table~\ref{tab:hypotheses-overview} presents the thirteen hypotheses registered
 during the study, anonymised in accordance with the ethical agreement described
 in Section~\ref{sec:ethical-considerations}. Full exported records (statements,
-ratings, entity links, and author notes) appear in Appendix~\ref{app:hypotheses-corpus}. Each hypothesis is identified by a
+ratings, entity links, and author notes) appear in Appendix~\ref{app:hypotheses-data}. Each hypothesis is identified by a
 short label, its source type (Requirements or Solution), its lifecycle status
 at the end of the observation period, and its uncertainty and impact ratings.
 
@@ -226,7 +226,7 @@ Table~\ref{tab:plan-strategies} summarises
 the strategies used.
 
 \begin{table}[htbp]
-\caption{Technical plan strategies observed across the corpus.}
+\caption{Technical plan strategies observed across the hypothesis data.}
 \label{tab:plan-strategies}
 \centering\small
 \begin{tabular}{lcc}
@@ -386,7 +386,7 @@ hypothesis review a natural side-effect of existing Backstage usage patterns.
 \textbf{Observation.} Engineers with cross-team or platform-wide responsibilities
 needed to filter hypotheses by team and by specific service component. The initial
 version of Hypo-Stage returned all hypotheses without server-side filtering,
-which degraded usability as the corpus grew.
+which degraded usability as the hypothesis data grew.
 
 \textbf{Refinements.} Three new API capabilities were implemented:
 (i)~\texttt{GET /hypotheses} extended with \texttt{entityRef} and \texttt{team}
@@ -503,7 +503,7 @@ Backstage catalog tab
   & Infrequent revisit by non-leaders outside native workflow
   & S & P & S \\
 Backend API filtering
-  & Cross-team users needed scoped views as corpus grew
+  & Cross-team users needed scoped views as hypothesis data grew
   & S & P & — \\
 Prioritisation dashboard
   & Manual scanning of full backlog was cognitively costly
@@ -536,7 +536,7 @@ Toast notifications
 % ─────────────────────────────────────────────────────────────
 
 Beyond the direct answers to RQ1–RQ4, thematic analysis of observation notes,
-active listening transcripts, and the hypothesis artifact corpus produced two
+active listening transcripts, and the combined hypothesis data produced two
 families of patterns. Group~A describes team-behaviour conditions that shape
 whether hypothesis engineering becomes a sustainable practice. Group~B describes
 recurring structural archetypes in the content of the architectural hypotheses
@@ -605,7 +605,7 @@ a basis for sustained practice.
 
 \textbf{Observed evidence.} Senior leaders explicitly described the difficulty
 of "dedicating proper time to register all possible hypotheses they encounter
-day-to-day." The observed corpus of thirteen hypotheses is known to
+day-to-day." The observed set of thirteen hypotheses is known to
 under-represent the total uncertainties that leaders were aware of. Registration
 activity clustered around protected discussion time — the training session and
 a structured team session on Kafka strategy — rather than being distributed
@@ -649,7 +649,7 @@ assessment, uncertainty management, and decision deferral
 \citep{silva2024patterns, silva2023initialpatterns}, and reported on the
 technique's learning curve and process-integration challenges
 \citep{silva2024archhypo}. What this body of work has not yet addressed is
-a question that only becomes answerable through an empirical corpus of
+a question that only becomes answerable through empirical data on
 hypotheses registered in practice:
 
 \begin{quote}
@@ -664,10 +664,10 @@ This gap was also identified in calls for future work within the ArchHypo
 pattern literature, which explicitly noted the need for "identifying and
 documenting patterns for various types of hypotheses" and for "exploration of
 common uncertainties related to specific quality attributes"
-\citep{silva2024patterns}. The thirteen-hypothesis corpus produced by this
+\citep{silva2024patterns}. The thirteen-hypothesis dataset produced by this
 study constitutes the first empirical dataset that enables such identification.
 The five patterns described below are therefore a \textbf{novel contribution}
-of this work: they are grounded in a real hypothesis corpus, not derived
+of this work: they are grounded in real hypothesis data, not derived
 from theoretical analysis, and they provide a vocabulary that hypothesis
 engineers can use both to recognise familiar situations more quickly and to
 communicate about hypothesis types across teams.
@@ -712,7 +712,7 @@ before the team has determined how to satisfy it. It is unclear whether the
 existing architecture already satisfies the obligation, what changes would be
 required if it does not, and what the cost of non-compliance would be.
 
-\textbf{Observed evidence.} Two hypotheses in the corpus arise directly from
+\textbf{Observed evidence.} Two hypotheses in the dataset arise directly from
 regulatory obligations: H04 (the GDPR right-to-erasure requirement for binary
 documents in the blob storage service) and H03 (organization-wide security
 audit requirements for database log correlation across the platform framework).
@@ -849,7 +849,7 @@ the principal sections.
 RQ1 & Section~\ref{sec:rq1-results} (tool use and adoption dynamics). &
 Section~\ref{sec:group-a-patterns} (Group~A; read together with RQ3). \\
 \midrule
-RQ2 & Section~\ref{sec:rq2-results} (typological account of the corpus). &
+RQ2 & Section~\ref{sec:rq2-results} (typological account of the data). &
 Section~\ref{sec:group-b-patterns} (Group~B structural archetypes). \\
 \midrule
 RQ3 & Section~\ref{sec:rq3-results} (benefits and challenges). &
@@ -866,7 +866,7 @@ RQ4 & Section~\ref{sec:rq4-results} (nine refinement categories, observation-led
 For RQ2, the question couples a typological obligation with a structural one.
 Section~\ref{sec:rq2-results} discharges the former by characterising what was
 registered; Section~\ref{sec:group-b-patterns} discharges the latter by articulating
-recurrent structural forms in the corpus. Jointly, they satisfy the formulation of
+recurrent structural forms in the data. Jointly, they satisfy the formulation of
 RQ2 adopted in Chapter~\ref{chap:introduction}.
 
 For RQ1 and RQ3, the Group~A patterns provide an integrated reading: they condense
