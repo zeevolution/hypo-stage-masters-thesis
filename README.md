@@ -1,4 +1,4 @@
-# Hypo-Stage: An Empirical Study of Tool-Supported Architectural Hypothesis Engineering in Industrial Software Teams
+# Hypo-Stage: Tool-Supported Architectural Hypothesis Engineering in Professional Software Development Teams — A Case Study
 
 Master's thesis in Computer Science at **IME-USP** (Institute of Mathematics and Statistics, University of São Paulo).
 
@@ -55,9 +55,10 @@ This master's thesis builds on that artifact: commits after `ceee509` reflect re
 │   ├── 02-background.tex       #   Chapter 2: Background
 │   ├── 03-related-work.tex     #   Chapter 3: Related Work
 │   ├── 04-research-design.tex  #   Chapter 4: Research Design
-│   ├── 05-results.tex          #   Chapter 5: Results and Refinements (merged)
+│   ├── 05-results-and-refinements.tex  #   Chapter 5: Results and Refinements
+│   ├── 05-results.tex          #   Legacy stub (not included in thesis.tex)
 │   ├── 06-discussion.tex       #   Optional scaffold (omitted from thesis.tex)
-│   ├── 07-conclusion.tex       #   Chapter 6 in PDF: Conclusion
+│   ├── 06-conclusion.tex       #   Chapter 6 in PDF: Conclusion
 │   └── appendix-a-instruments.tex  Appendix A: Research Instruments
 ├── figures/                    # Thesis figures (.pdf, .png, .jpg)
 ├── template/                   # IME-USP LaTeX template internals (do not edit)

@@ -1,0 +1,494 @@
+%!TeX root=../thesis.tex
+
+% ============================================================
+%  Appendix B — Registered Hypotheses Data (Anonymized)
+%  Master's Thesis: Evaluating and Refining Hypo-Stage
+%  José Gonçalves Lima Neto — IME-USP, 2026
+% ============================================================
+
+\chapter{Registered Hypotheses Data}
+\label{app:hypotheses-data}
+
+This appendix presents the complete set of thirteen architectural hypotheses
+registered by the two participating teams in Hypo-Stage during the observation
+period. All entity references, service names, and internal artifact links have
+been anonymized in accordance with the ethical agreement described in
+Section~\ref{sec:ethical-considerations}. The anonymization legend is provided
+in Table~\ref{tab:entity-legend}. Technical planning entries are reproduced in
+full in Section~\ref{sec:app-technical-plans}.
+
+% ─────────────────────────────────────────────────────────────
+\section{Anonymization Legend}
+\label{sec:app-legend}
+% ─────────────────────────────────────────────────────────────
+
+Hypotheses in Hypo-Stage are linked to components in the organization's Backstage
+catalog through \texttt{entityRef} strings (human-readable labels that identify a
+service, worker, platform capability, or template entry). To protect confidentiality
+under the ethical agreement summarized in Section~\ref{sec:ethical-considerations},
+this appendix does not reproduce real catalog identifiers. Instead, each hypothesis
+table in Section~\ref{sec:app-hypothesis-records} lists \emph{anonymized} entity
+references in its \textbf{Entities} row; Table~\ref{tab:entity-legend} explains what
+each anonymized string denotes at a functional level, without recovering the original
+catalog paths or service names.
+
+The table is intentionally typeset here as \emph{non-floating} material so it remains
+with this section even though it occupies most of a page: the goal is to keep the
+legend immediately available when reading the hypothesis records, rather than
+deferring it past the large tables in Section~\ref{sec:app-hypothesis-records}.
+
+\noindent\begin{minipage}{\linewidth}
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{p{5.2cm}p{7.8cm}}
+\toprule
+\textbf{Anonymized entity reference} & \textbf{Description} \\
+\midrule
+\texttt{catalog: Kotlin + JOOQ + Spring service template}
+  & Internal catalog entry for the JVM service scaffold using Kotlin, JOOQ, and
+    Spring — intended to replace a legacy functional-language stack in the
+    regulated financial domain. \\[4pt]
+\texttt{internal-framework: JVM platform stack with Kafka integration}
+  & The organization's shared application framework for JVM services, covering
+    Kafka exposure conventions, request logging, and platform integrations. \\[4pt]
+\texttt{service: secure blob storage — API}
+  & HTTP API for storing and governing binary documents with security and
+    lifecycle rules. \\[4pt]
+\texttt{service: secure blob storage — worker}
+  & Background worker for the secure blob storage domain (async processing and
+    maintenance). \\[4pt]
+\texttt{service: confidential records \& credit-bureau integration — API}
+  & API for identity, credit-bureau, and confidential document flows, currently
+    coupled to a single business vertical. \\[4pt]
+\texttt{service: confidential records \& credit-bureau integration — worker}
+  & Worker for the same confidential records and bureau integration context. \\[4pt]
+\texttt{worker: high-volume billing aggregation}
+  & Long-running worker that aggregates large billing datasets. \\[4pt]
+\texttt{platform: shared streaming infrastructure}
+  & Shared Kafka streaming platform and consumption standards, modeled as a
+    catalog component. \\
+\bottomrule
+\end{tabular}
+\captionof{table}{Anonymized Backstage entity references and their descriptions.}
+\label{tab:entity-legend}
+\end{minipage}
+\par\bigskip
+
+% ─────────────────────────────────────────────────────────────
+\section{Hypothesis Records}
+\label{sec:app-hypothesis-records}
+% ─────────────────────────────────────────────────────────────
+
+Each hypothesis is typeset as a single record table: fixed metadata rows, a
+full-width statement row, then author notes and technical-plan references (see
+Section~\ref{sec:app-technical-plans}).
+The bold header on each record repeats the hypothesis identifier and short label
+exactly as in Table~\ref{tab:hypotheses-overview} of Chapter~\ref{chap:results}.
+
+% #1 ID … #8 Uncertainty/Impact; #9 statement. Then call \hypoboxtail{notes}{plans}.
+\newcommand{\hypoboxnine}[9]{%
+  \par\addvspace{0.55\baselineskip}%
+  \noindent\begingroup
+  \small
+  \setlength{\tabcolsep}{6pt}%
+  \begin{tabular}{@{} >{\bfseries\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-3.4cm-6\tabcolsep} @{}}
+  \toprule
+  \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{\dimexpr\textwidth-4\tabcolsep}@{}}{%
+    \large\textbf{#1}} \\
+  \midrule
+  Team & #2 \\
+  Registered & #3 \\
+  Lifecycle status & #4 \\
+  Source type & #5 \\
+  Uncertainty / Impact & #8 \\
+  Quality attributes & #7 \\
+  Entities & {\begingroup\ttfamily\small #6\endgroup} \\
+  \addlinespace
+  \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{\dimexpr\textwidth-4\tabcolsep}@{}}{%
+    \textbf{Statement}\par\vspace{0.3\baselineskip}%
+    ``#9''\par
+  } \\
+  \midrule
+}
+\newcommand{\hypoboxtail}[2]{%
+  Notes & #1 \\
+  Technical plans & #2 \\
+  \bottomrule
+  \end{tabular}%
+  \endgroup
+  \par
+}
+
+% ── H01 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H01 --- Kotlin/JOOQ/Spring template readiness}%
+  {Product}%
+  {2026-03-18}%
+  {Open}%
+  {Requirements}%
+  {catalog: Kotlin + JOOQ + Spring service template}%
+  {Performance \textbar{} Reliability \textbar{} Maintainability}%
+  {Very High / Very High}%
+  {The Kotlin + JOOQ + Spring service template is ready to scale for use in
+   regulated financial product services, replacing a legacy functional-language
+   stack.}%
+\hypoboxtail%
+  {The organization intends to deprecate the legacy stack in that domain; the
+   Kotlin + JOOQ + Spring template is the leading candidate to replace it.}%
+  {None registered at end of observation period.}
+
+% ── H02 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H02 --- Kafka direct exposure via platform framework}%
+  {Platform}%
+  {2026-02-11}%
+  {Open}%
+  {Requirements}%
+  {internal-framework: JVM platform stack with Kafka integration}%
+  {Configurability \textbar{} Flexibility \textbar{} Extensibility \textbar{} Modifiability}%
+  {Very Low / Medium}%
+  {Kafka should be exposed to application layers for direct use via the internal
+   platform framework.}%
+\hypoboxtail%
+  {Subject on hold; technical plans expected for the following quarter.}%
+  {None registered at end of observation period.}
+
+% ── H03 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H03 --- Decouple eng.\ logs from security/compliance audit}%
+  {Platform}%
+  {2026-02-19}%
+  {Open}%
+  {Requirements}%
+  {internal-framework: JVM platform stack with Kafka integration}%
+  {Observability \textbar{} Auditability}%
+  {Medium / Very High}%
+  {Decouple engineering/observability logs from security/compliance auditing by
+   evolving database logging toward a unified Request Logs capability on the
+   internal platform framework.}%
+\hypoboxtail%
+  {The platform framework must let applications derive full log context including
+   database logs. It is expected to supersede a legacy audit library and satisfy
+   organization-wide security audit requirements.}%
+  {TP-03-A, TP-03-B, TP-03-C (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H04 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H04 --- Blob storage GDPR right-to-erasure}%
+  {Product}%
+  {2026-03-18}%
+  {Open}%
+  {Requirements}%
+  {service: secure blob storage — API \textbar{} service: secure blob storage — worker}%
+  {Auditability \textbar{} Usability}%
+  {Medium / Very Low}%
+  {The secure blob storage service must retain a reference to the data subject in
+   its domain data so all sensitive blobs can be deleted when the user exercises
+   their right to erasure under applicable privacy regulation.}%
+\hypoboxtail%
+  {Concern raised in an internal RFC about fully erasing user sensitive data,
+   including binary objects.}%
+  {None registered at end of observation period.}
+
+% ── H05 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H05 --- Credit-bureau decoupling seam}%
+  {Product}%
+  {2026-03-18}%
+  {In Review}%
+  {Solution}%
+  {service: confidential records \& credit-bureau integration — API \textbar{} \ldots{} worker}%
+  {Interoperability \textbar{} Extensibility \textbar{} Reusability}%
+  {High / Very High}%
+  {Credit-bureau integrations can be decoupled from vertical-specific domain
+   entities into context-agnostic middleware that accepts only each provider's
+   minimum required data (e.g., national ID), reusable across domains without
+   duplicated cost.}%
+\hypoboxtail%
+  {Discovery focused on: (1)~dependency matrix --- current vs.\ real dependency
+   per integration; (2)~agnostic interface --- contract without domain concepts,
+   only minimal identifiers and bureau outputs; (3)~migration plan --- which flows
+   can isolate immediately vs.\ requiring deeper business-logic refactors.}%
+  {TP-05-A (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H06 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H06 --- Billing aggregation chunked keyset pagination}%
+  {Product}%
+  {2026-02-24}%
+  {Open}%
+  {Solution}%
+  {worker: high-volume billing aggregation}%
+  {Performance \textbar{} Reliability \textbar{} Scalability}%
+  {Very Low / Very High}%
+  {Chunked keyset pagination with isolated repository-level transactions keeps
+   memory strictly bounded by chunk size and prevents out-of-memory failures when
+   aggregating millions of billing records.}%
+\hypoboxtail%
+  {Validated with a capacity/volume test at 5$\times$ production scale (45M rows
+   total, 1.5M rows/month). Profiling showed JPA streams can cause first-level
+   cache growth; chunking scopes transactions ($\approx$10k rows) so the garbage
+   collector can reclaim memory (sawtooth heap pattern). Composite index on
+   \texttt{(billing\_year\_month, status, id)}.}%
+  {TP-06-A (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H07 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H07 --- Blob ownership transfer across service domains}%
+  {Product}%
+  {2026-04-07}%
+  {Validated}%
+  {Requirements}%
+  {service: secure blob storage — API \textbar{} service: secure blob storage — worker}%
+  {Scalability \textbar{} Usability \textbar{} Configurability \textbar{} Flexibility}%
+  {Very Low / Very High}%
+  {Secure blob storage must support transferring blob ownership across service
+   domains so blobs can move from one owning service to another.}%
+\hypoboxtail%
+  {Validated through a technical discovery spike that defined the transfer
+   capability and produced a prioritized implementation backlog.}%
+  {TP-07-A (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H08 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H08 --- Blob cross-client sharing governance}%
+  {Product}%
+  {2026-03-18}%
+  {Validated}%
+  {Requirements}%
+  {service: secure blob storage — API}%
+  {Security \textbar{} Usability \textbar{} Interoperability \textbar{} Extensibility}%
+  {Very Low / Very High}%
+  {Secure blob storage must support sharing a blob across multiple clients so the
+   same object can be read from different domain services.}%
+\hypoboxtail%
+  {Example: a customer-facing channel receives documents later routed to support
+   tooling; support needs read access in chat history without breaking vault
+   invariants.}%
+  {TP-08-A (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H09 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H09 --- DLT for audit vs.\ offset-based replay}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Auditability \textbar{} Reliability}%
+  {Medium / Very High}%
+  {Using the Dead-Letter Topic (DLT) only for auditing and diagnosis, and
+   reprocessing from the original topic's offset, preserves consistency and
+   auditability better than re-enqueueing messages from the DLT.}%
+\hypoboxtail%
+  {How to falsify: controlled replay from the DLT without mutating the event must
+   be proven safer, simpler, and more auditable than replay by offset.}%
+  {TP-09-A, TP-09-B (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H10 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H10 --- Synchronous retry for transient consumer failures}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Interoperability \textbar{} Performance}%
+  {Medium / High}%
+  {For short-lived transient failures, limited synchronous retry on the consumer
+   thread preserves per-partition ordering better and with lower overall complexity
+   than asynchronous retry on a separate queue.}%
+\hypoboxtail%
+  {How to falsify: a per-partition retry queue preserves order with less blocking
+   time and acceptable operational cost.}%
+  {TP-10-A (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H11 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H11 --- Failure state inside vs.\ outside Kafka flow}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Reliability \textbar{} Modifiability \textbar{} Interoperability}%
+  {Medium / High}%
+  {Keeping failure state inside the Kafka message flow increases coordination
+   complexity across threads and complicates failure handling, compared to
+   handling failures in the execution layer and keeping consumption non-blocking.}%
+\hypoboxtail%
+  {How to falsify: modelling failure state in Kafka shows lower operational
+   complexity and equal or better recovery than handling failures in the execution
+   layer.}%
+  {TP-11-A (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H12 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H12 --- Error classification before retry}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Performance \textbar{} Reliability}%
+  {Medium / High}%
+  {Classifying errors as recoverable vs.\ non-recoverable before applying retry
+   reduces consumer lag and computational cost without worsening the successful
+   processing rate.}%
+\hypoboxtail%
+  {How to falsify: indiscriminate retries improve final success rate without
+   meaningful latency/capacity cost.}%
+  {TP-12-A, TP-12-B (see Section~\ref{sec:app-technical-plans}).}
+
+% ── H13 ─────────────────────────────────────────────────────
+\hypoboxnine%
+  {H13 --- Payload immutability before re-enqueueing}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Auditability}%
+  {Very Low / Very High}%
+  {Allowing fixes by mutating the payload before re-enqueueing increases
+   consistency violations and makes traceability and auditing harder.}%
+\hypoboxtail%
+  {How to falsify: a formal correction mechanism fully preserves audit trail,
+   causality, and reproducibility of the event.}%
+  {TP-13-A (see Section~\ref{sec:app-technical-plans}).}
+
+\bigskip
+\section{Technical Plans Catalog}
+\label{sec:app-technical-plans}
+% ─────────────────────────────────────────────────────────────
+
+The following entries reproduce all technical plans registered in Hypo-Stage
+during the observation period. Each entry is identified by a plan code
+(e.g., TP-03-A), the parent hypothesis, the action type, the target date, a
+description of the planned action, and the expected outcome. Internal artifact
+links (tickets, pull requests, design documents) have been redacted.
+
+\vspace{6pt}
+
+%% ─── H03 plans ────────────────────────────────────────────
+\paragraph{TP-03-A \textnormal{(H03 — Decouple eng.\ logs from security/compliance audit)}}
+\textit{Action type:} Architectural Spike \quad \textit{Target date:} 2026-03-31 \\
+\textit{Description:} Discover and implement default mapping of database
+transaction IDs into the Request Log structure within the internal framework
+so every request and application log entry carries database transaction IDs for
+correlation and audit trail without per-application integration. \\
+\textit{Expected outcome:} Request logs consistently include database transaction
+ID fields; applications using the framework obtain audit-ready context without
+custom wiring.
+
+\paragraph{TP-03-B \textnormal{(H03)}}
+\textit{Action type:} Modularization / Flexibility \quad \textit{Target date:} 2026-03-31 \\
+\textit{Description:} Extend framework logging to worker modules so critical
+database transactions in workers log with the same context (transaction IDs,
+correlation) as request paths. \\
+\textit{Expected outcome:} Workers emit logs with database transaction IDs
+aligned with the Request Log infrastructure; audit coverage for
+asynchronous/background work.
+
+\paragraph{TP-03-C \textnormal{(H03)}}
+\textit{Action type:} Modularization / Flexibility \quad \textit{Target date:} 2026-03-31 \\
+\textit{Description:} Stream database transaction properties to the same log
+buckets and pipeline as Request and Application logs for a single
+audit/observability backbone. \\
+\textit{Expected outcome:} Database transaction properties follow the same
+ingestion and retention path as Request logs; no separate audit-only pipeline.
+
+%% ─── H05 plan ─────────────────────────────────────────────
+\paragraph{TP-05-A \textnormal{(H05 — Credit-bureau decoupling seam)}}
+\textit{Action type:} Discovery \quad \textit{Target date:} ongoing \\
+\textit{Description:} Structured discovery covering: (1)~dependency matrix
+(current vs.\ real dependencies per integration); (2)~agnostic interface
+proposal (contract free of domain concepts, accepting only minimal provider
+identifiers and bureau outputs); (3)~migration sequencing (which flows can
+isolate immediately vs.\ requiring deeper business-logic refactors). \\
+\textit{Expected outcome:} A prioritized integration decoupling plan and a
+draft interface contract.
+
+%% ─── H06 plan ─────────────────────────────────────────────
+\paragraph{TP-06-A \textnormal{(H06 — Billing aggregation chunked keyset pagination)}}
+\textit{Action type:} Implementation (Other) \quad \textit{Target date:} 2026-03-13 \\
+\textit{Description:} Implement the billing aggregation worker with chunked
+keyset pagination using a \texttt{LIMIT} loop with
+\texttt{id > :lastProcessedId}; avoid broad \texttt{@Transactional} so the
+Hibernate first-level cache clears per chunk; add composite index on
+\texttt{(billing\_year\_month, status, id)}. \\
+\textit{Expected outcome:} Process 300k+ rows/month safely without
+out-of-memory failures; stable sawtooth heap profile; healthy database
+CPU/I/O via index scans.
+
+%% ─── H07 plan ─────────────────────────────────────────────
+\paragraph{TP-07-A \textnormal{(H07 — Blob ownership transfer across service domains)}}
+\textit{Action type:} Architectural Spike \quad \textit{Target date:} 2026-04-30 \\
+\textit{Description:} Technical discovery to define the transfer capability on
+the blob storage API. \\
+\textit{Expected outcome:} A backlog for implementing the ownership transfer
+feature.
+
+%% ─── H08 plan ─────────────────────────────────────────────
+\paragraph{TP-08-A \textnormal{(H08 — Blob cross-client sharing governance)}}
+\textit{Action type:} Guideline Implementation \quad \textit{Target date:} 2026-04-06 \\
+\textit{Description:} Alignment session on cross-domain sharing and transfers
+so that long-lived access (e.g., messaging history) does not require definitive
+ownership by every consumer. \\
+\textit{Expected outcome:} A governance decision enabling prioritization of
+sharing and transfer implementation work.
+
+%% ─── H09 plans ────────────────────────────────────────────
+\paragraph{TP-09-A \textnormal{(H09 — DLT for audit vs.\ offset-based replay)}}
+\textit{Action type:} Guideline Implementation \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Produce a runbook for reprocessing by offset with minimal
+tooling for controlled replay. \\
+\textit{Expected outcome:} Documentation of how to reprocess by offset with
+minimal tooling.
+
+\paragraph{TP-09-B \textnormal{(H09)}}
+\textit{Action type:} Experiment \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Operational exercise with a simulated incident. \\
+\textit{Expected outcome:} Measure MTTR, duplicate rate, and divergence between
+the original event and the final state.
+
+%% ─── H10 plan ─────────────────────────────────────────────
+\paragraph{TP-10-A \textnormal{(H10 — Synchronous retry for transient failures)}}
+\textit{Action type:} Tracer Bullet \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Tracer bullet on a critical consumer path; inject
+transient failures with windows of 1s, 5s, and 30s. \\
+\textit{Expected outcome:} Measure out-of-order delivery, consumer lag,
+throughput, and retry success rate.
+
+%% ─── H11 plan ─────────────────────────────────────────────
+\paragraph{TP-11-A \textnormal{(H11 — Failure state inside vs.\ outside Kafka flow)}}
+\textit{Action type:} Architectural Spike \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Spike comparing both failure-state approaches on a real
+consumer. \\
+\textit{Expected outcome:} Measure consumer lag, blocked-thread time,
+states/transitions, and operational recovery steps for each approach.
+
+%% ─── H12 plans ────────────────────────────────────────────
+\paragraph{TP-12-A \textnormal{(H12 — Error classification before retry)}}
+\textit{Action type:} Guideline Implementation \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Define an error taxonomy and mandatory classification step
+before retry is applied. \\
+\textit{Expected outcome:} Practical directives for classifying errors before
+retry, consumable by all teams using the shared streaming platform.
+
+\paragraph{TP-12-B \textnormal{(H12)}}
+\textit{Action type:} Software Analytics (Architectural Trigger) \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Instrument analytics by error class on a real consumer:
+success rate, average attempts, extra time per message, and discards to DLT. \\
+\textit{Expected outcome:} A metrics dataset sufficient to falsify or support
+the hypothesis.
+
+%% ─── H13 plan ─────────────────────────────────────────────
+\paragraph{TP-13-A \textnormal{(H13 — Payload immutability before re-enqueueing)}}
+\textit{Action type:} Experiment \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Enforce an immutable-payload guideline; add automated
+validation in replay tooling; require mandatory architectural review for
+exceptions. \\
+\textit{Expected outcome:} Experiment results that validate or refute the
+hypothesis and establish a baseline for payload governance in the shared
+streaming platform.

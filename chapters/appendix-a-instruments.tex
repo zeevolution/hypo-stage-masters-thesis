@@ -3,132 +3,157 @@
 \chapter{Research Instruments}
 \label{apx:instruments}
 
-% TODO: include the actual instruments used in the empirical study.
-% This appendix lets the reader see exactly what participants received.
+This appendix reproduces the instruments and communications used during data
+collection. Section~\ref{sec:listening-guide} contains the open-ended active
+listening guide used in the end-of-period sessions.
+Section~\ref{sec:informed-consent} reproduces the informed consent framework
+communicated to participants. Section~\ref{sec:training-comm} reproduces the
+training communication sent to both teams at the start of the observation period.
 
-\section{Questionnaire}
-\label{apx:questionnaire}
+% ─────────────────────────────────────────────────────
+\section{Open-Ended Active Listening Guide}
+\label{sec:listening-guide}
 
-% TODO: paste the full questionnaire here. Example structure:
-%
-% The following questionnaire was administered to team members after
-% the usage period. It was delivered via [Google Forms / LimeSurvey / etc.].
-%
-% \subsection{Section 1: Demographics}
-% \begin{enumerate}
-%   \item What is your role in the team? (Developer / Tech Lead / Architect / Other)
-%   \item How many years of professional software development experience do you have?
-%   \item How familiar were you with software architecture concepts before this study?
-%         (5-point Likert: Not at all -- Extremely familiar)
-% \end{enumerate}
-%
-% \subsection{Section 2: Hypo-Stage Usability}
-% \begin{enumerate}[resume]
-%   \item I found Hypo-Stage easy to use.
-%         (5-point Likert: Strongly disagree -- Strongly agree)
-%   \item The process of creating a hypothesis in Hypo-Stage was intuitive.
-%         (5-point Likert)
-%   \item Assessing uncertainty and impact levels was straightforward.
-%         (5-point Likert)
-% \end{enumerate}
-%
-% \subsection{Section 3: Open-Ended Questions}
-% \begin{enumerate}[resume]
-%   \item What did you find most useful about Hypo-Stage?
-%   \item What was the most difficult aspect of using Hypo-Stage?
-%   \item What improvements would you suggest?
-% \end{enumerate}
+\textbf{Note on instrument design.} The study did not employ a fixed
+questionnaire. As described in Section~\ref{subsec:active-listening}, data collection followed an
+open-ended active listening format consistent with the semi-structured
+interview approach recommended by \citet{robson2016} for flexible designs.
+The guide below provided a thematic scaffold for conversations; the actual
+order and phrasing of questions varied with the natural flow of each session.
+Sessions were conducted individually with the senior technical leader of each
+team at the end of the four-week observation period.
 
-\section{Interview Guide}
-\label{apx:interview-guide}
+\subsection*{Thematic Areas and Guiding Questions}
 
-% TODO: paste the semi-structured interview guide here. Example:
-%
-% The following topics were used as a guide for semi-structured interviews.
-% The interviewer adapted follow-up questions based on participant responses.
-%
-% \begin{enumerate}
-%   \item \textbf{Context:} Can you describe your team's typical approach to
-%         architectural decisions before using Hypo-Stage?
-%   \item \textbf{Usage:} Walk me through how you used Hypo-Stage in your
-%         last sprint/cycle. What hypotheses did you create?
-%   \item \textbf{Value:} Did Hypo-Stage change how your team discusses
-%         architecture? In what way?
-%   \item \textbf{Barriers:} What made it difficult to adopt Hypo-Stage
-%         or ArchHypo concepts?
-%   \item \textbf{Refinements:} If you could change one thing about the tool,
-%         what would it be?
-% \end{enumerate}
-
-\section{Informed Consent Form}
-\label{apx:consent}
-
-% TODO: include the informed consent form presented to participants.
-% This is required by ethics committees and demonstrates research rigor.
-
-\section{Training Communication}
-\label{apx:training-communication}
-
-The following message was sent to teams before the training session that introduced
-the ArchHypo experiment and the Hypo-Stage plugin in Backstage.
-
-\begin{quote}
-\textbf{New Plugin Experiment in Backstage: Hypo Stage --- Practicing the ArchHypo Framework}
-
-Deciding when to make (or delay) a software architecture decision is one of the
-toughest daily challenges in engineering, regardless of the project:
-
+\textbf{Area 1 --- Overall experience of Hypo-Stage.}
 \begin{itemize}
-  \item Deciding too early can lock the system into the wrong path.
-  \item Deciding too late can lead to costly rework and technical debt.
+  \item Can you walk me through the moments when you actually opened Hypo-Stage
+    during the past four weeks?
+  \item What made you decide to register a hypothesis at those particular
+    moments?
+  \item Were there situations where you thought about registering a hypothesis
+    but ended up not doing so? What stopped you?
 \end{itemize}
 
-In the middle of this lies something that often remains implicit: uncertainty. We
-deal with requirements that are not yet clear or solutions we are not sure will
-scale or integrate well. This uncertainty is rarely made explicit, and decisions
-often end up being built on unvalidated premises.
+\textbf{Area 2 --- Perceived usefulness of the technique and the tool.}
+\begin{itemize}
+  \item Has using Hypo-Stage changed the way you think about or discuss
+    architectural decisions with your team?
+  \item Are there specific decisions you handled differently because you had a
+    hypothesis registered?
+  \item What aspect of the tool did you find most useful in practice?
+  \item What aspect of the tool was most frustrating or felt like friction?
+\end{itemize}
 
-To evolve past this dilemma, I am proposing the application of a framework to help
-us identify, evaluate, and manage architectural uncertainties in a structured way.
-We will put this into practice using the Hypo Stage plugin, which I helped develop
-as part of an open-source project. It is already available in our Backstage (in
-production and under a feature flag for our experiment).
+\textbf{Area 3 --- Learning curve and technique understanding.}
+\begin{itemize}
+  \item How confident do you feel formulating a hypothesis statement that is
+    falsifiable? Did that feel natural or forced?
+  \item How did your team members react to the concept of an architectural
+    hypothesis? Do you think the concept would be accessible to a mid-level
+    engineer without facilitation?
+  \item What would have made the onboarding experience easier?
+\end{itemize}
 
-This plugin serves as a tool to practice the ArchHypo (Architectural Hypotheses)
-framework: a lightweight approach that applies hypothesis-driven engineering to
-represent uncertainties impacting software architecture. It helps us plan actions
-to reduce uncertainty or impact before "locking in" a decision.
+\textbf{Area 4 --- Workflow integration.}
+\begin{itemize}
+  \item How well did Hypo-Stage fit into your existing sprint ceremonies and
+    day-to-day tooling?
+  \item Did the Backstage integration help or was it irrelevant to adoption?
+  \item If you were to continue using the tool after this study, what would
+    need to change --- either in the tool or in your team's process --- for it to
+    be sustainable?
+\end{itemize}
 
-\textbf{What ArchHypo proposes, in short:}
+\textbf{Area 5 --- Future outlook.}
+\begin{itemize}
+  \item If you had to name one architectural uncertainty that you are currently
+    managing tacitly that you \emph{wish} you had registered in Hypo-Stage,
+    what would it be?
+  \item Would you recommend Hypo-Stage to another team in the organization?
+    Under what conditions?
+\end{itemize}
 
-\textbf{Architectural Hypotheses:} Falsifiable statements expressing team beliefs
-about requirements (e.g., quality attributes) or current/candidate solutions. The
-focus is on uncertainties that affect architectural decisions, not just business
-hypotheses.
+% ─────────────────────────────────────────────────────
+\section{Informed Consent Framework}
+\label{sec:informed-consent}
 
-\textbf{Evaluation:} Each hypothesis is assessed based on its uncertainty level
-(how far we are from proving it true/false) and impact (the consequences and cost
-of being wrong). This helps prioritize and choose treatment tactics.
+No formal written consent form was required for this study, as the research
+involved no sensitive personal data and participation was entirely voluntary
+(Section~\ref{sec:ethical-considerations}). The following points were communicated verbally and in writing
+to all participants prior to the observation period and were confirmed by
+engineering leadership in the organization:
 
-\textbf{Technical Plan:} For each hypothesis, the team defines actions to either
-reduce uncertainty (e.g., spikes, experiments, architectural triggers, metrics) or
-reduce impact (e.g., modularity, flexibility, isolation of the affected part),
-allowing us to delay decisions more safely.
+\begin{enumerate}
+  \item \textbf{Voluntary participation.} All engineers were free to use
+    Hypo-Stage as much or as little as they chose. Participation in the
+    active listening sessions was optional and had no bearing on the
+    researcher's organizational role.
+  \item \textbf{Anonymization.} The name of the organization, the names of
+    all participants, and the names of internal software products and
+    components would be anonymized in all research outputs. Backstage entity
+    references in hypothesis data would be replaced with generic labels
+    (see Appendix~\ref{app:hypotheses-data}, Table~\ref{tab:entity-legend}).
+  \item \textbf{Data use.} Observations, artifact records, and session notes
+    would be used exclusively for academic research purposes and would not be
+    shared with organizational management in any individually identifiable form.
+  \item \textbf{Right to withdraw.} Any participant could withdraw previously
+    provided data or discontinue participation at any point without consequence.
+  \item \textbf{Research knowledge and consent of leadership.} The study
+    was conducted with the knowledge and informal consent of the relevant
+    engineering leadership in the organization, who confirmed that participation
+    was compatible with the teams' work obligations.
+\end{enumerate}
 
-\textbf{Iterative Cycle:} Identify, evaluate, plan, execute, and reassess. The
-process is continuous; as new uncertainties emerge, plans are adjusted over time.
+% ─────────────────────────────────────────────────────
+\section{Training Communication}
+\label{sec:training-comm}
+\label{apx:training-communication}
 
-The Hypo Stage plugin in Backstage allows you to register hypotheses, link them to
-quality attributes, record uncertainty/impact assessments, and maintain technical
-plans with dates and progress tracking --- all integrated into our catalog and
-workflow.
+The following text reproduces, in anonymized and lightly edited form, the
+written communication sent to both teams prior to the training session that
+inaugurated the observation period. The purpose of this communication was to
+set expectations, introduce the research context, and invite voluntary
+participation.
 
-\textbf{Want to better understand the problem, the framework, and how to use the plugin?}
+\begin{quote}
+\textbf{Subject: Architectural Hypothesis Management with Hypo-Stage ---
+Invitation to Participate}
 
-This Week Day, Calendar Date, at HH:MM during the Meeting Agenda, I will be leading
-a session on this topic. We will discuss why finding the right moment for
-architectural decisions is so difficult and how ArchHypo can help.
+Hi Team,
 
-I am looking forward to seeing you there to discuss this experiment and how to use
-Hypo Stage in our daily routine.
+I am reaching out to invite you to participate in a research initiative I am
+conducting as part of my Master's degree at IME-USP.
+
+\textbf{What is it about?}
+We will be exploring a technique called Architectural Hypothesis Engineering
+(ArchHypo) and a supporting tool called Hypo-Stage, which I have integrated
+into our Backstage portal. The idea is simple: instead of leaving
+architectural uncertainties as tacit knowledge held by a few engineers, we
+write them down as structured hypotheses, assess their urgency, and track
+the actions we are taking to resolve them.
+
+\textbf{What does participation involve?}
+I will run a short training session (approximately 60--90 minutes) to introduce
+the technique and the tool. After that, you are invited to use Hypo-Stage
+whenever you encounter architectural uncertainties in your normal work over
+the next four weeks. At the end of the period, I would like to have a brief
+conversation (20--30 minutes) with interested team members about their
+experience.
+
+\textbf{Is it mandatory?}
+No. Participation is entirely voluntary. Using the tool as much or as little
+as you find valuable is up to you.
+
+\textbf{What happens to the data?}
+All records will be anonymized before being reported in my thesis. The names
+of our teams, our products, and our systems will not appear in any research
+output. Observations are used only for academic research.
+
+Please reply if you have any questions, or let me know if you would like to
+discuss the initiative before the training session.
+
+Looking forward to working with you on this!
+
+[Researcher --- role and name anonymized]
 \end{quote}

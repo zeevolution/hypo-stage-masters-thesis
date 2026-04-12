@@ -6,7 +6,7 @@
 \label{ch:background}
 
 This chapter establishes the theoretical foundations for the empirical investigation
-carried out in this present work. It begins with an overview of software architecture and
+carried out in this work. It begins with an overview of software architecture and
 architectural uncertainty, then introduces hypotheses engineering and the ArchHypo framework in technical details, describes Internal
 Developer Portals and their role as platforms for enabling tools such as Hypo-Stage,
 presents the Hypo-Stage tool itself, and concludes with a summary of findings from \cite{souza2019} who mapped the gaps between architectural derivation methods and practical tool support.
@@ -15,14 +15,14 @@ presents the Hypo-Stage tool itself, and concludes with a summary of findings fr
 \section{Software Architecture and Architectural Uncertainty}
 \label{sec:sw-arch}
 
-Software architecture basically refers to the high-level structure of a software system, encompassing its components, their relationships, and the design principles that guide
+Software architecture refers to the high-level structure of a software system, encompassing its components, their relationships, and the design principles that guide
 its evolution ~\cite{bass2021}. However, in organizations that maintain software at the core of their business developed and operated by multiple teams,
 the ever-happening architectural decisions shape not only technical quality attributes such as performance, reliability, and maintainability of systems, 
 but also the ability of engineering teams to work independently and deliver changes quickly and efficiently at a speed that needs to match the speed of the business ~\cite{skelton2019}.
 
 More embracing to that rapidly changing business scenarios, \cite{richardsFord2020} added that the design decisions themselves are part of the software architecture itself, 
 making it not only a static structure or frozen blueprint of a system, but a living body of reasoning that is constantly being refined and adapted to the changing business needs. 
-This work sees that modern definition as a way of forging the role of Architectural Uncertainty: the rationale behind any architectural choice is valid only relative to the information available at the time of the decision, 
+This framing is adopted in this work to ground the concept of Architectural Uncertainty: the rationale behind any architectural choice is valid only relative to the information available at the time of the decision, 
 and that information is always incomplete and subject to change.
 
 In other words, Architectural Uncertainty arises whenever teams must make structural decisions under
@@ -31,7 +31,7 @@ where business requirements, user behavior, and technology options are only part
 known. When uncertainty is left implicit, teams either defer decisions indefinitely
 (accumulating technical debt) or make premature actions that may constrain the
 architecture evolution of their systems. Both outcomes can slow down delivery and degrade system
-quality over time, turning the software architecture into a big ball of mud as perceived by ~\cite{footeYoder1999} in the late 90s.
+quality over time, turning the software architecture into what Foote and Yoder \citeyearpar{footeYoder1999} famously characterized as a ``Big Ball of Mud.''
 
 Moreover, the concept of ``fast flow'', popularized by the Team Topologies
 framework in ~\cite{skelton2019}, emphasizes that organizations should design both their
@@ -46,7 +46,7 @@ This is where Hypotheses Engineering may be used to play a key role in the archi
 \label{sec:archhypo}
 
 Hypotheses engineering is an approach to managing technical uncertainty by formulating
-architectural decisions as testable hypotheses rather than settled conceived facts. Instead of
+architectural decisions as testable hypotheses rather than settled facts. Instead of
 asserting that a particular technology or pattern \emph{will} satisfy a quality
 requirement, teams state that it \emph{might} do so and then design experiments to
 gather evidence to validate or invalidate the hypothesis.
@@ -137,7 +137,7 @@ For hypotheses with significant uncertainty or impact, teams formulate a
 \emph{technical plan}: a set of concrete actions whose goal is to (a)~accept or refute
 the hypothesis, (b)~reduce its uncertainty level, (c)~reduce its potential impact, or
 (d)~define criteria under which the decision can responsibly be
-deferred. ArchHypo identifies the following plan strategies as observerd in ~\cite{silva2024ieeesw}:
+deferred. ArchHypo identifies the following plan strategies as observed in ~\cite{silva2024ieeesw}:
 
 \begin{itemize}
   \item \textbf{Architectural Spike.} A time-boxed, isolated experiment to explore a
@@ -205,8 +205,10 @@ Agile Landing Zones & Adopts patterns that preserve flexibility for future inser
 
 Hypotheses progress through a defined lifecycle: they begin in an \emph{open} state
 and transition to either \emph{validated} or \emph{invalidated} as evidence from
-technical plans accumulates. The responsible-moment is the principle—act of the team during the hypothesis lifecycle. 
-It is when they have enough information, neither too early nor too late, to take the effort to move forward with the architectural decision or defer it further.
+technical plans accumulates. The \emph{responsible moment} is the key decision point in the hypothesis lifecycle:
+it is the point at which the team has accumulated enough evidence to act on the
+architectural decision --- neither so early that the decision would be premature, nor
+so late that deferral would create unnecessary risk.
 
 % ------- 2.2.5
 \subsection{Empirical Evaluations}
@@ -287,7 +289,7 @@ The study produced nine key findings:
   The absence of a supporting tool that encodes this knowledge into the workflow risks ArchHypo to remain a technique that only functions when an experienced architect is actively steering its application.
 \end{enumerate}
 
-Findings ~8 and ~9 directly motivate the tooling contribution of this present work: a tool that
+Findings ~8 and ~9 directly motivate the tooling contribution of this work: a tool that
 embeds ArchHypo scaffolding in the daily engineering workflow, reducing the cognitive
 overhead of manual application and knowledge transfer.
 
@@ -399,7 +401,7 @@ runs ~\cite{correa2025}.
 
 ~\cite{correa2025} demonstrated the technical feasibility of building such a plugin
 and validated the integration approach. That work established the initial version of
-the Hypo-Stage plugin for Backstage, which constitutes the artifact under empirical evaluation in this present work.
+the Hypo-Stage plugin for Backstage, which constitutes the artifact under empirical evaluation in this work.
 
 % ---------------------------------------------------------------------------
 \section{Hypo-Stage: The Initial Tool}
@@ -407,7 +409,7 @@ the Hypo-Stage plugin for Backstage, which constitutes the artifact under empiri
 
 Hypo-Stage is an open-source Backstage plugin developed
 as an undergraduate capstone project by Pedro Henrique Mariano Corrêa, supervised by
-the author of this present work and co-supervised by Prof.\ Paulo
+the author of this work and co-supervised by Prof.\ Paulo
 Meirelles ~\cite{correa2025}. Its purpose is to operationalize ArchHypo within the Spotify's IDP Backstage, embedding hypothesis management into the engineering platform workflow.
 
 The initial version of Hypo-Stage, corresponding to the code up to commit
@@ -453,7 +455,7 @@ The case study by ~\cite{correa2025} reconstructed the Catch Solve startup scena
 digitally but did not involve real-time use by a team. Furthermore, the tool lacked
 features for collaborative assessment (e.g., multiple raters per hypothesis) and for
 tracking the evolution of assessments over time. These gaps also motivated the empirical
-evaluation and refinement effort promoted in this present work.
+evaluation and refinement effort promoted in this work.
 
 \begin{table}[htbp]
 \centering

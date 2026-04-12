@@ -1,0 +1,1037 @@
+% ============================================================
+%  Chapter 5 — Results and Refinements
+%  Master's Thesis: Evaluating and Refining Hypo-Stage
+%  José Gonçalves Lima Neto — IME-USP, 2026
+% ============================================================
+\chapter{Results and Refinements}
+\label{chap:results}
+\label{ch:results}
+
+This chapter presents the empirical findings of the study and the refinements to
+Hypo-Stage that emerged from them. The results are organized around the four
+research questions defined in Chapter~\ref{chap:introduction}: RQ1 addresses how
+teams used the tool and the technique in practice; RQ2 characterizes the
+architectural uncertainties they registered; RQ3 reports the benefits and
+challenges perceived by participants; and RQ4 documents each refinement, tracing
+it to a concrete observation and to the question it addresses.
+Section~\ref{sec:emerging-patterns} goes beyond a direct answer to the four
+questions by drawing two families of \textit{emerging patterns}: team-behavior
+patterns (Group~A) and a set of novel technical architectural patterns for
+hypothesis engineers (Group~B). The latter constitutes a distinct contribution
+of this work, addressing a gap left open by prior research in the ArchHypo line,
+as discussed in Section~\ref{sec:group-b-patterns}.
+
+\section*{Methodological Traceability}
+\addcontentsline{toc}{section}{Methodological Traceability}
+
+The evidence presented in this chapter was collected and analyzed strictly in
+accordance with the research design described in Chapter~\ref{chap:research-design}.
+This preamble makes the correspondence explicit so that readers can assess
+compliance at a glance.
+
+\paragraph{Data collection.}
+Three data sources were employed, as specified in Section~\ref{sec:data-collection}:
+\begin{enumerate}
+  \item \textbf{Participant observation.} Evidence was gathered through the
+    researcher's continuous presence within the organization. Observations
+    were the author's own first-hand field notes, recorded as close as
+    possible in time to the observed events (Section~\ref{subsec:participant-observation}). They covered
+    team reactions during and after training, patterns of tool use and
+    non-use during the observation sprints, informal commentary, and all
+    instances in which team members requested conceptual or tool support.
+  \item \textbf{Artifact analysis.} At the end of the observation period, the
+    complete set of hypotheses, assessments, technical plans, and lifecycle
+    records created by each team in Hypo-Stage was extracted and analyzed
+    (Section~\ref{subsec:artifact-analysis}). The quantitative summaries in Sections~\ref{sec:rq2-results} and~\ref{subsec:refinement-summary}
+    are derived exclusively from this artifact record.
+  \item \textbf{Open-ended active listening sessions.} The researcher
+    conducted brief, semi-structured active listening conversations with the
+    senior technical leaders of each team at the end of the observation period
+    (Section~\ref{subsec:active-listening}). The sessions were open-ended: each leader was invited to
+    reflect on their experience of using Hypo-Stage and ArchHypo. Questions
+    used in these sessions are reproduced in Appendix~\ref{apx:instruments}
+    (Section~\ref{sec:listening-guide}). Verbatim statements from these
+    sessions are reported in this chapter only when they add evidence beyond
+    what is already documented in field notes or artifacts; in every case the
+    participant's role is identified (e.g., ``Product Team technical leader'').
+\end{enumerate}
+
+\paragraph{Data analysis — three-stage thematic coding.}
+All field notes, artifact summaries, and active listening records were analyzed
+using the thematic coding procedure described by \citet{robson2016} for
+qualitative data in flexible designs (Section~\ref{sec:data-analysis}). The three stages
+prescribed in the research design were followed as follows:
+\begin{enumerate}
+  \item \textbf{Stage 1 — Inductive open coding.} All primary data were
+    reviewed and a set of descriptive codes was generated inductively,
+    capturing recurring observations and verbatim themes without imposing
+    prior categories. Examples of codes generated at this stage include:
+    \textit{registration-barrier-time-pressure},
+    \textit{senior-author-only},
+    \textit{tool-positive-catalog-integration},
+    \textit{falsifiability-confusion}, and
+    \textit{kafka-cluster-burst-registration}.
+  \item \textbf{Stage 2 — Axial grouping into conceptual categories.} Codes
+    were grouped into higher-level categories corresponding to the constructs
+    of the conceptual framework (Figure~\ref{fig:conceptual-framework}): patterns of tool use ($\rightarrow$ RQ1,
+    Section~\ref{sec:results-rq1}); types of architectural uncertainty and structural archetypes
+    ($\rightarrow$ RQ2, Sections~\ref{sec:rq2-results} and~\ref{sec:group-b-patterns}); perceived benefits ($\rightarrow$ RQ3,
+    Section~\ref{subsec:benefits}); perceived challenges ($\rightarrow$ RQ3, Section~\ref{subsec:challenges}); candidate
+    tool refinements ($\rightarrow$ RQ4, Section~\ref{sec:refinements}); and organizational conditions for
+    adoption ($\rightarrow$ Group~A patterns, Section~\ref{sec:group-a-patterns}).
+  \item \textbf{Stage 3 — Cross-case comparison.} Patterns within and across
+    the two cases (Product Team and Platform Team) were compared to identify
+    findings common to both teams and findings specific to each team's context.
+    Similarities are reported as shared observations; differences are attributed
+    to the distinct natures of product versus platform work, as elaborated in
+    the individual sections.
+\end{enumerate}
+
+The artifact data from Hypo-Stage were summarized descriptively (hypothesis
+counts, quality-attribute frequency, technical plan distribution) to complement
+and illustrate the qualitative findings. Following \citet{robson2016}, the
+inclusion of these descriptive statistics is consistent with a flexible
+qualitative design and does not constitute a multistrategy approach.
+
+% ─────────────────────────────────────────────────────────────
+\section{RQ1 — How Teams Used Hypo-Stage in Practice}
+\label{sec:rq1-results}
+\label{sec:results-rq1}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Hypothesis Registration Dynamics}
+\label{subsec:registration-dynamics}
+
+Over the four-week observation period, both teams together registered thirteen
+architectural hypotheses in Hypo-Stage. Six hypotheses originated from the
+Product~Team and seven from the Platform~Team. This distribution is noteworthy
+because the Platform~Team is significantly smaller (four engineers) yet produced
+more registered hypotheses than the twelve-engineer Product~Team. This asymmetry
+is partly explained by the registration of a dense cluster of five Platform
+hypotheses on a single day (12 April 2026), all addressing complementary aspects
+of the shared Kafka streaming infrastructure — a burst pattern discussed further
+in Section~\ref{sec:group-b-patterns}.
+
+Across both teams, twelve of the thirteen hypotheses were authored by senior
+technical leaders — staff or principal engineers who held explicit architectural
+responsibilities for their respective domains. One hypothesis was registered by a
+mid-level engineer on the Product~Team. Both technical leaders in each team
+independently reported that a much larger number of architectural uncertainties
+existed in their daily work than the number they managed to register. The
+principal constraint they named was time: formulating a well-structured hypothesis
+statement requires focused, uninterrupted attention that sprint delivery
+pressure rarely afforded. This observation resonates with findings from prior
+ArchHypo evaluations, where the learning curve and process-integration demands
+were described as significant barriers to adoption
+\citep{silva2024tse, silva2024ieeesw}.
+
+\subsection{Role-Based Engagement}
+\label{subsec:role-engagement}
+
+Participant observation and the active listening sessions revealed a clear
+stratification in how different roles engaged with Hypo-Stage during the study
+period. Senior engineers treated the tool as a decision-support instrument:
+they used it to externalize concerns that had until then existed only as tacit
+knowledge, and they referenced the hypothesis backlog when discussing
+architectural trade-offs in planning sessions. Mid-level and junior engineers
+were aware of the tool's existence and attended the training session, but
+neither team saw them register hypotheses independently beyond the initial
+introduction. This does not indicate disengagement; rather, both technical
+leaders explained that junior engineers typically operate at a scope where
+architectural uncertainties are resolved quickly — within a sprint or less —
+leaving little perceived need for formal registration.
+
+\subsection{Tool Adoption Patterns}
+\label{subsec:adoption-patterns}
+
+Usage of Hypo-Stage was non-uniform across the observation window. Registration
+activity was concentrated in two periods: a first wave during and immediately
+after the training session, and a second, more intensive wave near the end of
+the period when the Platform~Team used the tool for a structured architectural
+discussion on Kafka failure-handling strategies. Between these waves, both
+technical leaders reported using the hypothesis detail view to review existing
+records and update technical plans, but the tool was not used in team-visible
+ceremonies such as sprint retrospectives or planning meetings. When asked,
+participants noted that embedding the tool into these ceremonies would require
+an explicit cultural agreement within the team — something that had not yet
+occurred within the observation window.
+
+The integration of Hypo-Stage into the Backstage Internal Developer Portal was
+cited by both teams as a meaningful enabler of adoption. Because Backstage is
+already the daily entry point for service catalog, documentation, and CI/CD
+status, engineers encountered Hypo-Stage without navigating to a separate tool.
+The EntityHypothesesTab, which surfaces only the hypotheses linked to the
+component an engineer is already viewing, was specifically mentioned as reducing
+the cognitive cost of context-switching into hypothesis management.
+
+\begin{figure}[ht]
+  \centering
+  \placeholder[0.85\textwidth]{Hypo-Stage EntityHypothesesTab --- the plugin tab
+    rendered inside a Backstage component page, showing only the hypotheses
+    linked to that specific catalog entity. The tab header, hypothesis list,
+    and status indicators are visible in the standard Backstage component layout.}
+  \caption{EntityHypothesesTab: Hypo-Stage surfaces only the hypotheses linked
+    to the Backstage catalog component the engineer is currently viewing,
+    eliminating the need to navigate to a separate tool or filter by component.}
+  \label{fig:entity-hypotheses-tab}
+\end{figure}
+
+% ─────────────────────────────────────────────────────────────
+\section{RQ2 — Architectural Uncertainties Registered}
+\label{sec:rq2-results}
+\label{sec:results-rq2}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Data Overview}
+\label{subsec:data-overview}
+
+Table~\ref{tab:hypotheses-overview} presents the thirteen hypotheses registered
+during the study, anonymized in accordance with the ethical agreement described
+in Section~\ref{sec:ethical-considerations}. Full exported records (statements,
+ratings, entity links, and author notes) appear in Appendix~\ref{app:hypotheses-data}
+(Section~\ref{sec:app-hypothesis-records}, \textit{Hypothesis Records}). Each hypothesis is identified by a
+short label, its source type (Requirements or Solution), its lifecycle status
+at the end of the observation period, and its uncertainty and impact ratings.
+
+\begin{table}[htbp]
+\caption{Overview of the thirteen registered architectural hypotheses.
+  Req.\ = Requirements-sourced; Sol.\ = Solution-sourced.
+  U = Uncertainty level; I = Impact level.
+  Ratings: VL = Very Low, M = Medium, H = High, VH = Very High.}
+\label{tab:hypotheses-overview}
+\centering\small
+\begin{tabular}{llllll}
+\toprule
+\textbf{ID} & \textbf{Short label} & \textbf{Team} & \textbf{Source} &
+\textbf{U} & \textbf{I} \\
+\midrule
+H01 & Kotlin/JOOQ/Spring template readiness & Product  & Req. & VH & VH \\
+H02 & Kafka direct exposure via platform framework & Platform & Req. & VL & M  \\
+H03 & Decouple eng.\ logs from security/compliance audit & Platform & Req. & M  & VH \\
+H04 & Blob storage GDPR right-to-erasure & Product  & Req. & M  & VL \\
+H05 & Credit-bureau decoupling seam & Product  & Sol. & H  & VH \\
+H06 & Billing aggregation chunked keyset pagination & Product  & Sol. & VL & VH \\
+H07 & Blob ownership transfer across service domains & Product  & Req. & VL & VH \\
+H08 & Blob cross-client sharing governance & Product  & Req. & VL & VH \\
+H09 & DLT for audit vs.\ offset-based replay & Platform & Sol. & M  & VH \\
+H10 & Synchronous retry for transient consumer failures & Platform & Sol. & M  & H  \\
+H11 & Failure state inside vs.\ outside Kafka flow & Platform & Sol. & M  & H  \\
+H12 & Error classification before retry & Platform & Sol. & M  & H  \\
+H13 & Payload immutability before re-enqueueing & Platform & Sol. & VL & VH \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Source Types}
+\label{subsec:source-types}
+
+Eight of the thirteen hypotheses were classified as \textit{Requirements}-sourced:
+the uncertainty stems from an incompletely specified quality-attribute goal or
+an external obligation whose implementation path is unknown. Five were classified
+as \textit{Solution}-sourced: the team has an existing or candidate architectural
+decision and is uncertain about its consequences. The predominance of
+requirements-sourced hypotheses on the Product~Team (five out of six) and
+the predominance of solution-sourced hypotheses on the Platform~Team's Kafka
+cluster (four out of five Kafka hypotheses) reflects the different nature of
+each team's work: the Product~Team faces open questions about whether architectural
+goals can be met at all, while the Platform~Team is assessing the trade-offs of
+specific implementation choices for a shared infrastructure component.
+
+\subsection{Quality Attribute Distribution}
+\label{subsec:qa-distribution}
+
+Table~\ref{tab:qa-distribution} summarizes the frequency of quality attributes
+across the thirteen hypotheses. Attributes were assigned by the hypothesis authors
+using the multi-select form in Hypo-Stage; a hypothesis may carry more than one
+attribute.
+
+\begin{table}[htbp]
+\caption{Quality attribute frequency across the thirteen hypotheses.}
+\label{tab:qa-distribution}
+\centering\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quality Attribute} & \textbf{Count} & \textbf{\% of hypotheses} \\
+\midrule
+Reliability        & 6 & 46\% \\
+Auditability       & 5 & 38\% \\
+Performance        & 4 & 31\% \\
+Interoperability   & 4 & 31\% \\
+Extensibility      & 3 & 23\% \\
+Usability          & 3 & 23\% \\
+Scalability        & 2 & 15\% \\
+Modifiability      & 2 & 15\% \\
+Flexibility        & 2 & 15\% \\
+Configurability    & 2 & 15\% \\
+Maintainability    & 1 &  8\% \\
+Security           & 1 &  8\% \\
+Observability      & 1 &  8\% \\
+Reusability        & 1 &  8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Reliability and Auditability emerge as the two dominant concerns. The prominence
+of Auditability is especially notable and directly traceable to two contextual
+forces: the organization's internal security audit requirements, which drove H03,
+and the applicable privacy regulation governing binary document storage (H04),
+as well as the Kafka immutability and DLT governance questions (H09, H13).
+This concentration reveals a recurring archetype in which external compliance
+obligations crystallize into architectural hypotheses — a pattern discussed in
+Section~\ref{sec:group-b-patterns} as the \textit{Regulatory Trigger Hypothesis}.
+
+\subsection{Uncertainty and Impact Profile}
+\label{subsec:uncertainty-impact}
+
+Nine of the thirteen hypotheses carry a \textit{Very High} or \textit{High}
+impact rating, signalling that the teams were not registering peripheral concerns
+but uncertainties with potentially significant consequences for schedule, rework,
+or system quality. Uncertainty ratings are more evenly distributed: five
+hypotheses are rated \textit{Very Low} (the team has strong evidence but the
+hypothesis is tracked for governance reasons), four are \textit{Medium}, one
+is \textit{High}, and one \textit{Very High}.
+
+The combination of Very Low uncertainty and Very High impact (H06, H07, H08,
+H13) is particularly instructive. In ArchHypo's model, this quadrant maps to
+hypotheses that \textit{can be postponed} — the team already has sufficient
+evidence to act, so the immediate risk is low — yet the downstream consequences
+of acting incorrectly are severe. Hypo-Stage's prioritization dashboard surfaced
+these hypotheses in the "Can Postpone" segment of its focus panel, enabling
+teams to consciously defer them without losing visibility. This represents
+a practical instance of the \textit{Postpone Uncertain Decisions} pattern
+described in \citet{silva2024patterns}.
+
+\subsection{Technical Plans in Use}
+\label{subsec:technical-plans}
+
+Seven of the thirteen hypotheses had at least one associated technical plan at
+the end of the observation period. Together these seven hypotheses carried thirteen
+individual technical planning entries. The complete catalog of plan titles and
+strategies is reproduced in Section~\ref{sec:app-technical-plans} of Appendix~B.
+Table~\ref{tab:plan-strategies} summarizes
+the strategies used.
+
+\begin{table}[htbp]
+\caption{Technical plan strategies observed across the hypothesis data.}
+\label{tab:plan-strategies}
+\centering\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Strategy} & \textbf{Plans} & \textbf{Hypotheses using it} \\
+\midrule
+Guideline Implementation & 3 & 3 \\
+Spike (Architectural Spike) & 3 & 2 \\
+Modularization / Flexibility & 2 & 1 \\
+Experiment & 2 & 2 \\
+Tracer Bullet & 1 & 1 \\
+Software Analytics (Trigger) & 1 & 1 \\
+Other (implementation) & 1 & 1 \\
+\midrule
+\textbf{Total} & \textbf{13} & — \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Guideline Implementation and Architectural Spikes were the most frequently
+chosen strategies, consistent with findings from the PropSEP/Jetsoft evaluation
+\citep{silva2025archhypo}. The Tracer Bullet strategy appeared once — for H10,
+where the Platform~Team planned a controlled injection of transient failures into
+a real consumer path to measure ordering and latency characteristics. This
+application illustrates how the Tracer Bullet differs from a Spike: rather than
+an isolated experiment, the plan exercises the full production consumer path
+under representative conditions \citep{silva2024agilepatterns}.
+
+Six hypotheses had no technical plan at the end of the study. Three of these
+(H01, H04, H02) were registered but not yet acted upon; two (H07, H08) had
+been validated through planning actions that predated the observation window and
+whose plans were registered retrospectively; and one (H05) was under active
+discovery but the plan document was still being prepared.
+
+\subsection{Lifecycle and Status}
+\label{subsec:lifecycle-status}
+
+At the end of the observation period, ten hypotheses had \textit{Open} status,
+one was \textit{In Review} (H05, the credit-bureau decoupling, which had moved
+to a structured discovery phase), and two were \textit{Validated} (H07 and H08,
+both in the blob storage domain). No hypothesis was invalidated or discarded
+during the study window. The predominance of the Open status is consistent with
+the short duration of the study (four weeks, two agile sprints) and with the
+nature of the uncertainties: most concern mid- to long-horizon architectural
+concerns that teams do not expect to resolve within a single sprint cycle.
+
+% ─────────────────────────────────────────────────────────────
+\section{RQ3 — Perceived Benefits and Challenges}
+\label{sec:rq3-results}
+\label{sec:results-rq3}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Perceived Benefits}
+\label{subsec:benefits}
+
+Active listening sessions with all four interviewed participants (the two
+technical leaders from each team) converged on three recurring themes regarding
+the perceived value of using Hypo-Stage.
+
+\paragraph{Externalization of tacit architectural knowledge.}
+Both teams described the act of registering a hypothesis as valuable independent
+of what the tool subsequently did with the record. Articulating an uncertainty
+in falsifiable form forced a degree of precision that normal sprint conversations
+do not require. Participants noted that seeing a hypothesis written down — with
+an explicit uncertainty rating, an impact rating, and a related quality attribute
+— made it easier to share the concern with colleagues who had not been involved
+in the original discussion.
+
+\paragraph{Prioritization support.}
+The \textit{Where to Focus} panel of the Hypo-Stage dashboard — distinguishing
+hypotheses that \textit{Need Attention} (high uncertainty and high impact) from
+those that \textit{Can Postpone} (low impact) — was described by both technical
+leaders as a useful aid in architectural conversations. One participant noted that
+the "Can Postpone" category in particular gave them a principled way to explain
+to product managers why a known concern was being deliberately deferred rather
+than ignored.
+
+\paragraph{Collective memory for architectural decisions.}
+Both teams observed that the hypothesis backlog served a documentation function
+that was distinct from Architecture Decision Records (ADRs) or design documents.
+Whereas ADRs capture decisions after they are made, an architectural hypothesis
+captures an open question before a decision is available. Participants described
+this as filling a gap in their current toolchain: they had good mechanisms for
+recording what was decided but poor mechanisms for recording what was still
+unknown.
+Chapter~\ref{chap:conclusion} revisits this distinction when discussing implications for practice.
+
+\subsection{Perceived Challenges}
+\label{subsec:challenges}
+
+Three challenges were consistently raised across participants.
+
+\paragraph{Negative-formulation learning curve.}
+The convention of writing hypotheses as falsifiable statements — phrased in a
+form that specifies under which evidence the team would conclude the hypothesis
+is incorrect — was described by all four participants as non-intuitive. Engineers
+are accustomed to stating what they believe to be true. Inverting that belief
+into a falsifiable form that describes what would prove it false requires a
+deliberate cognitive effort that is easy to skip under time pressure. This finding
+replicates the learning curve reported in both prior ArchHypo evaluations
+\citep{silva2024tse, silva2024ieeesw}.
+
+\paragraph{Registration time cost.}
+Both technical leaders described the difficulty of dedicating the focused time
+required to register a hypothesis properly. Fast-moving architectural micro-decisions
+— resolved within a day or less — were rarely registered because, by the time a
+hypothesis could be written, the question had already been answered informally.
+This creates a systematic under-representation of short-lifecycle uncertainties
+in the hypothesis backlog, which may be consequential when the same question
+re-emerges in a future context.
+
+\paragraph{Absence of team-visible ceremonies.}
+Neither team had established a recurring ceremony — such as an architectural
+review or a hypothesis triage meeting — in which Hypo-Stage records were consulted
+as a team. Tool usage remained largely individual during the observation period.
+Both technical leaders expressed the view that realizing the collaborative
+potential of hypothesis engineering would require the team to institutionalize at
+least one touchpoint where the backlog is reviewed together.
+
+% ─────────────────────────────────────────────────────────────
+\section{RQ4 — Refinements to Hypo-Stage}
+\label{sec:rq4-results}
+\label{sec:results-rq4}
+\label{sec:refinements}
+% ─────────────────────────────────────────────────────────────
+
+This section presents the refinements implemented in Hypo-Stage from commit
+\texttt{ceee509} (the artifact boundary established by \citealt{correa2025}) to
+commit \texttt{3a53d4e} (HEAD at the time of writing). Each refinement is traced
+to a concrete observation from the study and linked to the research question it
+primarily addresses. All refinements address RQ4 by definition; selected
+refinements also bear on RQ1 (adoption ease) and RQ3 (usability and learning
+curve).
+
+\subsection{Backstage Integration and Catalog Surfacing}
+\label{subsec:refinement-backstage}
+
+\textbf{Observation.} During the training session and the first week of
+observation, both teams navigated to Hypo-Stage via a standalone entry point
+that was separate from their regular Backstage workflow. Engineers who were not
+technical leaders rarely revisited the tool after the initial session.
+
+\textbf{Refinement.} Hypo-Stage was wired as a first-class Backstage experience,
+with routable pages for home, hypothesis creation, detail view, and edit flows.
+Crucially, a catalog component tab (\texttt{EntityHypothesesTab}) was introduced,
+surfacing all hypotheses linked to the component an engineer is currently viewing
+in the Backstage catalog. A feature flag (\texttt{hypo-stage}) was added to allow
+gradual, team-controlled rollout.
+
+\textbf{Impact.} Reducing navigation friction lowered the perceived cost of
+checking the hypothesis backlog while already working with a service's catalog
+entry. The Platform~Team's technical leader noted that the component tab made
+hypothesis review a natural side-effect of existing Backstage usage patterns.
+
+\subsection{Backend API and Filtering}
+\label{subsec:refinement-api}
+
+\textbf{Observation.} Engineers with cross-team or platform-wide responsibilities
+needed to filter hypotheses by team and by specific service component. The initial
+version of Hypo-Stage returned all hypotheses without server-side filtering,
+which degraded usability as the hypothesis data grew.
+
+\textbf{Refinements.} Three new API capabilities were implemented:
+(i)~\texttt{GET /hypotheses} extended with \texttt{entityRef} and \texttt{team}
+query parameters; (ii)~\texttt{GET /hypotheses/referenced-entity-refs} to populate
+the component filter without listing the entire catalog; and
+(iii)~\texttt{GET /hypotheses/teams} deriving team names from catalog metadata
+for components referenced by hypotheses.
+
+\subsection{Prioritization Dashboard}
+\label{subsec:refinement-dashboard}
+
+\textbf{Observation.} Both technical leaders expressed the desire to quickly
+identify which hypotheses deserved immediate attention and which could safely be
+deferred. Manually scanning the full hypothesis list imposed an unnecessary
+cognitive burden, especially when the backlog grew.
+
+\textbf{Refinement.} A \texttt{HypothesisListDashboard} component was introduced
+above the hypothesis table, presenting: (i)~overview cards with total count,
+validated count, and hypotheses created in the last thirty days;
+(ii)~a \textit{Where to Focus} section distinguishing \textit{Need Attention}
+(high uncertainty and high impact) from \textit{Can Postpone} (low impact),
+with explanatory subtext aligned with ArchHypo's prioritization model
+\citep{silva2025archhypo}; and (iii)~distribution panels for uncertainty and
+impact Likert values. The dashboard respects entity, team, and component scoping.
+
+\textbf{Impact (RQ3).} The "Can Postpone" segment was specifically cited by
+participants as resolving a communication challenge: it provided a principled
+vocabulary for explaining deliberate deferral to non-technical stakeholders.
+
+\begin{figure}[ht]
+  \centering
+  \placeholder[0.85\textwidth]{Hypo-Stage Prioritization Dashboard --- the four-quadrant
+    focus panel showing hypotheses sorted by urgency. Quadrants: Needs Attention
+    (high U + high I), Can Postpone (low U + low/high I), Monitor (medium U + medium I),
+    and Resolved. Each hypothesis card shows ID, short label, and ratings.}
+  \caption{Prioritization Dashboard in Hypo-Stage: the focus panel surfaces hypotheses
+    according to the urgency signals derived from their uncertainty--impact combination,
+    operationalizing the Postpone Uncertain Decisions pattern from \citet{silva2024patterns}.}
+  \label{fig:prioritization-dashboard}
+\end{figure}
+
+\subsection{Hypothesis Lifecycle Consistency}
+\label{subsec:refinement-lifecycle}
+
+\textbf{Observation.} In the initial implementation, create and update operations
+were not wrapped in database transactions, which created a risk of partial writes
+(hypothesis row updated without the corresponding event entry, or vice versa).
+Artifact analysis revealed two records with missing event entries, suggesting that
+this race condition had occurred in practice.
+
+\textbf{Refinements.} Create and update paths were refactored to use explicit
+database transactions. Delete was extended to cascade to technical planning rows
+and events, with clear API semantics and a confirmation dialog that requires the
+exact hypothesis statement before proceeding (paste-enabled to avoid penalizing
+users with long statements). Success and error toast notifications were added
+for destructive operations.
+
+\subsection{Technical-Planning-Driven Assessment Updates}
+\label{subsec:refinement-tp-assessment}
+
+\textbf{Observation.} Engineers reported that after completing a technical plan
+action — such as an architectural spike — they updated the hypothesis uncertainty
+rating separately from the plan record. This two-step process was error-prone
+and led to hypotheses whose assessment was stale relative to their technical
+plans.
+
+\textbf{Refinements.} Technical planning create and update operations were
+extended to accept optional \texttt{uncertainty} and \texttt{impact} fields.
+When present, the service updates the parent hypothesis's Likert values in the
+same transaction. The event model was refined to distinguish
+\texttt{TECHNICAL\_PLANNING\_CREATE} and \texttt{TECHNICAL\_PLANNING\_UPDATE}
+events from generic hypothesis updates, preserving a traceable audit trail of
+which assessment changes were driven by plan actions.
+
+\subsection{Evolution Chart Improvements}
+\label{subsec:refinement-chart}
+
+\textbf{Observation.} The initial uncertainty/impact evolution chart used opaque
+numeric y-axis ticks that participants could not interpret without consulting the
+Likert scale documentation separately. Multiple events on the same calendar day
+produced ambiguous x-axis labels.
+
+\textbf{Refinements.} The chart was updated to render verbal y-axis ticks
+(Very Low through Very High). Event source was made visually distinguishable:
+circles for manual or creation-driven points, squares for technical-planning-driven
+points. A legend explaining the marker shapes was added. When multiple events
+occur on the same calendar day, the x-axis uses date and time to avoid ambiguity.
+Tooltips were improved to label technical-planning-driven assessment moves with
+the plan number when identifiable.
+
+\begin{figure}[ht]
+  \centering
+  \placeholder[0.8\textwidth]{Hypo-Stage Evolution Chart --- showing the shift in
+    uncertainty and impact ratings across successive assessments for a single
+    hypothesis. X-axis: assessment date; Y-axis: rating (Very Low to Very High);
+    two lines: Uncertainty (solid) and Impact (dashed).}
+  \caption{Evolution Chart in Hypo-Stage: tracking uncertainty and impact rating
+    changes across successive assessments for a registered hypothesis. Each point
+    corresponds to a saved assessment; the chart makes visible whether technical
+    plan actions are reducing uncertainty or impact over time.}
+  \label{fig:evolution-chart}
+\end{figure}
+
+\subsection{Form Usability Improvements}
+\label{subsec:refinement-forms}
+
+\textbf{Observation.} Participants found the hypothesis creation form cognitively
+demanding, particularly the uncertainty and impact selectors, which displayed
+only numeric values, and the quality attribute field, which accepted free text
+without suggesting valid values.
+
+\textbf{Refinements.} Uncertainty and impact selectors were redesigned as Likert
+star pickers showing both a numeric button (1–5) and an adjacent text label
+(Very Low through Very High) with disambiguating icons. Quality attributes were
+replaced by a multi-select autocomplete showing attribute name and description
+in the dropdown. Entity references for linking hypotheses to catalog components
+were given a catalog-backed autocomplete. Documentation link fields were given an
+improved list editor with add/remove and basic URL validation.
+
+\begin{figure}[ht]
+  \centering
+  \placeholder[0.75\textwidth]{Hypo-Stage hypothesis creation form --- showing the
+    Statement field with inline contextual guidance text (e.g.\ ``Start from a
+    belief: We believe X is true. Then state what observable outcome would prove
+    it false.'') and the multi-select Quality Attributes field.}
+  \caption{Hypothesis creation form in Hypo-Stage after the usability-oriented form
+    refinements in this section: inline contextual guidance adjacent to the
+    Statement field scaffolds the falsifiability inversion required by ArchHypo,
+    reducing the cognitive barrier at the moment of registration.}
+  \label{fig:hypothesis-form}
+\end{figure}
+
+\subsection{Summary: Refinements Mapped to Observations}
+\label{subsec:refinement-summary}
+
+Table~\ref{tab:refinements-map} summarizes the nine categories of refinements,
+the primary observation that motivated each, and the research question each
+addresses most directly.
+
+\begin{table}[htbp]
+\caption{Refinements to Hypo-Stage mapped to motivating observations and
+  research questions. RQ columns indicate primary (P) or secondary (S) linkage.}
+\label{tab:refinements-map}
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{3.8cm}p{4.5cm}ccc}
+\toprule
+\textbf{Refinement} & \textbf{Motivating observation} &
+\textbf{RQ1} & \textbf{RQ4} & \textbf{RQ3} \\
+\midrule
+Backstage catalog tab
+  & Infrequent revisit by non-leaders outside native workflow
+  & S & P & S \\
+Backend API filtering
+  & Cross-team users needed scoped views as hypothesis data grew
+  & S & P & — \\
+Prioritization dashboard
+  & Manual scanning of full backlog was cognitively costly
+  & — & P & S \\
+Lifecycle transaction consistency
+  & Partial writes produced stale event records
+  & — & P & — \\
+TP-driven assessment updates
+  & Assessment and plan records drifted apart post-spike
+  & — & P & S \\
+Evolution chart improvements
+  & Numeric y-axis and same-day collisions caused confusion
+  & — & P & S \\
+Form usability improvements
+  & Numeric-only selectors; free-text QA field caused errors
+  & — & P & P \\
+Safer deletion UX
+  & Long statements made confirmation hostile without paste
+  & — & P & — \\
+Toast notifications
+  & No feedback after destructive operations caused re-submission
+  & — & P & — \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────
+\section{Emerging Patterns from the Case Study}
+\label{sec:emerging-patterns}
+% ─────────────────────────────────────────────────────────────
+
+Beyond the direct answers to RQ1–RQ4, thematic analysis of observation notes,
+active listening transcripts, and the combined hypothesis data produced two
+families of patterns. Group~A describes team-behavior conditions that shape
+whether hypothesis engineering becomes a sustainable practice. Group~B describes
+recurring structural archetypes in the content of the architectural hypotheses
+themselves. These two families address orthogonal dimensions: Group~A asks
+\textit{when} hypothesis engineering works; Group~B asks \textit{what shape}
+hypotheses take in practice.
+
+\begin{quote}
+\textbf{Scope and statistical caveat.}
+The patterns described in this section were identified through thematic analysis
+of thirteen architectural hypotheses produced by two software engineering teams
+within a single organizational context over a four-week observation period.
+This dataset is sufficient to motivate conceptual characterization and to propose
+initial vocabulary for hypothesis engineers, but it does not support statistical
+claims about frequency, generalizability, or prevalence.
+The patterns in Group A and Group B should therefore be read as
+\emph{emerging propositions} --- grounded in real empirical data and theoretically
+coherent --- but requiring replication across additional teams, organizations, and
+domains before they can be treated as consolidated findings.
+Future work directions for each pattern are discussed in Section~\ref{sec:future-work}.
+\end{quote}
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Group A — Team Behavior Patterns for Hypothesis Engineering
+            Adoption}
+\label{sec:group-a-patterns}
+% ─────────────────────────────────────────────────────────────
+
+The four Group~A patterns emerge from triangulating RQ1 and RQ3 findings. They
+describe organizational and individual-level conditions that the study observed
+to facilitate or obstruct the adoption of hypothesis engineering as a team
+practice. These patterns complement the existing ArchHypo pattern languages
+\citep{silva2024patterns, silva2023initialpatterns}, which focus on the
+mechanics of hypothesis assessment and deferral, by addressing the social and
+operational context in which those mechanics must operate.
+
+\emph{Note:} The four conditions described below are emergent rather than
+confirmatory findings. Each is supported by convergent evidence from both
+teams but has not been tested in the broader population of software engineering
+organizations. They are presented here as candidate patterns, explicitly
+requiring further empirical validation before adoption as guidelines.
+
+\paragraph{A1 — Senior-Curated Hypothesis Backlog.}
+\textbf{Problem.} How can a team ensure that mid- and long-horizon architectural
+uncertainties remain visible and actively managed over time, even though
+individual engineers work at different scopes and timescales?
+
+\textbf{Observed evidence.} Twelve of the thirteen registered hypotheses were
+authored by senior technical leaders — engineers who carried explicit
+architectural responsibility and whose work horizon extended beyond the current
+sprint. Non-senior engineers did not sustain independent hypothesis registration
+after the initial training episode. The hypotheses that were registered shared
+a common trait: they concerned uncertainties whose consequences would materialize
+weeks or months in the future, making them invisible to typical sprint-scope
+review practices.
+
+\textbf{Solution.} Assign senior engineers as the primary curators of the
+hypothesis backlog. Their architectural horizon and organizational authority
+position them to recognize which uncertainties are worth formalizing. Non-senior
+participation should be enabled by the tool but cannot be assumed to be
+self-sustaining in the early phases of adoption.
+
+\paragraph{A2 — Fast-Resolution Blind Spot.}
+\textbf{Problem.} Many architectural micro-decisions are made and resolved within
+hours or a single day. Their speed makes them feel too transient to register, yet
+their cumulative architectural effect may only become visible — as drift or
+inconsistency — long after the original decision context is forgotten.
+
+\textbf{Observed evidence.} Both technical leaders reported that the majority of
+architectural decisions encountered day-to-day were resolved before a hypothesis
+could be written. This speed made registration feel retrospectively unnecessary.
+Yet both also described recurring situations where the same question re-surfaced
+in a new context, requiring the team to reconstruct reasoning that had previously
+been resolved informally.
+
+\textbf{Solution.} Introduce a lightweight periodic review — for example, a brief
+end-of-sprint ceremony — specifically to identify decisions made in the past
+iteration that resolved quickly but may carry cumulative consequences. Decisions
+with cross-component impact or quality-attribute implications are candidates for
+retroactive registration or lightweight decision records.
+
+\paragraph{A3 — Registration as a Slack-Dependent Practice.}
+\textbf{Problem.} Translating a tacit architectural concern into a properly
+formulated ArchHypo hypothesis requires focused, uninterrupted attention.
+Sprint delivery pressure makes this kind of attention scarce and unreliable as
+a basis for sustained practice.
+
+\textbf{Observed evidence.} Senior leaders explicitly described the difficulty
+of "dedicating proper time to register all possible hypotheses they encounter
+day-to-day." The observed set of thirteen hypotheses is known to
+under-represent the total uncertainties that leaders were aware of. Registration
+activity clustered around protected discussion time — the training session and
+a structured team session on Kafka strategy — rather than being distributed
+across normal sprint work.
+
+\textbf{Solution.} Treat hypothesis registration as a deliberate activity
+requiring protected time — a recurring architectural hygiene session, separate
+from sprint ceremonies, where engineers externalize concerns that have been
+accumulating in tacit knowledge. The IDP integration of Hypo-Stage reduces
+navigation cost but does not substitute for protected cognitive time.
+
+\paragraph{A4 — Negative-Formulation Barrier.}
+\textbf{Problem.} The ArchHypo convention of writing hypotheses as falsifiable
+statements — specifying the evidence that would prove the hypothesis false — is
+cognitively inverted relative to how engineers normally articulate beliefs.
+This inversion is a persistent adoption barrier even for practitioners who
+understand the technique conceptually.
+
+\textbf{Observed evidence.} All four interviewed participants mentioned that the
+falsifiability requirement is non-intuitive and difficult to apply under time
+pressure. This replicates findings reported in the PropSEP/Jetsoft evaluation
+\citep{silva2025archhypo} and remains unresolved in the current version of
+the technique's guidance materials.
+
+\textbf{Solution.} Provide statement templates that scaffold the inversion:
+starting from an architectural belief ("We believe X is true") and guiding the
+engineer to express what observable outcome would prove it false. Embedding this
+scaffolding inline in the hypothesis creation form — as contextual guidance
+adjacent to the statement field — would reduce the cognitive overhead at the
+moment of registration without requiring prior training.
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Group B — Technical Architectural Patterns for Hypothesis
+            Engineers}
+\label{sec:group-b-patterns}
+% ─────────────────────────────────────────────────────────────
+
+The prior work in the ArchHypo research line has established the technique's
+core concepts \citep{silva2025archhypo}, documented patterns for hypothesis
+assessment, uncertainty management, and decision deferral
+\citep{silva2024patterns, silva2023initialpatterns}, and reported on the
+technique's learning curve and process-integration challenges
+\citep{silva2024archhypo}. What this body of work has not yet addressed is
+a question that only becomes answerable through empirical data on
+hypotheses registered in practice:
+
+\begin{quote}
+\textit{What recurring shapes do architectural hypotheses take when teams apply
+ArchHypo to real systems? And what structural properties of a hypothesis — its
+source type, quality-attribute profile, and relation to its organizational
+context — should an engineer recognize in order to write and manage it more
+effectively?}
+\end{quote}
+
+This gap was also identified in calls for future work within the ArchHypo
+pattern literature, which explicitly noted the need for "identifying and
+documenting patterns for various types of hypotheses" and for "exploration of
+common uncertainties related to specific quality attributes"
+\citep{silva2024patterns}. The thirteen-hypothesis dataset produced by this
+study constitutes the first empirical dataset that enables such identification.
+The five patterns described below are therefore a \textbf{novel contribution}
+of this work: they are grounded in real hypothesis data, not derived
+from theoretical analysis, and they provide a vocabulary that hypothesis
+engineers can use both to recognize familiar situations more quickly and to
+communicate about hypothesis types across teams.
+
+\emph{Statistical scope:} All five archetypes were identified from the same
+thirteen-hypothesis dataset. While each archetype maps to two or more
+hypotheses in the dataset (and in some cases corresponds to a single rich
+instance, as discussed in the individual pattern entries), the small dataset
+size means that no frequency claims are made. The contribution lies in naming
+and structuring recurring shapes so that future practitioners and researchers
+have a vocabulary for recognition --- not in establishing that any archetype
+will appear with a particular frequency in other organizational contexts.
+Consolidating these patterns into the broader ArchHypo pattern language is
+identified as a priority future-work item in Section~\ref{sec:future-work}.
+
+\paragraph{B1 — Hypothesis Cluster.}
+\textbf{Context.} A team is responsible for a shared platform component on which
+multiple other service teams depend. An architectural question about that
+component cannot be decomposed into a single hypothesis because the design space
+has several interrelated dimensions, each of which involves a distinct trade-off.
+
+\textbf{Problem.} Formulating a single hypothesis for a multi-dimensional
+architectural concern either oversimplifies the problem (losing important
+trade-off structure) or produces an unmanageably broad statement that is hard
+to falsify.
+
+\textbf{Observed evidence.} Five hypotheses (H09–H13) all concern the shared
+Kafka streaming infrastructure and were registered on the same day, as the
+Platform~Team's technical leader used Hypo-Stage to structure a design discussion.
+The five hypotheses address: (i)~DLT audit semantics versus offset-based replay;
+(ii)~synchronous versus asynchronous retry for transient consumer failures;
+(iii)~failure-state placement inside versus outside the Kafka flow;
+(iv)~error classification before retry; and (v)~payload immutability before
+re-enqueueing. Each is independently falsifiable yet together they map the full
+decision space for consumer-side failure handling in the shared streaming
+platform.
+
+\textbf{Solution.} When a shared platform component has architectural uncertainty
+involving multiple interrelated dimensions, decompose it into a cluster of
+related but independently falsifiable hypotheses. Assign the cluster to the same
+platform component in the tool so it appears together in the component-scoped
+tab. Manage technical plans at the individual hypothesis level but review the
+cluster as a unit in architectural discussions, as the resolution of one
+hypothesis may constrain the options available for others.
+
+\paragraph{B2 — Regulatory Trigger Hypothesis.}
+\textbf{Context.} A software system operates in a regulated domain — financial
+services, healthcare, data privacy — where external compliance obligations
+create architectural constraints whose implementation path is not fully known.
+
+\textbf{Problem.} A compliance requirement imposes an architectural obligation
+before the team has determined how to satisfy it. It is unclear whether the
+existing architecture already satisfies the obligation, what changes would be
+required if it does not, and what the cost of non-compliance would be.
+
+\textbf{Observed evidence.} Two hypotheses in the dataset arise directly from
+regulatory obligations: H04 (the GDPR right-to-erasure requirement for binary
+documents in the blob storage service) and H03 (organization-wide security
+audit requirements for database log correlation across the platform framework).
+In both cases the uncertainty is not about whether to comply — that is a legal
+given — but about whether the current architecture \textit{can} comply and at
+what technical cost.
+
+\textbf{Solution.} When a regulatory obligation creates an architectural
+constraint, formulate it as a hypothesis stating what the system must be capable
+of and making falsifiable the belief that the current architecture satisfies this
+capability. This transforms compliance work from an implicit assumption into an
+explicit tracked uncertainty with a technical plan and a validation target. The
+quality attributes Auditability and Security are diagnostic markers for this
+pattern.
+
+\paragraph{B3 — Decoupling Seam Hypothesis.}
+\textbf{Context.} A service currently handles multiple responsibilities — domain
+logic, external integrations, and identity management — in a tightly coupled
+implementation. The team believes the service could be restructured to serve
+multiple domain contexts, but the boundaries of the decoupling and the migration
+path are unknown.
+
+\textbf{Problem.} Deciding \textit{whether} to decouple is itself uncertain: the
+team does not know what the correct contract boundary should be, which existing
+flows can be migrated without business-logic changes, and what the downstream
+impact on other teams would be. Committing to decoupling without this information
+risks a disruptive refactor that delivers less reuse than expected.
+
+\textbf{Observed evidence.} H05 (credit-bureau decoupling) captures this
+precisely. The service currently handles identity, bureau integration, and
+confidential document flows using domain-specific entities tied to a single
+business vertical. The hypothesis asks whether these integrations can be
+decoupled into context-agnostic middleware accepting only each provider's minimum
+required identifiers, reusable across domains without duplicated cost. At the
+end of the observation period, H05 was the only hypothesis in \textit{In Review}
+status, with a discovery technical plan mapping (i)~the dependency matrix of
+current versus real dependencies per integration, (ii)~an agnostic interface
+contract proposal, and (iii)~a migration plan identifying which flows can isolate
+immediately.
+
+\textbf{Solution.} When a team suspects that a service boundary is too narrow
+for the reuse it should enable, formulate the uncertainty as a decoupling seam
+hypothesis targeting the specific boundary in question. The technical plan should
+follow a discovery strategy before any implementation is attempted: map existing
+dependencies, propose an interface contract free of domain-specific concepts,
+and identify the migration sequence. Quality attributes Interoperability,
+Extensibility, and Reusability are diagnostic markers for this pattern.
+
+\paragraph{B4 — Load-Validated Hypothesis.}
+\textbf{Context.} A team has proposed a specific algorithmic or implementation
+approach to handle a high-volume data processing challenge. The team has already
+conducted a capacity or volume test at scale, producing evidence that the
+approach works. However, the hypothesis has not been formally closed because
+the implementation is still in progress.
+
+\textbf{Problem.} The hypothesis occupies the lowest uncertainty quadrant
+(Very Low) while retaining the highest impact rating (Very High), reflecting a
+situation where the team \textit{knows} the solution works but the architectural
+commitment is still consequential. The hypothesis must be tracked until
+implementation is complete, yet its characterization as "Open" may suggest
+unresolved doubt that no longer exists.
+
+\textbf{Observed evidence.} H06 (billing aggregation chunked keyset pagination)
+exemplifies this. The team validated the approach — chunked keyset pagination
+with isolated repository-level transactions — through a capacity test at five
+times production scale (45 million rows total, 1.5 million rows per month).
+Profiling confirmed that JPA stream processing caused first-level cache growth,
+and that chunking scopes transactions to approximately ten thousand rows so the
+garbage collector can reclaim memory, producing a healthy sawtooth heap pattern.
+The hypothesis remains Open because the implementation is ongoing, but the
+uncertainty has been effectively resolved.
+
+\textbf{Solution.} When a team has strong empirical evidence that a solution
+approach is correct but implementation is incomplete, retain the hypothesis in
+Open status with a Very Low uncertainty rating and document the validation
+evidence in the hypothesis notes. Plan the hypothesis lifecycle so that it
+transitions to Validated upon completion of the production implementation, not
+upon completion of the test. The hypothesis note field should reference the
+capacity test artifact explicitly, preserving the evidentiary chain.
+
+\paragraph{B5 — Shared Resource Governance Hypothesis.}
+\textbf{Context.} A platform service manages a shared resource — binary objects,
+credentials, configuration data — on which multiple product domains depend. New
+business requirements demand that the resource be shared across domain boundaries
+or transferred between owning services, but the governance rules for these
+operations have not been established.
+
+\textbf{Problem.} The team must decide how to model cross-domain access to the
+shared resource — specifically, which service "owns" the resource at any given
+point, who may read or write it, and under what conditions ownership can be
+transferred. These questions have significant security, consistency, and usability
+implications. Without explicit governance decisions, different product teams will
+adopt incompatible access patterns, creating consistency violations that are
+difficult to detect and remedy.
+
+\textbf{Observed evidence.} H07 (blob ownership transfer across service domains)
+and H08 (blob cross-client sharing governance) are two instances of this pattern
+in the secure blob storage domain. H08 was driven by a concrete usage scenario
+in which a customer-facing channel receives documents that are later routed to
+support tooling; the support team needs read access without breaking the blob
+vault's ownership invariants. Both hypotheses were validated through a Guideline
+technical plan — an alignment session that produced a governance decision enabling
+prioritization of the transfer and sharing implementation work. Quality attributes
+Security, Interoperability, and Usability are diagnostic markers for this pattern.
+
+% ─────────────────────────────────────────────────────────────
+\section{Revisiting the Research Questions}
+\label{sec:rq-revisit}
+% ─────────────────────────────────────────────────────────────
+
+This section concludes the analytical body of the chapter by stating explicitly how
+the preceding empirical and design material bears on the four research questions
+formulated in Chapter~\ref{chap:introduction}. The intent is \emph{consolidative}:
+no additional empirical claims are introduced; the aim is to make the logical
+organization of the chapter legible relative to those questions.
+
+\subsection{Correspondence between research questions and chapter sections}
+
+Table~\ref{tab:rq-chapter-map} summarizes where each research question is principally
+addressed in this chapter, and where integrated interpretation (Group~A/B) extends
+the principal sections.
+
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\caption{Correspondence between the research questions (Chapter~\ref{chap:introduction})
+  and the organization of evidence in this chapter.}
+\label{tab:rq-chapter-map}
+\begin{tabular}{p{0.12\linewidth} p{0.40\linewidth} p{0.40\linewidth}}
+\toprule
+\textbf{RQ} & \textbf{Principal analysis} & \textbf{Integrated interpretation} \\
+\midrule
+RQ1 & Section~\ref{sec:rq1-results} (tool use and adoption dynamics). &
+Section~\ref{sec:group-a-patterns} (Group~A; read together with RQ3). \\
+\midrule
+RQ2 & Section~\ref{sec:rq2-results} (typological account of the data). &
+Section~\ref{sec:group-b-patterns} (Group~B structural archetypes). \\
+\midrule
+RQ3 & Section~\ref{sec:rq3-results} (benefits and challenges). &
+Section~\ref{sec:group-a-patterns} (Group~A; read together with RQ1). \\
+\midrule
+RQ4 & Section~\ref{sec:rq4-results} (nine refinement categories, observation-led). &
+--- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Brief interpretive synthesis}
+
+For RQ2, the question couples a typological obligation with a structural one.
+Section~\ref{sec:rq2-results} discharges the former by characterizing what was
+registered; Section~\ref{sec:group-b-patterns} discharges the latter by articulating
+recurrent structural forms in the data. Jointly, they satisfy the formulation of
+RQ2 adopted in Chapter~\ref{chap:introduction}.
+
+For RQ1 and RQ3, the Group~A patterns provide an integrated reading: they condense
+conditions for sustaining hypothesis engineering that are visible only when
+observational evidence on use (RQ1) and on perceived benefits and friction (RQ3) is
+examined together. The wording of RQ1 and RQ3 is not revised here; the contribution
+is to clarify what an adequate empirical answer must cover in the present setting.
+
+For RQ4, Section~\ref{sec:rq4-results} reports refinements in the manner expected
+in design-science accounts of artifact evolution, that is, as outcomes grounded in
+observations rather than as a separate implementation chronicle.

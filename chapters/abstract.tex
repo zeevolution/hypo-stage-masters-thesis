@@ -1,32 +1,69 @@
 %!TeX root=../thesis.tex
 
 % Keywords must be defined before the abstract/resumo commands.
-\keywords{Software Architecture, Architectural Uncertainty, Hypotheses Engineering, ArchHypo, Hypo-Stage, Internal Developer Portal, Backstage, Case Study, Empirical Evaluation}
+\keywords{Software Architecture; Architectural Uncertainty; Hypotheses Engineering; ArchHypo; Hypo-Stage; Internal Developer Portal; Backstage; Case Study; Empirical Evaluation}
 
-\palavraschave{Arquitetura de Software, Incerteza Arquitetural, Engenharia de Hipóteses, ArchHypo, Hypo-Stage, Portal do Desenvolvedor Interno, Backstage, Estudo de Caso, Avaliação Empírica}
+\palavraschave{Arquitetura de Software; Incerteza Arquitetural; Engenharia de Hipóteses; ArchHypo; Hypo-Stage; Portal do Desenvolvedor Interno; Backstage; Estudo de Caso; Avaliação Empírica}
 
-% English abstract (primary)
+% English abstract (primary) --- single paragraph (ABNT NBR 6028; IME template convention)
 \abstract{
-Software engineering teams frequently face architectural uncertainty, but lack lightweight, workflow-embedded support to record, prioritize, and learn from it collaboratively.
-The ArchHypo technique applies hypotheses engineering to architectural decisions; its manual application imposes a hard learning curve and depends strongly on expert facilitation.
-This present work reports the \emph{first empirical account of a tool-mediated application of ArchHypo in an industrial setting}.
-The artifact is \textbf{Hypo-Stage}, an open-source Backstage plugin (\url{https://github.com/ArchHypo/hypo-stage}) deployed on a large organization's Internal Developer Portal, where engineers already work.
-The study adopts a flexible, multiple case-study design with formative evaluation and action-research elements, framed by Robson and McCartan's \emph{Real World Research} perspective on flexible designs.
-Two teams---a Product team (twelve engineers) and a Platform team (four engineers)---used Hypo-Stage over two agile sprints (four weeks).
-Evidence was gathered through \emph{participant observation}, \emph{artifact analysis} of Hypo-Stage records, and open-ended \emph{active listening sessions}.
-The work characterizes the types of architectural uncertainties teams made explicit, patterns of tool use and non-use, and perceived benefits and challenges across roles.
-\emph{Refinements} to Hypo-Stage and its usage guidelines are treated as an integral part of the empirical contribution: each change is traced to concrete observations and linked to the research questions --- especially RQ2 on empirically grounded improvement of the tool and its adoption.
+Software engineering teams in continuous-delivery organizations routinely face architectural decisions
+under incomplete information, yet few lightweight tools exist to help them record, prioritize, and learn from
+those uncertainties collaboratively; the ArchHypo technique addresses this gap by applying hypotheses
+engineering to software architecture --- teams formulate uncertainties as falsifiable hypotheses, assess each
+by uncertainty level and impact, and define a technical plan for handling it --- but prior evaluations reported
+a steep learning curve and dependence on expert facilitation, both exacerbated by the absence of tool support.
+This dissertation presents the first empirical account of a tool-mediated application of ArchHypo in a
+professional software development organization, through the evaluation and iterative refinement of
+Hypo-Stage, an open-source Backstage plugin deployed on a large organization's Internal Developer Portal
+where engineers already work; the study adopts a flexible, multiple case-study design with formative
+evaluation and action-research elements following \citet{robson2016}, involving two teams --- a
+Product team of twelve engineers and a Platform team of four --- over two agile sprints totalling four weeks,
+with data collected through participant observation, artifact analysis of thirteen registered hypotheses and
+their technical plans, and open-ended active listening sessions with each team's senior technical leader,
+analyzed via three-stage thematic coding.
+Four contributions emerge from this work: (1) a detailed observational account of how both teams
+adopted and used Hypo-Stage, characterizing hypothesis registration dynamics, role stratification, and
+tool adoption patterns; (2) a characterization of the architectural uncertainties the teams made explicit,
+including their sources, dominant quality attributes (Reliability and Auditability), uncertainty-impact
+profiles, and technical plan strategies; (3) five novel technical architectural hypothesis archetypes ---
+Hypothesis Cluster, Regulatory Trigger Hypothesis, Decoupling Seam Hypothesis, Load-Validated Hypothesis,
+and Shared Resource Governance Hypothesis --- constituting the first empirically grounded structural
+classification of recurring hypothesis shapes in the ArchHypo research line; and (4) nine categories of
+empirically grounded refinements to Hypo-Stage, each traced to a concrete observation and a code commit,
+including a hypothesis evolution chart, a prioritization dashboard, and inline formulation guidance that
+reduces the technique's learning barrier.
 }
 
-% Portuguese abstract (required by IME-USP regulations)
+% Portuguese abstract (required by IME-USP regulations) --- parágrafo único
 \resumo{
-Equipes de engenharia de software enfrentam com frequência incertezas arquiteturais, mas dispõem de pouco apoio fácil e bem integrado ao fluxo de trabalho para registrá-las, priorizá-las e aprender com elas de forma colaborativa.
-A técnica ArchHypo emprega engenharia de hipóteses nas decisões arquiteturais; sua aplicação manual envolve uma acentuada curva de aprendizado e depende fortemente de facilitação especializada de engenheiros experientes.
-O presente trabalho apresenta o \emph{primeiro relato empírico de uma aplicação mediada por ferramenta de ArchHypo em contexto industrial}.
-O artefato é o \textbf{Hypo-Stage}, \emph{plugin} open source para Backstage (\url{https://github.com/ArchHypo/hypo-stage}), implantado no Portal do Desenvolvedor Interno de uma grande organização de software, onde os engenheiros já atuam com Backstage.
-O estudo adota um desenho flexível de múltiplos estudos de caso, com propósito avaliativo formativo e elementos de pesquisa-ação, alinhado à perspectiva de \emph{Real World Research} de Robson e McCartan sobre pesquisas com designs flexíveis.
-Duas equipes---uma equipe de Produto (doze engenheiros) e uma equipe de Plataforma (quatro engenheiros) --- utilizaram o Hypo-Stage ao longo de duas \emph{sprints} ágeis (quatro semanas).
-Os dados foram obtidos por meio de \emph{observação participante}, \emph{análise de artefatos} registrados no Hypo-Stage e sessões abertas de \emph{escuta ativa} com os participantes.
-O trabalho caracteriza os tipos de incertezas arquiteturais que as equipes tornaram explícitas, padrões de uso e não uso da ferramenta, além de benefícios e desafios percebidos pelos diferentes papéis.
-Os \emph{refinamentos} do Hypo-Stage e de suas diretrizes de uso são apresentados como parte integrante do resultado empírico: cada alteração é vinculada a observações concretas e relacionada às questões de pesquisa --- em particular à RQ2, que trata dos refinamentos emergentes do estudo e de como eles respondem aos desafios identificados.
+Equipes de engenharia de software em organizações de entrega contínua tomam rotineiramente decisões
+arquiteturais sob informação incompleta, mas dispõem de poucas ferramentas leves para registrar, priorizar
+e aprender com essas incertezas de forma colaborativa; a técnica ArchHypo aborda essa lacuna ao aplicar
+a engenharia de hipóteses à arquitetura de software --- as equipes formulam incertezas como hipóteses
+falsificáveis, avaliam cada uma por nível de incerteza e impacto, e definem um plano técnico para tratá-las
+--- mas avaliações anteriores reportaram uma curva de aprendizado acentuada e dependência de facilitação
+especializada, ambos agravados pela ausência de suporte ferramental.
+Esta dissertação apresenta o primeiro relato empírico de uma aplicação mediada por ferramenta do ArchHypo
+em uma organização profissional de desenvolvimento de software, por meio da avaliação e do refinamento
+iterativo do Hypo-Stage, um plugin \textit{open source} para o Backstage implantado no Portal do Desenvolvedor
+Interno de uma grande organização, onde os engenheiros já atuam cotidianamente; o estudo adota um
+desenho flexível de múltiplos estudos de caso, com propósito avaliativo formativo e elementos de
+pesquisa-ação segundo \citet{robson2016}, envolvendo duas equipes --- uma equipe de Produto com
+doze engenheiros e uma equipe de Plataforma com quatro --- ao longo de duas \textit{sprints} ágeis totalizando
+quatro semanas, com dados coletados via observação participante, análise de artefatos das treze hipóteses
+registradas e seus planos técnicos, e sessões abertas de escuta ativa com o líder técnico sênior de cada
+equipe, analisados por codificação temática em três estágios.
+Quatro contribuições emergem deste trabalho: (1) um relato observacional detalhado de como ambas as
+equipes adotaram e utilizaram o Hypo-Stage, caracterizando a dinâmica de registro de hipóteses, a
+estratificação por papel e os padrões de adoção da ferramenta; (2) uma caracterização das incertezas
+arquiteturais tornadas explícitas pelas equipes, incluindo suas fontes, atributos de qualidade dominantes
+(Confiabilidade e Auditabilidade), perfis de incerteza-impacto e estratégias de plano técnico; (3) cinco
+arquétipos técnicos de hipóteses arquiteturais --- Hypothesis Cluster, Regulatory Trigger Hypothesis,
+Decoupling Seam Hypothesis, Load-Validated Hypothesis e Shared Resource Governance Hypothesis ---
+constituindo a primeira classificação estrutural empiricamente fundamentada de formas recorrentes de
+hipóteses na linha de pesquisa do ArchHypo; e (4) nove categorias de refinamentos empiricamente
+fundamentados ao Hypo-Stage, cada um rastreado a uma observação concreta e a um \textit{commit} no repositório,
+incluindo um gráfico de evolução das hipóteses, um painel de priorização e orientações de formulação
+\textit{inline} que reduzem mensuravelmente a barreira de aprendizado da técnica.
 }

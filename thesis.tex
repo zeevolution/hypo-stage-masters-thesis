@@ -3,7 +3,7 @@
 %
 % Based on the IME-USP LaTeX template (ccsl-usp/modelo-latex).
 % Template authors: Jesús P. Mena-Chalco, Fabio Kon, Paulo Feofiloff, Nelson Lago.
-% Template licence: MIT. Thesis content: CC-BY 4.0.
+% Template license: MIT. Thesis content: CC-BY 4.0.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -21,6 +21,10 @@
 % Directories where figures are located
 \graphicspath{{figures/},{template/logos/}}
 
+% Framed placeholders for screenshots until final figures are exported
+\newcommand{\placeholder}[2][0.85\textwidth]{%
+  \fbox{\parbox{#1}{\centering\vspace{2cm}[SCREENSHOT PLACEHOLDER: #2]\vspace{2cm}}}}
+
 % Quick language-switching commands (\en, \br, \texten{}, \textbr{})
 \babeltags{br = brazilian, en = english}
 
@@ -36,11 +40,11 @@
 \babelhyphenation[english]{Arch-Hypo Hypo-Stage}
 
 % ---- Title (English primary; translated title is the Portuguese version) ----
-\title{Hypo-Stage: An Empirical Study of\\
-Tool-Supported Architectural Hypothesis Engineering\\
-in Industrial Software Teams}[]
-\translatedtitle{Hypo-Stage: Um Estudo Empírico sobre Engenharia de Hipóteses\\
-Arquiteturais Apoiada por Ferramenta em Equipes de Software Industriais}[]
+\title{Hypo-Stage: Tool-Supported Architectural Hypothesis Engineering\\
+in Professional Software Development Teams --- A Case Study}[]
+\translatedtitle{Hypo-Stage: Engenharia de Hipóteses Arquiteturais Apoiada por\\
+Ferramenta em Equipes Profissionais de Desenvolvimento de Software ---\\
+Um Estudo de Caso}[]
 
 \author{José Gonçalves Lima Neto}
 
@@ -112,18 +116,23 @@ Arquiteturais Apoiada por Ferramenta em Equipes de Software Industriais}[]
 
 %%% Acknowledgments %%%
 \chapter*{Acknowledgments}
-% TODO: write acknowledgments. Example structure:
-%
-% I would like to express my gratitude to my advisor, Prof. Dr. Paulo Meirelles,
-% for his guidance throughout this research.
-%
-% I am grateful to the ArchHypo research group, especially Prof. Eduardo Guerra,
-% for the insightful discussions that helped shape this work.
-%
-% I also thank the software engineering teams at [CompanyX] who participated
-% in the empirical study.
-%
-% Finally, I thank my family for their constant support and encouragement.
+
+\begin{flushright}
+\itshape
+Good decisions come from experience.\\
+Experience comes from making bad decisions.\\
+\upshape --- Mark Twain
+\end{flushright}
+
+\vspace{1.5em}
+
+Special thanks to my advisor, Prof.\ Dr.\ Paulo Meirelles, for his exceptional guidance and
+support throughout this work. His mentorship shaped not only the direction of this research
+but also the way in which it was conducted. I also extend my gratitude to the staff of
+\mbox{IME-USP} for their assistance and institutional support, and to the teams who
+participated in this study for their openness, generosity with their time, and genuine
+engagement with the research. Finally, I thank my wife and family for their unwavering
+motivation and encouragement --- without them, none of this would have been possible.
 
 %%% Abstract (EN primary, PT secondary — both required by IME-USP) %%%
 \input{chapters/abstract}
@@ -187,9 +196,8 @@ Arquiteturais Apoiada por Ferramenta em Equipes de Software Industriais}[]
 \input{chapters/02-background}
 \input{chapters/03-related-work}
 \input{chapters/04-research-design}
-\input{chapters/05-results}
-% Conclusion is the final mainmatter chapter; empirical results and refinements both live above.
-\input{chapters/07-conclusion}
+\include{chapters/05-results-and-refinements}
+\input{chapters/06-conclusion}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -201,8 +209,7 @@ Arquiteturais Apoiada por Ferramenta em Equipes de Software Industriais}[]
 \addappheadtotoc
 
 \input{chapters/appendix-a-instruments}
-% TODO: add more appendices as needed
-% \input{chapters/appendix-b-additional-data}
+\input{appendixes/app-b-hypotheses-data}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% ANNEXES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
