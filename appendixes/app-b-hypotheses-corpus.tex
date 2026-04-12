@@ -1,344 +1,513 @@
 %!TeX root=../thesis.tex
 
-% Appendix B — Registered Hypotheses Corpus
-% Reproduces the thirteen study hypotheses and their technical plans for
-% replication and audit. Entity identifiers follow the anonymisation agreement
-% described in Section~\ref{sec:ethical-considerations} of Chapter~\ref{chap:research-design}.
+% ============================================================
+%  Appendix B — Registered Hypotheses Corpus (Anonymised)
+%  Master's Thesis: Evaluating and Refining Hypo-Stage
+%  José Gonçalves Lima Neto — IME-USP, 2026
+% ============================================================
 
 \chapter{Registered Hypotheses Corpus}
 \label{app:hypotheses-corpus}
 
-% Local helper: keep each hypothesis block visually grouped (minipage inside frame).
-\newcommand{\hypobox}[1]{%
-  \par\medskip\noindent
-  \fbox{%
-    \begin{minipage}[t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
-      \raggedright\small
-      #1%
-    \end{minipage}%
-  }%
-  \par\medskip
-}
+This appendix presents the complete set of thirteen architectural hypotheses
+registered by the two participating teams in Hypo-Stage during the observation
+period. All entity references, service names, and internal artefact links have
+been anonymised in accordance with the ethical agreement described in
+Section~\ref{sec:ethical-considerations}. The anonymisation legend is provided
+in Table~\ref{tab:entity-legend}. Technical planning entries are reproduced in
+full in Section~\ref{sec:app-technical-plans}.
 
+% ─────────────────────────────────────────────────────────────
 \section{Anonymisation Legend}
-\label{sec:app-anonymisation-legend}
-
-All Backstage \texttt{entityRef} values and human-readable component names in the
-records below are replaced with neutral codes. The mapping is one-way and is not
-published, in accordance with the ethical agreement summarised in
-Section~\ref{sec:ethical-considerations}.
+\label{sec:app-legend}
+% ─────────────────────────────────────────────────────────────
 
 \begin{table}[htbp]
-  \centering
-  \small
-  \caption{Anonymised Backstage entity references used in this appendix.}
-  \label{tab:app-b-entity-legend}
-  \begin{tabular}{p{0.22\linewidth}p{0.68\linewidth}}
-    \toprule
-    \textbf{Code} & \textbf{Description (non-identifying)} \\
-    \midrule
-    \texttt{ENT-PRD-A} & Product-owned service on the Kotlin/JOOQ/Spring template stack. \\
-    \texttt{ENT-PRD-B} & Product-owned billing and aggregation pipeline service. \\
-    \texttt{ENT-PRD-C} & Product-owned integration service touching credit-bureau flows. \\
-    \texttt{ENT-PRD-D} & Product-owned secure blob storage and document vault service. \\
-    \texttt{ENT-PLT-F} & Platform-owned shared logging and request-correlation framework. \\
-    \texttt{ENT-PLT-K} & Platform-owned managed Kafka streaming component. \\
-    \texttt{ENT-PLT-W} & Platform-owned worker/consumer deployment for streaming workloads. \\
-    \texttt{ENT-IDP-X} & Organisation-wide Internal Developer Portal (Backstage) instance. \\
-    \bottomrule
-  \end{tabular}
+\caption{Anonymised Backstage entity references and their descriptions.}
+\label{tab:entity-legend}
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{p{5.2cm}p{7.8cm}}
+\toprule
+\textbf{Anonymised entity reference} & \textbf{Description} \\
+\midrule
+\texttt{catalog: Kotlin + JOOQ + Spring service template}
+  & Internal catalog entry for the JVM service scaffold using Kotlin, JOOQ, and
+    Spring — intended to replace a legacy functional-language stack in the
+    regulated financial domain. \\[4pt]
+\texttt{internal-framework: JVM platform stack with Kafka integration}
+  & The organisation's shared application framework for JVM services, covering
+    Kafka exposure conventions, request logging, and platform integrations. \\[4pt]
+\texttt{service: secure blob storage — API}
+  & HTTP API for storing and governing binary documents with security and
+    lifecycle rules. \\[4pt]
+\texttt{service: secure blob storage — worker}
+  & Background worker for the secure blob storage domain (async processing and
+    maintenance). \\[4pt]
+\texttt{service: confidential records \& credit-bureau integration — API}
+  & API for identity, credit-bureau, and confidential document flows, currently
+    coupled to a single business vertical. \\[4pt]
+\texttt{service: confidential records \& credit-bureau integration — worker}
+  & Worker for the same confidential records and bureau integration context. \\[4pt]
+\texttt{worker: high-volume billing aggregation}
+  & Long-running worker that aggregates large billing datasets. \\[4pt]
+\texttt{platform: shared streaming infrastructure}
+  & Shared Kafka streaming platform and consumption standards, modelled as a
+    catalog component. \\
+\bottomrule
+\end{tabular}
 \end{table}
 
+% ─────────────────────────────────────────────────────────────
 \section{Hypothesis Profiles}
 \label{sec:app-hypothesis-profiles}
+% ─────────────────────────────────────────────────────────────
 
-Each block lists the ArchHypo-style falsifiable statement as recorded in Hypo-Stage,
-the owning team, requirements- versus solution-sourced classification, lifecycle status
-at the end of the observation window, uncertainty and impact ratings, linked quality
-attributes, primary Backstage entity references, and free-text notes where authors
-documented validation context.
+Each hypothesis profile below follows a standard layout: identifier, originating
+team, registration date, lifecycle status, source type (Requirements or Solution),
+affected Backstage entity references, quality attributes, uncertainty level,
+impact level, the hypothesis statement, and contextual notes provided by the
+author. Technical plans are cross-referenced to Section~\ref{sec:app-technical-plans}.
 
-\hypobox{%
-  \textbf{H01 --- Kotlin/JOOQ/Spring template readiness.}\par\medskip
-  \textit{Statement.}
-  The organisation's default Kotlin/JOOQ/Spring microservice template provides the
-  cross-cutting capabilities (observability hooks, transaction boundaries, test fixtures,
-  and deployment manifests) required for new production services without bespoke
-  architectural extensions.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Product \\
-    \textbf{Source type} & Requirements \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Very High / Very High \\
-    \textbf{Quality attributes} & Maintainability, Modifiability, Reusability \\
-    \textbf{Entity refs} & \texttt{ENT-PRD-A}, \texttt{ENT-IDP-X} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Registered in the first adoption wave; no technical plan had been attached at the
-  close of the study window.
+\newcommand{\hypobox}[9]{%
+  % #1 ID label  #2 Team  #3 Date  #4 Status  #5 Source
+  % #6 Entities  #7 QA    #8 U/I   #9 Statement
+  \noindent\begin{minipage}{\linewidth}
+  \vspace{6pt}
+  \noindent\rule{\linewidth}{0.4pt}
+  \smallskip
+  \noindent\textbf{#1}\hfill\textit{Team: #2 \textbar{} Registered: #3 \textbar{} Status: #4}\\[2pt]
+  \noindent\textit{Source:} #5 \quad \textit{Uncertainty / Impact:} #8 \\
+  \noindent\textit{Quality attributes:} #7 \\
+  \noindent\textit{Entities:} \texttt{#6} \\[4pt]
+  \noindent\textit{Statement:} ``#9''
+  \vspace{4pt}
+  \end{minipage}%
 }
 
-\hypobox{%
-  \textbf{H02 --- Kafka direct exposure via platform framework.}\par\medskip
-  \textit{Statement.}
-  Application teams can safely produce and consume Kafka topics through the
-  platform-provided client abstractions without leaking broker-level contracts into
-  service codebases.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Platform \\
-    \textbf{Source type} & Requirements \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Very Low / Medium \\
-    \textbf{Quality attributes} & Interoperability, Modifiability, Configurability \\
-    \textbf{Entity refs} & \texttt{ENT-PLT-K}, \texttt{ENT-PLT-F} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Low uncertainty reflects existing platform guidance; impact moderated because not
-  all product services depend on streaming paths yet.
-}
+% ── H01 ─────────────────────────────────────────────────────
+\hypobox%
+  {H01}%
+  {Product}%
+  {2026-03-18}%
+  {Open}%
+  {Requirements}%
+  {catalog: Kotlin + JOOQ + Spring service template}%
+  {Performance \textbar{} Reliability \textbar{} Maintainability}%
+  {Very High / Very High}%
+  {The Kotlin + JOOQ + Spring service template is ready to scale for use in
+   regulated financial product services, replacing a legacy functional-language
+   stack.}
 
-\hypobox{%
-  \textbf{H03 --- Decouple engineering logs from security/compliance audit.}\par\medskip
-  \textit{Statement.}
-  The current request- and worker-log pipeline can be refactored so that engineering
-  diagnostics remain separate from evidence-grade audit trails required by internal
-  security review, without losing traceability for incident response.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Platform \\
-    \textbf{Source type} & Requirements \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Medium / Very High \\
-    \textbf{Quality attributes} & Auditability, Observability, Security \\
-    \textbf{Entity refs} & \texttt{ENT-PLT-F}, \texttt{ENT-PLT-W} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Driven by organisation-wide audit obligations; paired with modularisation-oriented
-  technical plans (catalog entries TP-03-B and TP-03-C) and a spike on durable
-  correlation identifiers (TP-03-A).
-}
+\noindent\textit{Notes:} The organisation intends to deprecate the legacy stack
+in that domain; the Kotlin + JOOQ + Spring template is the leading candidate to
+replace it.
 
-\hypobox{%
-  \textbf{H04 --- Blob storage GDPR right-to-erasure.}\par\medskip
-  \textit{Statement.}
-  The secure blob vault can honour data-subject erasure requests for binary
-  documents within regulatory timelines without violating immutability guarantees
-  required for downstream financial evidence.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Product \\
-    \textbf{Source type} & Requirements \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Medium / Very Low \\
-    \textbf{Quality attributes} & Security, Auditability, Interoperability \\
-    \textbf{Entity refs} & \texttt{ENT-PRD-D} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Regulatory trigger pattern; uncertainty reflects legal/technical interface work
-  still in flight rather than scepticism about the obligation itself.
-}
+\noindent\textit{Technical plans:} None registered at end of observation period.
 
-\pagebreak
+\medskip
 
-\hypobox{%
-  \textbf{H05 --- Credit-bureau decoupling seam.}\par\medskip
-  \textit{Statement.}
-  The integration service can be restructured so that identity, bureau connector, and
-  confidential-document flows share a context-agnostic middleware contract reusable
-  across business verticals without duplicated integration cost.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Product \\
-    \textbf{Source type} & Solution \\
-    \textbf{Status} & In Review \\
-    \textbf{Uncertainty / Impact} & High / Very High \\
-    \textbf{Quality attributes} & Interoperability, Extensibility, Reusability \\
-    \textbf{Entity refs} & \texttt{ENT-PRD-C} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Only hypothesis in \textit{In Review} at study end; discovery-oriented plan
-  TP-05-A mapping real versus effective dependencies was in preparation.
-}
+% ── H02 ─────────────────────────────────────────────────────
+\hypobox%
+  {H02}%
+  {Platform}%
+  {2026-02-11}%
+  {Open}%
+  {Requirements}%
+  {internal-framework: JVM platform stack with Kafka integration}%
+  {Configurability \textbar{} Flexibility \textbar{} Extensibility \textbar{} Modifiability}%
+  {Very Low / Medium}%
+  {Kafka should be exposed to application layers for direct use via the internal
+   platform framework.}
 
-\hypobox{%
-  \textbf{H06 --- Billing aggregation chunked keyset pagination.}\par\medskip
-  \textit{Statement.}
-  Chunked keyset pagination with bounded repository transactions sustains billing
-  aggregation throughput at projected five-year volume without pathological heap growth
-  or GC stalls.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Product \\
-    \textbf{Source type} & Solution \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Very Low / Very High \\
-    \textbf{Quality attributes} & Performance, Reliability, Scalability \\
-    \textbf{Entity refs} & \texttt{ENT-PRD-B} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Load-validated pattern: capacity test at five times production scale (45M rows
-  total) documented in author notes; implementation still rolling out (plan TP-06-A).
-}
+\noindent\textit{Notes:} Subject on hold; technical plans expected for the
+following quarter.
 
-\hypobox{%
-  \textbf{H07 --- Blob ownership transfer across service domains.}\par\medskip
-  \textit{Statement.}
-  Ownership of stored binary objects can be transferred between catalogued services
-  without violating vault invariants or introducing cross-tenant data leaks.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Product \\
-    \textbf{Source type} & Requirements \\
-    \textbf{Status} & Validated \\
-    \textbf{Uncertainty / Impact} & Very Low / Very High \\
-    \textbf{Quality attributes} & Security, Interoperability, Usability \\
-    \textbf{Entity refs} & \texttt{ENT-PRD-D} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Validated via governance guideline (TP-07-A, TP-08-A cluster); retrospective plan
-  registration captured decisions taken before the observation window.
-}
+\noindent\textit{Technical plans:} None registered at end of observation period.
 
-\hypobox{%
-  \textbf{H08 --- Blob cross-client sharing governance.}\par\medskip
-  \textit{Statement.}
-  Read-only sharing from customer-facing capture channels into internal support tooling
-  can be enabled while preserving vault ownership, encryption context, and revocation
-  semantics.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Product \\
-    \textbf{Source type} & Requirements \\
-    \textbf{Status} & Validated \\
-    \textbf{Uncertainty / Impact} & Very Low / Very High \\
-    \textbf{Quality attributes} & Security, Interoperability, Usability \\
-    \textbf{Entity refs} & \texttt{ENT-PRD-D} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Concrete multi-channel scenario in author notes; aligned with TP-08-A governance
-  outcome.
-}
+\medskip
 
-\pagebreak
+% ── H03 ─────────────────────────────────────────────────────
+\hypobox%
+  {H03}%
+  {Platform}%
+  {2026-02-19}%
+  {Open}%
+  {Requirements}%
+  {internal-framework: JVM platform stack with Kafka integration}%
+  {Observability \textbar{} Auditability}%
+  {Medium / Very High}%
+  {Decouple engineering/observability logs from security/compliance auditing by
+   evolving database logging toward a unified Request Logs capability on the
+   internal platform framework.}
 
-\hypobox{%
-  \textbf{H09 --- DLT for audit versus offset-based replay.}\par\medskip
-  \textit{Statement.}
-  Dead-letter topic semantics provide a strictly safer audit trail for failed
-  consumption than offset rewind/replay, for all regulated workloads sharing
-  \texttt{ENT-PLT-K}.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Platform \\
-    \textbf{Source type} & Solution \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Medium / Very High \\
-    \textbf{Quality attributes} & Auditability, Reliability, Interoperability \\
-    \textbf{Entity refs} & \texttt{ENT-PLT-K}, \texttt{ENT-PLT-W} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Part of the five-hypothesis Kafka cluster registered on 12 April 2026; paired with
-  guideline TP-09-A and exercise TP-09-B.
-}
+\noindent\textit{Notes:} The platform framework must let applications derive
+full log context including database logs. It is expected to supersede a legacy
+audit library and satisfy organisation-wide security audit requirements.
 
-\hypobox{%
-  \textbf{H10 --- Synchronous retry for transient consumer failures.}\par\medskip
-  \textit{Statement.}
-  Synchronous bounded retries on the hot consumer path reduce error propagation to
-  upstream publishers without measurably violating latency SLOs for reference
-  workloads.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Platform \\
-    \textbf{Source type} & Solution \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Medium / High \\
-    \textbf{Quality attributes} & Reliability, Performance \\
-    \textbf{Entity refs} & \texttt{ENT-PLT-W} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Tracer-bullet style validation plan TP-10-A (controlled failure injection on real
-  consumer path).
-}
+\noindent\textit{Technical plans:} TP-03-A, TP-03-B, TP-03-C
+(see Section~\ref{sec:app-technical-plans}).
 
-\hypobox{%
-  \textbf{H11 --- Failure state inside versus outside Kafka flow.}\par\medskip
-  \textit{Statement.}
-  Persisting intermediate failure state inside Kafka (stateful retries, compacted
-  side-channels) remains preferable to externalising failure orchestration for the
-  organisation's operational maturity and staffing model.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Platform \\
-    \textbf{Source type} & Solution \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Medium / High \\
-    \textbf{Quality attributes} & Reliability, Maintainability, Flexibility \\
-    \textbf{Entity refs} & \texttt{ENT-PLT-K}, \texttt{ENT-PLT-W} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Comparative spike TP-11-A documents brokered versus external orchestration trade-offs.
-}
+\medskip
 
-\hypobox{%
-  \textbf{H12 --- Error classification before retry.}\par\medskip
-  \textit{Statement.}
-  Classifying consumer errors into retryable, idempotent-replayable, and terminal
-  buckets \emph{before} any retry reduces poison-message loops without increasing mean
-  time to recovery for benign faults.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Platform \\
-    \textbf{Source type} & Solution \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Medium / High \\
-    \textbf{Quality attributes} & Reliability, Observability, Flexibility \\
-    \textbf{Entity refs} & \texttt{ENT-PLT-W} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Guideline TP-12-A and analytics trigger TP-12-B capture taxonomy plus metrics hooks.
-}
+% ── H04 ─────────────────────────────────────────────────────
+\hypobox%
+  {H04}%
+  {Product}%
+  {2026-03-18}%
+  {Open}%
+  {Requirements}%
+  {service: secure blob storage — API \textbar{} service: secure blob storage — worker}%
+  {Auditability \textbar{} Usability}%
+  {Medium / Very Low}%
+  {The secure blob storage service must retain a reference to the data subject
+   in its domain data so all sensitive blobs can be deleted when the user
+   exercises their right to erasure under applicable privacy regulation.}
 
-\hypobox{%
-  \textbf{H13 --- Payload immutability before re-enqueueing.}\par\medskip
-  \textit{Statement.}
-  Enforcing payload immutability (checksum + canonical serialisation) before a failed
-  message is re-enqueued eliminates double-effect risk for financial side-effects under
-  at-least-once delivery.\par\medskip
-  \begin{tabular}{@{}ll@{}}
-    \textbf{Team} & Platform \\
-    \textbf{Source type} & Solution \\
-    \textbf{Status} & Open \\
-    \textbf{Uncertainty / Impact} & Very Low / Very High \\
-    \textbf{Quality attributes} & Auditability, Reliability, Security \\
-    \textbf{Entity refs} & \texttt{ENT-PLT-K}, \texttt{ENT-PLT-W} \\
-  \end{tabular}\par\medskip
-  \textbf{Notes.}
-  Complements H09/H12; experiment TP-13-A exercises enforcement hooks in staging.
-}
+\noindent\textit{Notes:} Concern raised in an internal RFC about fully erasing
+user sensitive data, including binary objects.
 
-\pagebreak
+\noindent\textit{Technical plans:} None registered at end of observation period.
 
+\medskip
+
+% ── H05 ─────────────────────────────────────────────────────
+\hypobox%
+  {H05}%
+  {Product}%
+  {2026-03-18}%
+  {In Review}%
+  {Solution}%
+  {service: confidential records \& credit-bureau integration — API \textbar{} \ldots{} worker}%
+  {Interoperability \textbar{} Extensibility \textbar{} Reusability}%
+  {High / Very High}%
+  {Credit-bureau integrations can be decoupled from vertical-specific domain
+   entities into context-agnostic middleware that accepts only each provider's
+   minimum required data (e.g., national ID), reusable across domains without
+   duplicated cost.}
+
+\noindent\textit{Notes:} Discovery focused on: (1)~dependency matrix —
+current vs.\ real dependency per integration; (2)~agnostic interface — contract
+without domain concepts, only minimal identifiers and bureau outputs;
+(3)~migration plan — which flows can isolate immediately vs.\ requiring deeper
+business-logic refactors.
+
+\noindent\textit{Technical plans:} TP-05-A
+(see Section~\ref{sec:app-technical-plans}).
+
+\medskip
+
+% ── H06 ─────────────────────────────────────────────────────
+\hypobox%
+  {H06}%
+  {Product}%
+  {2026-02-24}%
+  {Open}%
+  {Solution}%
+  {worker: high-volume billing aggregation}%
+  {Performance \textbar{} Reliability \textbar{} Scalability}%
+  {Very Low / Very High}%
+  {Chunked keyset pagination with isolated repository-level transactions keeps
+   memory strictly bounded by chunk size and prevents out-of-memory failures
+   when aggregating millions of billing records.}
+
+\noindent\textit{Notes:} Validated with a capacity/volume test at 5$\times$
+production scale (45M rows total, 1.5M rows/month). Profiling showed JPA streams
+can cause first-level cache growth; chunking scopes transactions ($\approx$10k rows)
+so the garbage collector can reclaim memory (sawtooth heap pattern). Composite
+index on \texttt{(billing\_year\_month, status, id)}.
+
+\noindent\textit{Technical plans:} TP-06-A
+(see Section~\ref{sec:app-technical-plans}).
+
+\medskip
+
+% ── H07 ─────────────────────────────────────────────────────
+\hypobox%
+  {H07}%
+  {Product}%
+  {2026-04-07}%
+  {Validated}%
+  {Requirements}%
+  {service: secure blob storage — API \textbar{} service: secure blob storage — worker}%
+  {Scalability \textbar{} Usability \textbar{} Configurability \textbar{} Flexibility}%
+  {Very Low / Very High}%
+  {Secure blob storage must support transferring blob ownership across service
+   domains so blobs can move from one owning service to another.}
+
+\noindent\textit{Notes:} Validated through a technical discovery spike that
+defined the transfer capability and produced a prioritised implementation backlog.
+
+\noindent\textit{Technical plans:} TP-07-A
+(see Section~\ref{sec:app-technical-plans}).
+
+\medskip
+
+% ── H08 ─────────────────────────────────────────────────────
+\hypobox%
+  {H08}%
+  {Product}%
+  {2026-03-18}%
+  {Validated}%
+  {Requirements}%
+  {service: secure blob storage — API}%
+  {Security \textbar{} Usability \textbar{} Interoperability \textbar{} Extensibility}%
+  {Very Low / Very High}%
+  {Secure blob storage must support sharing a blob across multiple clients so
+   the same object can be read from different domain services.}
+
+\noindent\textit{Notes:} Example: a customer-facing channel receives documents
+later routed to support tooling; support needs read access in chat history
+without breaking vault invariants.
+
+\noindent\textit{Technical plans:} TP-08-A
+(see Section~\ref{sec:app-technical-plans}).
+
+\medskip
+
+% ── H09 ─────────────────────────────────────────────────────
+\hypobox%
+  {H09}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Auditability \textbar{} Reliability}%
+  {Medium / Very High}%
+  {Using the Dead-Letter Topic (DLT) only for auditing and diagnosis, and
+   reprocessing from the original topic's offset, preserves consistency and
+   auditability better than re-enqueueing messages from the DLT.}
+
+\noindent\textit{Notes:} How to falsify: controlled replay from the DLT without
+mutating the event must be proven safer, simpler, and more auditable than replay
+by offset.
+
+\noindent\textit{Technical plans:} TP-09-A, TP-09-B
+(see Section~\ref{sec:app-technical-plans}).
+
+\medskip
+
+% ── H10 ─────────────────────────────────────────────────────
+\hypobox%
+  {H10}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Interoperability \textbar{} Performance}%
+  {Medium / High}%
+  {For short-lived transient failures, limited synchronous retry on the consumer
+   thread preserves per-partition ordering better and with lower overall
+   complexity than asynchronous retry on a separate queue.}
+
+\noindent\textit{Notes:} How to falsify: a per-partition retry queue preserves
+order with less blocking time and acceptable operational cost.
+
+\noindent\textit{Technical plans:} TP-10-A
+(see Section~\ref{sec:app-technical-plans}).
+
+\medskip
+
+% ── H11 ─────────────────────────────────────────────────────
+\hypobox%
+  {H11}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Reliability \textbar{} Modifiability \textbar{} Interoperability}%
+  {Medium / High}%
+  {Keeping failure state inside the Kafka message flow increases coordination
+   complexity across threads and complicates failure handling, compared to
+   handling failures in the execution layer and keeping consumption non-blocking.}
+
+\noindent\textit{Notes:} How to falsify: modelling failure state in Kafka shows
+lower operational complexity and equal or better recovery than handling failures
+in the execution layer.
+
+\noindent\textit{Technical plans:} TP-11-A
+(see Section~\ref{sec:app-technical-plans}).
+
+\medskip
+
+% ── H12 ─────────────────────────────────────────────────────
+\hypobox%
+  {H12}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Performance \textbar{} Reliability}%
+  {Medium / High}%
+  {Classifying errors as recoverable vs.\ non-recoverable before applying
+   retry reduces consumer lag and computational cost without worsening the
+   successful processing rate.}
+
+\noindent\textit{Notes:} How to falsify: indiscriminate retries improve final
+success rate without meaningful latency/capacity cost.
+
+\noindent\textit{Technical plans:} TP-12-A, TP-12-B
+(see Section~\ref{sec:app-technical-plans}).
+
+\medskip
+
+% ── H13 ─────────────────────────────────────────────────────
+\hypobox%
+  {H13}%
+  {Platform}%
+  {2026-04-12}%
+  {Open}%
+  {Solution}%
+  {platform: shared streaming infrastructure}%
+  {Auditability}%
+  {Very Low / Very High}%
+  {Allowing fixes by mutating the payload before re-enqueueing increases
+   consistency violations and makes traceability and auditing harder.}
+
+\noindent\textit{Notes:} How to falsify: a formal correction mechanism fully
+preserves audit trail, causality, and reproducibility of the event.
+
+\noindent\textit{Technical plans:} TP-13-A
+(see Section~\ref{sec:app-technical-plans}).
+
+\noindent\rule{\linewidth}{0.4pt}
+
+% ─────────────────────────────────────────────────────────────
 \section{Technical Plans Catalog}
 \label{sec:app-technical-plans}
+% ─────────────────────────────────────────────────────────────
 
-Table~\ref{tab:app-b-technical-plans} lists every technical planning entry linked to
-the corpus during anonymised export. Strategy labels follow the ArchHypo planning
-taxonomy used inside Hypo-Stage.
+The following entries reproduce all technical plans registered in Hypo-Stage
+during the observation period. Each entry is identified by a plan code
+(e.g., TP-03-A), the parent hypothesis, the action type, the target date, a
+description of the planned action, and the expected outcome. Internal artefact
+links (tickets, pull requests, design documents) have been redacted.
 
-\begin{table}[htbp]
-  \centering
-  \small
-  \caption{Technical plans registered for the study hypotheses.}
-  \label{tab:app-b-technical-plans}
-  \begin{tabular}{@{}p{0.14\linewidth}p{0.20\linewidth}p{0.54\linewidth}@{}}
-    \toprule
-    \textbf{ID} & \textbf{Strategy} & \textbf{Title (verbatim scope)} \\
-    \midrule
-    TP-03-A & Spike & Database transaction identifiers propagated into request logs for audit correlation. \\
-    TP-03-B & Modularisation & Worker log context propagation decoupled from ad hoc MDC usage. \\
-    TP-03-C & Modularisation & Unified log shipping pipeline with separation of audit vs.\ engineering sinks. \\
-    TP-05-A & Discovery & Credit-bureau dependency matrix (actual vs.\ declared integrations). \\
-    TP-06-A & Implementation & Chunked keyset pagination with bounded transactions for billing aggregation. \\
-    TP-07-A & Spike & Blob ownership transfer API and invariant checker. \\
-    TP-08-A & Guideline & Cross-domain blob sharing and read-only consumer alignment workshop. \\
-    TP-09-A & Guideline & Offset replay vs.\ DLT handling runbook for platform operators. \\
-    TP-09-B & Experiment & Simulated incident exercise contrasting replay strategies. \\
-    TP-10-A & Tracer Bullet & Controlled transient failure injection on production consumer path. \\
-    TP-11-A & Spike & Failure-state placement comparison (inside Kafka vs.\ external orchestrator). \\
-    TP-12-A & Guideline & Error taxonomy and classification gates before retry. \\
-    TP-12-B & Software Analytics & Metrics segmented by error class for consumer lag dashboards. \\
-    TP-13-A & Experiment & Immutable payload enforcement prior to re-enqueue. \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+\vspace{6pt}
+
+%% ─── H03 plans ────────────────────────────────────────────
+\paragraph{TP-03-A \textnormal{(H03 — Decouple eng.\ logs from security/compliance audit)}}
+\textit{Action type:} Architectural Spike \quad \textit{Target date:} 2026-03-31 \\
+\textit{Description:} Discover and implement default mapping of database
+transaction IDs into the Request Log structure within the internal framework
+so every request and application log entry carries database transaction IDs for
+correlation and audit trail without per-application integration. \\
+\textit{Expected outcome:} Request logs consistently include database transaction
+ID fields; applications using the framework obtain audit-ready context without
+custom wiring.
+
+\paragraph{TP-03-B \textnormal{(H03)}}
+\textit{Action type:} Modularisation / Flexibility \quad \textit{Target date:} 2026-03-31 \\
+\textit{Description:} Extend framework logging to worker modules so critical
+database transactions in workers log with the same context (transaction IDs,
+correlation) as request paths. \\
+\textit{Expected outcome:} Workers emit logs with database transaction IDs
+aligned with the Request Log infrastructure; audit coverage for
+asynchronous/background work.
+
+\paragraph{TP-03-C \textnormal{(H03)}}
+\textit{Action type:} Modularisation / Flexibility \quad \textit{Target date:} 2026-03-31 \\
+\textit{Description:} Stream database transaction properties to the same log
+buckets and pipeline as Request and Application logs for a single
+audit/observability backbone. \\
+\textit{Expected outcome:} Database transaction properties follow the same
+ingestion and retention path as Request logs; no separate audit-only pipeline.
+
+%% ─── H05 plan ─────────────────────────────────────────────
+\paragraph{TP-05-A \textnormal{(H05 — Credit-bureau decoupling seam)}}
+\textit{Action type:} Discovery \quad \textit{Target date:} ongoing \\
+\textit{Description:} Structured discovery covering: (1)~dependency matrix
+(current vs.\ real dependencies per integration); (2)~agnostic interface
+proposal (contract free of domain concepts, accepting only minimal provider
+identifiers and bureau outputs); (3)~migration sequencing (which flows can
+isolate immediately vs.\ requiring deeper business-logic refactors). \\
+\textit{Expected outcome:} A prioritised integration decoupling plan and a
+draft interface contract.
+
+%% ─── H06 plan ─────────────────────────────────────────────
+\paragraph{TP-06-A \textnormal{(H06 — Billing aggregation chunked keyset pagination)}}
+\textit{Action type:} Implementation (Other) \quad \textit{Target date:} 2026-03-13 \\
+\textit{Description:} Implement the billing aggregation worker with chunked
+keyset pagination using a \texttt{LIMIT} loop with
+\texttt{id > :lastProcessedId}; avoid broad \texttt{@Transactional} so the
+Hibernate first-level cache clears per chunk; add composite index on
+\texttt{(billing\_year\_month, status, id)}. \\
+\textit{Expected outcome:} Process 300k+ rows/month safely without
+out-of-memory failures; stable sawtooth heap profile; healthy database
+CPU/I/O via index scans.
+
+%% ─── H07 plan ─────────────────────────────────────────────
+\paragraph{TP-07-A \textnormal{(H07 — Blob ownership transfer)}}
+\textit{Action type:} Architectural Spike \quad \textit{Target date:} 2026-04-30 \\
+\textit{Description:} Technical discovery to define the transfer capability on
+the blob storage API. \\
+\textit{Expected outcome:} A backlog for implementing the ownership transfer
+feature.
+
+%% ─── H08 plan ─────────────────────────────────────────────
+\paragraph{TP-08-A \textnormal{(H08 — Blob cross-client sharing)}}
+\textit{Action type:} Guideline Implementation \quad \textit{Target date:} 2026-04-06 \\
+\textit{Description:} Alignment session on cross-domain sharing and transfers
+so that long-lived access (e.g., messaging history) does not require definitive
+ownership by every consumer. \\
+\textit{Expected outcome:} A governance decision enabling prioritisation of
+sharing and transfer implementation work.
+
+%% ─── H09 plans ────────────────────────────────────────────
+\paragraph{TP-09-A \textnormal{(H09 — DLT for audit vs.\ offset replay)}}
+\textit{Action type:} Guideline Implementation \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Produce a runbook for reprocessing by offset with minimal
+tooling for controlled replay. \\
+\textit{Expected outcome:} Documentation of how to reprocess by offset with
+minimal tooling.
+
+\paragraph{TP-09-B \textnormal{(H09)}}
+\textit{Action type:} Experiment \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Operational exercise with a simulated incident. \\
+\textit{Expected outcome:} Measure MTTR, duplicate rate, and divergence between
+the original event and the final state.
+
+%% ─── H10 plan ─────────────────────────────────────────────
+\paragraph{TP-10-A \textnormal{(H10 — Synchronous retry for transient failures)}}
+\textit{Action type:} Tracer Bullet \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Tracer bullet on a critical consumer path; inject
+transient failures with windows of 1s, 5s, and 30s. \\
+\textit{Expected outcome:} Measure out-of-order delivery, consumer lag,
+throughput, and retry success rate.
+
+%% ─── H11 plan ─────────────────────────────────────────────
+\paragraph{TP-11-A \textnormal{(H11 — Failure state inside vs.\ outside Kafka flow)}}
+\textit{Action type:} Architectural Spike \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Spike comparing both failure-state approaches on a real
+consumer. \\
+\textit{Expected outcome:} Measure consumer lag, blocked-thread time,
+states/transitions, and operational recovery steps for each approach.
+
+%% ─── H12 plans ────────────────────────────────────────────
+\paragraph{TP-12-A \textnormal{(H12 — Error classification before retry)}}
+\textit{Action type:} Guideline Implementation \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Define an error taxonomy and mandatory classification step
+before retry is applied. \\
+\textit{Expected outcome:} Practical directives for classifying errors before
+retry, consumable by all teams using the shared streaming platform.
+
+\paragraph{TP-12-B \textnormal{(H12)}}
+\textit{Action type:} Software Analytics (Architectural Trigger) \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Instrument analytics by error class on a real consumer:
+success rate, average attempts, extra time per message, and discards to DLT. \\
+\textit{Expected outcome:} A metrics dataset sufficient to falsify or support
+the hypothesis.
+
+%% ─── H13 plan ─────────────────────────────────────────────
+\paragraph{TP-13-A \textnormal{(H13 — Payload immutability before re-enqueueing)}}
+\textit{Action type:} Experiment \quad \textit{Target date:} 2026-06-30 \\
+\textit{Description:} Enforce an immutable-payload guideline; add automated
+validation in replay tooling; require mandatory architectural review for
+exceptions. \\
+\textit{Expected outcome:} Experiment results that validate or refute the
+hypothesis and establish a baseline for payload governance in the shared
+streaming platform.
