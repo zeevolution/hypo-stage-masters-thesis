@@ -1,4 +1,4 @@
-# Hypo-Stage: An Empirical Study of Tool-Supported Architectural Hypothesis Engineering in Industrial Software Teams
+# Hypo-Stage: Tool-Supported Architectural Hypothesis Engineering in Professional Software Development Teams — A Case Study
 
 Master's thesis in Computer Science at **IME-USP** (Institute of Mathematics and Statistics, University of São Paulo).
 
