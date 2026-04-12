@@ -63,30 +63,45 @@ full in Section~\ref{sec:app-technical-plans}.
 \label{sec:app-hypothesis-profiles}
 % ─────────────────────────────────────────────────────────────
 
-Each hypothesis profile below follows a standard layout: identifier, originating
-team, registration date, lifecycle status, source type (Requirements or Solution),
-affected Backstage entity references, quality attributes, uncertainty level,
-impact level, the hypothesis statement, and contextual notes provided by the
-author. Technical plans are cross-referenced to Section~\ref{sec:app-technical-plans}.
+Each hypothesis profile is typeset as a single table: fixed metadata rows, a
+full-width statement row, then author notes and technical-plan references (see
+Section~\ref{sec:app-technical-plans}).
 
-\newcommand{\hypobox}[9]{%
-  % #1 ID label  #2 Team  #3 Date  #4 Status  #5 Source
-  % #6 Entities  #7 QA    #8 U/I   #9 Statement
-  \noindent\begin{minipage}{\linewidth}
-  \vspace{6pt}
-  \noindent\rule{\linewidth}{0.4pt}
-  \smallskip
-  \noindent\textbf{#1}\hfill\textit{Team: #2 \textbar{} Registered: #3 \textbar{} Status: #4}\\[2pt]
-  \noindent\textit{Source:} #5 \quad \textit{Uncertainty / Impact:} #8 \\
-  \noindent\textit{Quality attributes:} #7 \\
-  \noindent\textit{Entities:} \texttt{#6} \\[4pt]
-  \noindent\textit{Statement:} ``#9''
-  \vspace{4pt}
-  \end{minipage}%
+% #1 ID … #8 Uncertainty/Impact; #9 statement. Then call \hypoboxtail{notes}{plans}.
+\newcommand{\hypoboxnine}[9]{%
+  \par\addvspace{0.55\baselineskip}%
+  \noindent\begingroup
+  \small
+  \setlength{\tabcolsep}{6pt}%
+  \begin{tabular}{@{} >{\bfseries\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-3.4cm-6\tabcolsep} @{}}
+  \toprule
+  \multicolumn{2}{@{}l@{}}{\large #1} \\
+  \midrule
+  Team & #2 \\
+  Registered & #3 \\
+  Lifecycle status & #4 \\
+  Source type & #5 \\
+  Uncertainty / Impact & #8 \\
+  Quality attributes & #7 \\
+  Entities & {\begingroup\ttfamily\small #6\endgroup} \\
+  \addlinespace
+  \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{\dimexpr\textwidth-4\tabcolsep}@{}}{%
+    \textbf{Statement}\par\vspace{0.3\baselineskip}%
+    ``#9''\par
+  } \\
+  \midrule
+}
+\newcommand{\hypoboxtail}[2]{%
+  Notes & #1 \\
+  Technical plans & #2 \\
+  \bottomrule
+  \end{tabular}%
+  \endgroup
+  \par
 }
 
 % ── H01 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H01}%
   {Product}%
   {2026-03-18}%
@@ -97,18 +112,14 @@ author. Technical plans are cross-referenced to Section~\ref{sec:app-technical-p
   {Very High / Very High}%
   {The Kotlin + JOOQ + Spring service template is ready to scale for use in
    regulated financial product services, replacing a legacy functional-language
-   stack.}
-
-\noindent\textit{Notes:} The organisation intends to deprecate the legacy stack
-in that domain; the Kotlin + JOOQ + Spring template is the leading candidate to
-replace it.
-
-\noindent\textit{Technical plans:} None registered at end of observation period.
-
-\medskip
+   stack.}%
+\hypoboxtail%
+  {The organisation intends to deprecate the legacy stack in that domain; the
+   Kotlin + JOOQ + Spring template is the leading candidate to replace it.}%
+  {None registered at end of observation period.}
 
 % ── H02 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H02}%
   {Platform}%
   {2026-02-11}%
@@ -118,17 +129,13 @@ replace it.
   {Configurability \textbar{} Flexibility \textbar{} Extensibility \textbar{} Modifiability}%
   {Very Low / Medium}%
   {Kafka should be exposed to application layers for direct use via the internal
-   platform framework.}
-
-\noindent\textit{Notes:} Subject on hold; technical plans expected for the
-following quarter.
-
-\noindent\textit{Technical plans:} None registered at end of observation period.
-
-\medskip
+   platform framework.}%
+\hypoboxtail%
+  {Subject on hold; technical plans expected for the following quarter.}%
+  {None registered at end of observation period.}
 
 % ── H03 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H03}%
   {Platform}%
   {2026-02-19}%
@@ -139,19 +146,15 @@ following quarter.
   {Medium / Very High}%
   {Decouple engineering/observability logs from security/compliance auditing by
    evolving database logging toward a unified Request Logs capability on the
-   internal platform framework.}
-
-\noindent\textit{Notes:} The platform framework must let applications derive
-full log context including database logs. It is expected to supersede a legacy
-audit library and satisfy organisation-wide security audit requirements.
-
-\noindent\textit{Technical plans:} TP-03-A, TP-03-B, TP-03-C
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+   internal platform framework.}%
+\hypoboxtail%
+  {The platform framework must let applications derive full log context including
+   database logs. It is expected to supersede a legacy audit library and satisfy
+   organisation-wide security audit requirements.}%
+  {TP-03-A, TP-03-B, TP-03-C (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H04 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H04}%
   {Product}%
   {2026-03-18}%
@@ -160,19 +163,16 @@ audit library and satisfy organisation-wide security audit requirements.
   {service: secure blob storage — API \textbar{} service: secure blob storage — worker}%
   {Auditability \textbar{} Usability}%
   {Medium / Very Low}%
-  {The secure blob storage service must retain a reference to the data subject
-   in its domain data so all sensitive blobs can be deleted when the user
-   exercises their right to erasure under applicable privacy regulation.}
-
-\noindent\textit{Notes:} Concern raised in an internal RFC about fully erasing
-user sensitive data, including binary objects.
-
-\noindent\textit{Technical plans:} None registered at end of observation period.
-
-\medskip
+  {The secure blob storage service must retain a reference to the data subject in
+   its domain data so all sensitive blobs can be deleted when the user exercises
+   their right to erasure under applicable privacy regulation.}%
+\hypoboxtail%
+  {Concern raised in an internal RFC about fully erasing user sensitive data,
+   including binary objects.}%
+  {None registered at end of observation period.}
 
 % ── H05 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H05}%
   {Product}%
   {2026-03-18}%
@@ -184,21 +184,16 @@ user sensitive data, including binary objects.
   {Credit-bureau integrations can be decoupled from vertical-specific domain
    entities into context-agnostic middleware that accepts only each provider's
    minimum required data (e.g., national ID), reusable across domains without
-   duplicated cost.}
-
-\noindent\textit{Notes:} Discovery focused on: (1)~dependency matrix —
-current vs.\ real dependency per integration; (2)~agnostic interface — contract
-without domain concepts, only minimal identifiers and bureau outputs;
-(3)~migration plan — which flows can isolate immediately vs.\ requiring deeper
-business-logic refactors.
-
-\noindent\textit{Technical plans:} TP-05-A
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+   duplicated cost.}%
+\hypoboxtail%
+  {Discovery focused on: (1)~dependency matrix --- current vs.\ real dependency
+   per integration; (2)~agnostic interface --- contract without domain concepts,
+   only minimal identifiers and bureau outputs; (3)~migration plan --- which flows
+   can isolate immediately vs.\ requiring deeper business-logic refactors.}%
+  {TP-05-A (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H06 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H06}%
   {Product}%
   {2026-02-24}%
@@ -208,22 +203,18 @@ business-logic refactors.
   {Performance \textbar{} Reliability \textbar{} Scalability}%
   {Very Low / Very High}%
   {Chunked keyset pagination with isolated repository-level transactions keeps
-   memory strictly bounded by chunk size and prevents out-of-memory failures
-   when aggregating millions of billing records.}
-
-\noindent\textit{Notes:} Validated with a capacity/volume test at 5$\times$
-production scale (45M rows total, 1.5M rows/month). Profiling showed JPA streams
-can cause first-level cache growth; chunking scopes transactions ($\approx$10k rows)
-so the garbage collector can reclaim memory (sawtooth heap pattern). Composite
-index on \texttt{(billing\_year\_month, status, id)}.
-
-\noindent\textit{Technical plans:} TP-06-A
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+   memory strictly bounded by chunk size and prevents out-of-memory failures when
+   aggregating millions of billing records.}%
+\hypoboxtail%
+  {Validated with a capacity/volume test at 5$\times$ production scale (45M rows
+   total, 1.5M rows/month). Profiling showed JPA streams can cause first-level
+   cache growth; chunking scopes transactions ($\approx$10k rows) so the garbage
+   collector can reclaim memory (sawtooth heap pattern). Composite index on
+   \texttt{(billing\_year\_month, status, id)}.}%
+  {TP-06-A (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H07 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H07}%
   {Product}%
   {2026-04-07}%
@@ -233,18 +224,14 @@ index on \texttt{(billing\_year\_month, status, id)}.
   {Scalability \textbar{} Usability \textbar{} Configurability \textbar{} Flexibility}%
   {Very Low / Very High}%
   {Secure blob storage must support transferring blob ownership across service
-   domains so blobs can move from one owning service to another.}
-
-\noindent\textit{Notes:} Validated through a technical discovery spike that
-defined the transfer capability and produced a prioritised implementation backlog.
-
-\noindent\textit{Technical plans:} TP-07-A
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+   domains so blobs can move from one owning service to another.}%
+\hypoboxtail%
+  {Validated through a technical discovery spike that defined the transfer
+   capability and produced a prioritised implementation backlog.}%
+  {TP-07-A (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H08 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H08}%
   {Product}%
   {2026-03-18}%
@@ -253,20 +240,16 @@ defined the transfer capability and produced a prioritised implementation backlo
   {service: secure blob storage — API}%
   {Security \textbar{} Usability \textbar{} Interoperability \textbar{} Extensibility}%
   {Very Low / Very High}%
-  {Secure blob storage must support sharing a blob across multiple clients so
-   the same object can be read from different domain services.}
-
-\noindent\textit{Notes:} Example: a customer-facing channel receives documents
-later routed to support tooling; support needs read access in chat history
-without breaking vault invariants.
-
-\noindent\textit{Technical plans:} TP-08-A
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+  {Secure blob storage must support sharing a blob across multiple clients so the
+   same object can be read from different domain services.}%
+\hypoboxtail%
+  {Example: a customer-facing channel receives documents later routed to support
+   tooling; support needs read access in chat history without breaking vault
+   invariants.}%
+  {TP-08-A (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H09 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H09}%
   {Platform}%
   {2026-04-12}%
@@ -277,19 +260,14 @@ without breaking vault invariants.
   {Medium / Very High}%
   {Using the Dead-Letter Topic (DLT) only for auditing and diagnosis, and
    reprocessing from the original topic's offset, preserves consistency and
-   auditability better than re-enqueueing messages from the DLT.}
-
-\noindent\textit{Notes:} How to falsify: controlled replay from the DLT without
-mutating the event must be proven safer, simpler, and more auditable than replay
-by offset.
-
-\noindent\textit{Technical plans:} TP-09-A, TP-09-B
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+   auditability better than re-enqueueing messages from the DLT.}%
+\hypoboxtail%
+  {How to falsify: controlled replay from the DLT without mutating the event must
+   be proven safer, simpler, and more auditable than replay by offset.}%
+  {TP-09-A, TP-09-B (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H10 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H10}%
   {Platform}%
   {2026-04-12}%
@@ -299,19 +277,15 @@ by offset.
   {Interoperability \textbar{} Performance}%
   {Medium / High}%
   {For short-lived transient failures, limited synchronous retry on the consumer
-   thread preserves per-partition ordering better and with lower overall
-   complexity than asynchronous retry on a separate queue.}
-
-\noindent\textit{Notes:} How to falsify: a per-partition retry queue preserves
-order with less blocking time and acceptable operational cost.
-
-\noindent\textit{Technical plans:} TP-10-A
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+   thread preserves per-partition ordering better and with lower overall complexity
+   than asynchronous retry on a separate queue.}%
+\hypoboxtail%
+  {How to falsify: a per-partition retry queue preserves order with less blocking
+   time and acceptable operational cost.}%
+  {TP-10-A (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H11 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H11}%
   {Platform}%
   {2026-04-12}%
@@ -322,19 +296,15 @@ order with less blocking time and acceptable operational cost.
   {Medium / High}%
   {Keeping failure state inside the Kafka message flow increases coordination
    complexity across threads and complicates failure handling, compared to
-   handling failures in the execution layer and keeping consumption non-blocking.}
-
-\noindent\textit{Notes:} How to falsify: modelling failure state in Kafka shows
-lower operational complexity and equal or better recovery than handling failures
-in the execution layer.
-
-\noindent\textit{Technical plans:} TP-11-A
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+   handling failures in the execution layer and keeping consumption non-blocking.}%
+\hypoboxtail%
+  {How to falsify: modelling failure state in Kafka shows lower operational
+   complexity and equal or better recovery than handling failures in the execution
+   layer.}%
+  {TP-11-A (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H12 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H12}%
   {Platform}%
   {2026-04-12}%
@@ -343,20 +313,16 @@ in the execution layer.
   {platform: shared streaming infrastructure}%
   {Performance \textbar{} Reliability}%
   {Medium / High}%
-  {Classifying errors as recoverable vs.\ non-recoverable before applying
-   retry reduces consumer lag and computational cost without worsening the
-   successful processing rate.}
-
-\noindent\textit{Notes:} How to falsify: indiscriminate retries improve final
-success rate without meaningful latency/capacity cost.
-
-\noindent\textit{Technical plans:} TP-12-A, TP-12-B
-(see Section~\ref{sec:app-technical-plans}).
-
-\medskip
+  {Classifying errors as recoverable vs.\ non-recoverable before applying retry
+   reduces consumer lag and computational cost without worsening the successful
+   processing rate.}%
+\hypoboxtail%
+  {How to falsify: indiscriminate retries improve final success rate without
+   meaningful latency/capacity cost.}%
+  {TP-12-A, TP-12-B (see Section~\ref{sec:app-technical-plans}).}
 
 % ── H13 ─────────────────────────────────────────────────────
-\hypobox%
+\hypoboxnine%
   {H13}%
   {Platform}%
   {2026-04-12}%
@@ -366,17 +332,13 @@ success rate without meaningful latency/capacity cost.
   {Auditability}%
   {Very Low / Very High}%
   {Allowing fixes by mutating the payload before re-enqueueing increases
-   consistency violations and makes traceability and auditing harder.}
+   consistency violations and makes traceability and auditing harder.}%
+\hypoboxtail%
+  {How to falsify: a formal correction mechanism fully preserves audit trail,
+   causality, and reproducibility of the event.}%
+  {TP-13-A (see Section~\ref{sec:app-technical-plans}).}
 
-\noindent\textit{Notes:} How to falsify: a formal correction mechanism fully
-preserves audit trail, causality, and reproducibility of the event.
-
-\noindent\textit{Technical plans:} TP-13-A
-(see Section~\ref{sec:app-technical-plans}).
-
-\noindent\rule{\linewidth}{0.4pt}
-
-% ─────────────────────────────────────────────────────────────
+\bigskip
 \section{Technical Plans Catalog}
 \label{sec:app-technical-plans}
 % ─────────────────────────────────────────────────────────────
