@@ -5,6 +5,7 @@
 % ============================================================
 \chapter{Results and Refinements}
 \label{chap:results}
+\label{ch:results}
 
 This chapter presents the empirical findings of the study and the refinements to
 Hypo-Stage that emerged from them. The results are organized around the four
@@ -19,6 +20,78 @@ patterns (Group~A) and a set of novel technical architectural patterns for
 hypothesis engineers (Group~B). The latter constitutes a distinct contribution
 of this work, addressing a gap left open by prior research in the ArchHypo line,
 as discussed in Section~\ref{sec:group-b-patterns}.
+
+\section*{Methodological Traceability}
+\addcontentsline{toc}{section}{Methodological Traceability}
+
+The evidence presented in this chapter was collected and analyzed strictly in
+accordance with the research design described in Chapter~\ref{chap:research-design}.
+This preamble makes the correspondence explicit so that readers can assess
+compliance at a glance.
+
+\paragraph{Data collection.}
+Three data sources were employed, as specified in Section~\ref{sec:data-collection}:
+\begin{enumerate}
+  \item \textbf{Participant observation.} Evidence was gathered through the
+    researcher's continuous presence within the organization. Observations
+    were the author's own first-hand field notes, recorded as close as
+    possible in time to the observed events (Section~\ref{subsec:participant-observation}). They covered
+    team reactions during and after training, patterns of tool use and
+    non-use during the observation sprints, informal commentary, and all
+    instances in which team members requested conceptual or tool support.
+  \item \textbf{Artifact analysis.} At the end of the observation period, the
+    complete set of hypotheses, assessments, technical plans, and lifecycle
+    records created by each team in Hypo-Stage was extracted and analyzed
+    (Section~\ref{subsec:artifact-analysis}). The quantitative summaries in Sections~\ref{sec:rq2-results} and~\ref{subsec:refinement-summary}
+    are derived exclusively from this artifact record.
+  \item \textbf{Open-ended active listening sessions.} The researcher
+    conducted brief, semi-structured active listening conversations with the
+    senior technical leaders of each team at the end of the observation period
+    (Section~\ref{subsec:active-listening}). The sessions were open-ended: each leader was invited to
+    reflect on their experience of using Hypo-Stage and ArchHypo. Questions
+    used in these sessions are reproduced in Appendix~\ref{apx:instruments}
+    (Section~\ref{sec:listening-guide}). Verbatim statements from these
+    sessions are reported in this chapter only when they add evidence beyond
+    what is already documented in field notes or artifacts; in every case the
+    participant's role is identified (e.g., ``Product Team technical leader'').
+\end{enumerate}
+
+\paragraph{Data analysis — three-stage thematic coding.}
+All field notes, artifact summaries, and active listening records were analyzed
+using the thematic coding procedure described by \citet{robson2016} for
+qualitative data in flexible designs (Section~\ref{sec:data-analysis}). The three stages
+prescribed in the research design were followed as follows:
+\begin{enumerate}
+  \item \textbf{Stage 1 — Inductive open coding.} All primary data were
+    reviewed and a set of descriptive codes was generated inductively,
+    capturing recurring observations and verbatim themes without imposing
+    prior categories. Examples of codes generated at this stage include:
+    \textit{registration-barrier-time-pressure},
+    \textit{senior-author-only},
+    \textit{tool-positive-catalog-integration},
+    \textit{falsifiability-confusion}, and
+    \textit{kafka-cluster-burst-registration}.
+  \item \textbf{Stage 2 — Axial grouping into conceptual categories.} Codes
+    were grouped into higher-level categories corresponding to the constructs
+    of the conceptual framework (Figure~\ref{fig:conceptual-framework}): patterns of tool use ($\rightarrow$ RQ1,
+    Section~\ref{sec:results-rq1}); types of architectural uncertainty and structural archetypes
+    ($\rightarrow$ RQ2, Sections~\ref{sec:rq2-results} and~\ref{sec:group-b-patterns}); perceived benefits ($\rightarrow$ RQ3,
+    Section~\ref{subsec:benefits}); perceived challenges ($\rightarrow$ RQ3, Section~\ref{subsec:challenges}); candidate
+    tool refinements ($\rightarrow$ RQ4, Section~\ref{sec:refinements}); and organizational conditions for
+    adoption ($\rightarrow$ Group~A patterns, Section~\ref{sec:group-a-patterns}).
+  \item \textbf{Stage 3 — Cross-case comparison.} Patterns within and across
+    the two cases (Product Team and Platform Team) were compared to identify
+    findings common to both teams and findings specific to each team's context.
+    Similarities are reported as shared observations; differences are attributed
+    to the distinct natures of product versus platform work, as elaborated in
+    the individual sections.
+\end{enumerate}
+
+The artifact data from Hypo-Stage were summarized descriptively (hypothesis
+counts, quality-attribute frequency, technical plan distribution) to complement
+and illustrate the qualitative findings. Following \citet{robson2016}, the
+inclusion of these descriptive statistics is consistent with a flexible
+qualitative design and does not constitute a multistrategy approach.
 
 % ─────────────────────────────────────────────────────────────
 \section{RQ1 — How Teams Used Hypo-Stage in Practice}
@@ -90,6 +163,18 @@ status, engineers encountered Hypo-Stage without navigating to a separate tool.
 The EntityHypothesesTab, which surfaces only the hypotheses linked to the
 component an engineer is already viewing, was specifically mentioned as reducing
 the cognitive cost of context-switching into hypothesis management.
+
+\begin{figure}[ht]
+  \centering
+  \placeholder[0.85\textwidth]{Hypo-Stage EntityHypothesesTab --- the plugin tab
+    rendered inside a Backstage component page, showing only the hypotheses
+    linked to that specific catalog entity. The tab header, hypothesis list,
+    and status indicators are visible in the standard Backstage component layout.}
+  \caption{EntityHypothesesTab: Hypo-Stage surfaces only the hypotheses linked
+    to the Backstage catalog component the engineer is currently viewing,
+    eliminating the need to navigate to a separate tool or filter by component.}
+  \label{fig:entity-hypotheses-tab}
+\end{figure}
 
 % ─────────────────────────────────────────────────────────────
 \section{RQ2 — Architectural Uncertainties Registered}
@@ -417,6 +502,18 @@ impact Likert values. The dashboard respects entity, team, and component scoping
 participants as resolving a communication challenge: it provided a principled
 vocabulary for explaining deliberate deferral to non-technical stakeholders.
 
+\begin{figure}[ht]
+  \centering
+  \placeholder[0.85\textwidth]{Hypo-Stage Prioritization Dashboard --- the four-quadrant
+    focus panel showing hypotheses sorted by urgency. Quadrants: Needs Attention
+    (high U + high I), Can Postpone (low U + low/high I), Monitor (medium U + medium I),
+    and Resolved. Each hypothesis card shows ID, short label, and ratings.}
+  \caption{Prioritization Dashboard in Hypo-Stage: the focus panel surfaces hypotheses
+    according to the urgency signals derived from their uncertainty--impact combination,
+    operationalizing the Postpone Uncertain Decisions pattern from \citet{silva2024patterns}.}
+  \label{fig:prioritization-dashboard}
+\end{figure}
+
 \subsection{Hypothesis Lifecycle Consistency}
 \label{subsec:refinement-lifecycle}
 
@@ -466,6 +563,19 @@ occur on the same calendar day, the x-axis uses date and time to avoid ambiguity
 Tooltips were improved to label technical-planning-driven assessment moves with
 the plan number when identifiable.
 
+\begin{figure}[ht]
+  \centering
+  \placeholder[0.8\textwidth]{Hypo-Stage Evolution Chart --- showing the shift in
+    uncertainty and impact ratings across successive assessments for a single
+    hypothesis. X-axis: assessment date; Y-axis: rating (Very Low to Very High);
+    two lines: Uncertainty (solid) and Impact (dashed).}
+  \caption{Evolution Chart in Hypo-Stage: tracking uncertainty and impact rating
+    changes across successive assessments for a registered hypothesis. Each point
+    corresponds to a saved assessment; the chart makes visible whether technical
+    plan actions are reducing uncertainty or impact over time.}
+  \label{fig:evolution-chart}
+\end{figure}
+
 \subsection{Form Usability Improvements}
 \label{subsec:refinement-forms}
 
@@ -481,6 +591,19 @@ replaced by a multi-select autocomplete showing attribute name and description
 in the dropdown. Entity references for linking hypotheses to catalog components
 were given a catalog-backed autocomplete. Documentation link fields were given an
 improved list editor with add/remove and basic URL validation.
+
+\begin{figure}[ht]
+  \centering
+  \placeholder[0.75\textwidth]{Hypo-Stage hypothesis creation form --- showing the
+    Statement field with inline contextual guidance text (e.g.\ ``Start from a
+    belief: We believe X is true. Then state what observable outcome would prove
+    it false.'') and the multi-select Quality Attributes field.}
+  \caption{Hypothesis creation form in Hypo-Stage after the usability-oriented form
+    refinements in this section: inline contextual guidance adjacent to the
+    Statement field scaffolds the falsifiability inversion required by ArchHypo,
+    reducing the cognitive barrier at the moment of registration.}
+  \label{fig:hypothesis-form}
+\end{figure}
 
 \subsection{Summary: Refinements Mapped to Observations}
 \label{subsec:refinement-summary}
@@ -545,6 +668,21 @@ themselves. These two families address orthogonal dimensions: Group~A asks
 \textit{when} hypothesis engineering works; Group~B asks \textit{what shape}
 hypotheses take in practice.
 
+\begin{quote}
+\textbf{Scope and statistical caveat.}
+The patterns described in this section were identified through thematic analysis
+of thirteen architectural hypotheses produced by two software engineering teams
+within a single organizational context over a four-week observation period.
+This dataset is sufficient to motivate conceptual characterization and to propose
+initial vocabulary for hypothesis engineers, but it does not support statistical
+claims about frequency, generalizability, or prevalence.
+The patterns in Group A and Group B should therefore be read as
+\emph{emerging propositions} --- grounded in real empirical data and theoretically
+coherent --- but requiring replication across additional teams, organizations, and
+domains before they can be treated as consolidated findings.
+Future work directions for each pattern are discussed in Section~\ref{sec:future-work}.
+\end{quote}
+
 % ─────────────────────────────────────────────────────────────
 \subsection{Group A — Team Behavior Patterns for Hypothesis Engineering
             Adoption}
@@ -558,6 +696,12 @@ practice. These patterns complement the existing ArchHypo pattern languages
 \citep{silva2024patterns, silva2023initialpatterns}, which focus on the
 mechanics of hypothesis assessment and deferral, by addressing the social and
 operational context in which those mechanics must operate.
+
+\emph{Note:} The four conditions described below are emergent rather than
+confirmatory findings. Each is supported by convergent evidence from both
+teams but has not been tested in the broader population of software engineering
+organizations. They are presented here as candidate patterns, explicitly
+requiring further empirical validation before adoption as guidelines.
 
 \paragraph{A1 — Senior-Curated Hypothesis Backlog.}
 \textbf{Problem.} How can a team ensure that mid- and long-horizon architectural
@@ -672,6 +816,17 @@ of this work: they are grounded in real hypothesis data, not derived
 from theoretical analysis, and they provide a vocabulary that hypothesis
 engineers can use both to recognize familiar situations more quickly and to
 communicate about hypothesis types across teams.
+
+\emph{Statistical scope:} All five archetypes were identified from the same
+thirteen-hypothesis dataset. While each archetype maps to two or more
+hypotheses in the dataset (and in some cases corresponds to a single rich
+instance, as discussed in the individual pattern entries), the small dataset
+size means that no frequency claims are made. The contribution lies in naming
+and structuring recurring shapes so that future practitioners and researchers
+have a vocabulary for recognition --- not in establishing that any archetype
+will appear with a particular frequency in other organizational contexts.
+Consolidating these patterns into the broader ArchHypo pattern language is
+identified as a priority future-work item in Section~\ref{sec:future-work}.
 
 \paragraph{B1 — Hypothesis Cluster.}
 \textbf{Context.} A team is responsible for a shared platform component on which

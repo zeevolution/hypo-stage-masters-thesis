@@ -4,33 +4,268 @@
 \label{ch:conclusion}
 \label{chap:conclusion}
 
+This chapter closes the empirical and analytical work of the dissertation.
+Section~\ref{sec:conclusion-rq} summarizes the main contributions in relation
+to each research question. Section~\ref{sec:implications} discusses
+implications for practitioners and researchers.
+Section~\ref{sec:future-work} outlines the future work agenda that this study
+opens.
+
+% ─────────────────────────────────────────────────────
 \section{Summary in Relation to the Research Questions}
-\label{sec:conclusion-rq-summary}
+\label{sec:conclusion-rq}
 
-\paragraph{RQ1.} % TODO: summarize adoption patterns and Group A findings
+\paragraph{RQ1 --- How do software engineering teams use Hypo-Stage and ArchHypo
+when working on a scaled product?}
 
-\paragraph{RQ2.} The study produced thirteen architectural hypotheses across two
-teams. Analysis of their source types, quality attributes, uncertainty and impact
-profiles, and technical plan strategies characterizes the landscape of
-architectural uncertainty that Hypo-Stage users made explicit (Section
-\ref{sec:rq2-results}). Beyond this characterization, five recurring structural
-archetypes --- the Group~B patterns --- were identified from the data:
-\textit{Hypothesis Cluster}, \textit{Regulatory Trigger Hypothesis},
-\textit{Decoupling Seam Hypothesis}, \textit{Load-Validated Hypothesis}, and
-\textit{Shared Resource Governance Hypothesis}
-(Section~\ref{sec:group-b-patterns}). These archetypes constitute the first
-empirically grounded answer to the question of what shapes architectural
-hypotheses take when ArchHypo is applied in a real industrial context, addressing
-a gap identified as future work in \citet{silva2024patterns}.
+The study produced a detailed observational account of tool adoption in two
+teams over four weeks of real sprint work. The most consistent finding is
+that hypothesis registration was senior-led: twelve of the thirteen registered
+hypotheses were authored by staff or principal engineers who held explicit
+architectural responsibilities. Junior and mid-level engineers were aware of
+the tool and trained on the technique, but did not register hypotheses
+independently within the observation window. Registration activity was
+concentrated in two bursts --- one coinciding with the training session, and a
+second when the Platform Team used the tool to structure a live architectural
+discussion on Kafka failure-handling strategy --- rather than being continuously
+distributed across sprints.
 
-\paragraph{RQ3.} % TODO: summarize benefits and challenges
+The integration of Hypo-Stage with the Backstage Internal Developer Portal
+was consistently cited as an enabler of adoption. The
+\texttt{EntityHypothesesTab} --- which surfaces only hypotheses linked to the
+service a developer is already viewing --- reduced the cognitive cost of
+context-switching into hypothesis management and was specifically mentioned as
+a meaningful design improvement over a standalone tool. However, embedding
+the tool into team-visible ceremonies (retrospectives, planning sessions)
+did not occur spontaneously within the observation window; both teams noted that
+this would require an explicit cultural agreement.
 
-\paragraph{RQ4.} % TODO: summarize the nine refinement categories
+\paragraph{RQ2 --- What types and recurring structural shapes of architectural
+uncertainties do teams identify, record, and manage using Hypo-Stage?}
 
+The study produced thirteen architectural hypotheses across two teams. Analysis
+of their source types, quality attributes, uncertainty and impact profiles, and
+technical plan strategies characterizes the landscape of architectural
+uncertainty that Hypo-Stage users made explicit (Section~\ref{sec:rq2-results}).
+Requirements-sourced hypotheses dominated the Product Team (five of six), while
+Solution-sourced hypotheses dominated the Platform Team's Kafka cluster (four of
+five). The dominant quality attributes --- Reliability and Auditability ---
+reflect the teams' real operational context: a scaled financial services product
+operating under both internal security audit and privacy regulation obligations.
+
+Beyond this characterization, five recurring structural archetypes were
+identified from the data through thematic analysis: \textit{Hypothesis Cluster},
+\textit{Regulatory Trigger Hypothesis}, \textit{Decoupling Seam Hypothesis},
+\textit{Load-Validated Hypothesis}, and \textit{Shared Resource Governance
+Hypothesis} (Section~\ref{sec:group-b-patterns}). These archetypes constitute the first empirically
+grounded answer to the question of what shapes architectural hypotheses take when
+ArchHypo is applied in a real industrial context, and they directly address a gap
+identified as future work in \citet{silva2024patterns}. Readers should note
+that these are \emph{emerging patterns}, derived from a thirteen-hypothesis
+dataset; they require replication in additional organizational contexts before
+they can be treated as consolidated contributions to the ArchHypo pattern
+language (see Section~\ref{sec:future-work}).
+
+\paragraph{RQ3 --- What benefits and challenges do team members perceive in
+using Hypo-Stage?}
+
+Participants across both teams reported that making architectural uncertainties
+explicit and visible through Hypo-Stage had a positive effect on the quality of
+their architectural discussions. The most salient benefit was the formalization
+of tacit knowledge: by writing a hypothesis, engineers converted an informal
+concern --- shared informally in chat or resolved verbally in a meeting --- into a
+traceable, prioritized artifact with an explicit rationale. The Backstage
+catalog integration was perceived as reducing cognitive overhead.
+
+The dominant challenge remained the learning curve of the ArchHypo technique
+itself. All four participants in the active listening sessions identified the
+falsifiability requirement of hypothesis statements as non-intuitive under
+delivery pressure, replicating findings from the PropSEP/Jetsoft evaluation
+\citep{silva2025archhypo}. Sprint delivery pressure was named by both technical
+leaders as the principal constraint on registration activity: formulating a
+well-structured hypothesis requires focused, uninterrupted time that is scarce
+in a product sprint. The team-behavior patterns in Group~A (Section~\ref{sec:group-a-patterns})
+condense these findings into four actionable organizational conditions ---
+\textit{Senior-Curated Hypothesis Backlog} (A1), \textit{Fast-Resolution Blind Spot} (A2),
+\textit{Registration as a Slack-Dependent Practice} (A3), and
+\textit{Negative-Formulation Barrier} (A4) --- that jointly explain why adoption is
+sustainable only when specific organizational enablers are in place. Like the
+Group~B archetypes, these are emerging propositions and require further
+validation.
+
+\paragraph{RQ4 --- Which refinements to Hypo-Stage and its usage guidelines
+emerge from the empirical study?}
+
+Nine categories of empirically grounded refinements were implemented during the
+observation period and documented in Section~\ref{sec:refinements}, each traced to a concrete
+observation and a commit in the Hypo-Stage repository. The refinements span
+four layers of the tool: Backstage integration and catalog surfacing (making
+hypotheses discoverable without navigation); backend API and filtering (enabling
+team-scoped and status-filtered views); the prioritization dashboard
+(introducing focus panels and urgency signals derived from uncertainty and impact
+combinations); and form usability (adding inline ArchHypo guidance to reduce the
+vocabulary barrier at the moment of registration).
+
+The most structurally significant refinement is the evolution chart introduced
+in Section~\ref{subsec:refinement-chart} (Figure~\ref{fig:evolution-chart}), which plots the shift in a
+hypothesis's uncertainty and impact ratings over successive assessments. This
+feature directly addresses the absence of assessment history in the initial
+Hypo-Stage version \citep{correa2025} and enables teams to see whether their
+technical plan actions are having the intended effect of reducing uncertainty
+or impact. Together, the nine refinement categories operationalize a cycle of
+\emph{observe $\rightarrow$ refine $\rightarrow$ redeploy $\rightarrow$ observe} that is consistent with the
+action-research element of the research design.
+
+% ─────────────────────────────────────────────────────
 \section{Implications for Practice and Research}
-\label{sec:conclusion-implications}
-% TODO
+\label{sec:implications}
 
+\paragraph{For practitioners adopting hypothesis-engineering tools.}
+
+The study demonstrates that tool integration within the developer's daily
+environment is a meaningful enabler of adoption. Deploying Hypo-Stage as a
+Backstage plugin --- where engineers already manage services, documentation, and
+CI/CD pipelines --- removed a class of adoption friction that a standalone tool
+would have created. This suggests a general principle: hypothesis-engineering
+tools are more likely to be adopted when they are delivered as extensions to
+an existing workflow rather than as a new workflow to be added.
+
+The finding that registration remains senior-led, even with tool support, has
+practical implications for organizations intending to distribute architectural
+decision-making. Tool availability is a necessary but not sufficient condition
+for broad participation. Organizations should combine tool deployment with
+explicit protected time for architectural hygiene (see Group~A pattern A3) and
+with statement scaffolding that lowers the cognitive barrier to formulating
+falsifiable hypotheses (see Group~A pattern A4 and Hypo-Stage form improvements
+in Section~\ref{subsec:refinement-forms}). The Group~B archetypes can serve immediately as a
+recognition vocabulary for experienced hypothesis engineers encountering
+familiar situations in new projects.
+
+\paragraph{For researchers studying tool-mediated architectural practices.}
+
+This study is the first evaluation of ArchHypo in a tool-mediated setting and
+the first to produce a dataset of architectural hypotheses large enough to
+support structural classification. Several methodological observations may
+benefit future work. First, the formative evaluation design --- in which
+refinements are implemented during the observation period --- provides richer
+insight into \emph{why} difficulties arise and \emph{which} changes address
+them than a retrospective evaluation would. This design is well-suited to tool
+artifacts whose value proposition is tightly coupled to usability and workflow
+fit. Second, the dataset of thirteen hypotheses, while small, demonstrates that
+even a short observation window in a naturalistic setting produces enough
+artifacts to support initial pattern identification. Larger datasets will be
+needed to test frequency and generalizability.
+
+The observation that hypothesis registration is senior-led is consistent with
+findings from both prior ArchHypo evaluations \citep{silva2024ieeesw,
+silva2024tse} and with the broader literature on tacit knowledge in architectural
+decision-making \citep{souza2019}. This convergence across different settings,
+time periods, and methods provides some basis for treating senior-anchor
+dependency as a robust characteristic of early ArchHypo adoption rather than an
+artifact of any single study.
+
+% ─────────────────────────────────────────────────────
 \section{Limitations and Future Work}
-\label{sec:conclusion-future-work}
-% TODO
+\label{sec:future-work}
+
+\subsection*{Study Limitations}
+
+\paragraph{Single organizational context and Backstage dependency.}
+The study was conducted within one technology organization that already operated
+a mature Backstage deployment. The enabling condition of Backstage availability
+means that findings about adoption friction may not transfer directly to
+organizations without an Internal Developer Portal. The organizational culture,
+team size, and product complexity of the study site may differ substantially from
+other contexts in which researchers or practitioners seek to apply these findings.
+
+\paragraph{Small hypothesis dataset and short observation window.}
+Thirteen hypotheses produced over four weeks by two teams is a limited dataset.
+The Group~A and Group~B patterns are derived from this dataset and must be treated
+as emerging propositions rather than consolidated findings. The four-week window
+is also too short to observe full hypothesis lifecycle completion (validation or
+invalidation); eleven of the thirteen hypotheses remained in Open status at the
+end of the period. A longer observation window would be needed to study how
+teams manage hypotheses through to resolution and whether the tool adequately
+supports retrospective learning after a hypothesis closes.
+
+\paragraph{Researcher dual role.}
+The researcher's dual role as organizational employee and academic investigator
+is a known source of potential bias. Although strategies were employed to
+maintain role separation (Section~\ref{sec:researcher-role}), the researcher's presence as a tool
+author and subject-matter expert may have influenced how participants described
+their experience of the technique, introducing social desirability effects.
+
+\paragraph{No comparison condition.}
+The study does not include a control group or comparison condition against teams
+using ArchHypo without Hypo-Stage, or teams not using any structured
+uncertainty-management approach. This limits the ability to attribute observed
+benefits specifically to the tool rather than to the introduction of a structured
+technique in general.
+
+\subsection*{Future Work Agenda}
+
+\paragraph{Replication and longitudinal extension.}
+The most immediate priority is replication of this study in additional
+organizational contexts --- including organizations without an existing Backstage
+deployment --- to test whether the adoption patterns, tool refinements, and
+emerging archetypes are context-specific or more broadly applicable.
+A longitudinal design spanning multiple development cycles would allow the
+study of hypothesis lifecycle completion, assessment evolution, and whether
+teams internalize the technique over time to the point where senior-anchor
+dependency diminishes.
+
+\paragraph{Consolidating the Group~B archetypes into the ArchHypo pattern language.}
+The five technical architectural hypothesis archetypes (B1--B5) were identified
+from a single dataset and are explicitly preliminary. Consolidating them
+requires: (a)~attempting to identify or refute each archetype in new hypothesis
+datasets from different organizations and domains; (b)~subjecting each pattern
+to the structured review process used for the existing ArchHypo pattern language
+\citep{silva2024patterns}; and (c)~expanding the catalog to cover quality
+attributes not represented in this study (e.g., security-only hypotheses,
+performance-at-scale hypotheses in non-financial contexts).
+
+\paragraph{Validating the Group~A team-behavior patterns.}
+The four organizational conditions in Group~A (A1--A4) are equally preliminary.
+Future work should design intervention studies that test whether addressing
+these conditions --- for instance, by introducing protected architectural hygiene
+sessions (A3) or embedding statement templates in the hypothesis form (A4) ---
+measurably increases registration breadth beyond senior engineers, reduces
+the formulation time reported by participants, or improves hypothesis quality
+as judged by the teams themselves.
+
+\paragraph{Broadening participation beyond senior engineers.}
+A central open question is whether and how hypothesis registration can become a
+practice accessible to engineers at all levels, not only to those who already
+hold explicit architectural responsibilities. Research directions include:
+guided hypothesis templates that lower the formulation barrier (already initiated
+in the form usability refinements); asynchronous architectural review workflows
+that do not require simultaneous availability of a senior engineer; and
+gamified or social nudge mechanisms that encourage mid-level engineers to
+surface uncertainties they currently resolve tacitly.
+
+\paragraph{Integration with Architecture Decision Records.}
+Hypo-Stage manages the pre-decision lifecycle of architectural uncertainty.
+Once a hypothesis is validated or invalidated, the resulting decision is
+currently not captured in any structured artifact within the tool. Future
+work should explore the integration of Hypo-Stage with ADR tools such as
+Log4brains, so that the evidence chain from hypothesis registration through
+technical plan execution to final architectural decision is preserved as a
+single traceable thread.
+
+\paragraph{Quantitative assessment of tool impact.}
+This study does not include any quantitative measure of the impact of
+Hypo-Stage on decision quality, architecture drift, or delivery velocity.
+Future work using a quasi-experimental or interrupted time-series design could
+compare architectural decision quality or technical debt accumulation between
+periods with and without active hypothesis management, providing a more
+rigorous basis for claims about the tool's organizational value.
+
+\paragraph{Extending Hypo-Stage to multi-team hypothesis governance.}
+The present evaluation involved two co-located teams within the same
+organization. As organizations scale, hypotheses registered by one team
+frequently have cross-team implications --- this was already visible in the blob
+governance hypotheses (H07, H08) and the platform Kafka cluster (H09--H13).
+Future work should explore cross-team hypothesis visibility, shared ownership
+models, and notification mechanisms that make cross-boundary hypotheses
+discoverable to the teams they affect, without creating coordination overhead
+that undermines team autonomy.

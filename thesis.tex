@@ -21,6 +21,10 @@
 % Directories where figures are located
 \graphicspath{{figures/},{template/logos/}}
 
+% Framed placeholders for screenshots until final figures are exported
+\newcommand{\placeholder}[2][0.85\textwidth]{%
+  \fbox{\parbox{#1}{\centering\vspace{2cm}[SCREENSHOT PLACEHOLDER: #2]\vspace{2cm}}}}
+
 % Quick language-switching commands (\en, \br, \texten{}, \textbr{})
 \babeltags{br = brazilian, en = english}
 
@@ -36,11 +40,12 @@
 \babelhyphenation[english]{Arch-Hypo Hypo-Stage}
 
 % ---- Title (English primary; translated title is the Portuguese version) ----
-\title{Hypo-Stage: An Empirical Study of\\
-Tool-Supported Architectural Hypothesis Engineering\\
+\title{Hypo-Stage: Empirical Evaluation and Refinement of a Tool-Supported\\
+Architectural Hypothesis Engineering Practice\\
 in Industrial Software Teams}[]
-\translatedtitle{Hypo-Stage: Um Estudo Empírico sobre Engenharia de Hipóteses\\
-Arquiteturais Apoiada por Ferramenta em Equipes de Software Industriais}[]
+\translatedtitle{Hypo-Stage: Avaliação Empírica e Refinamento de uma Prática de\\
+Engenharia de Hipóteses Arquiteturais Apoiada por Ferramenta em Equipes de\\
+Software Industriais}[]
 
 \author{José Gonçalves Lima Neto}
 
