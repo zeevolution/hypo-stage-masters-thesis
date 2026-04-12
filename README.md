@@ -7,18 +7,19 @@ Master's thesis in Computer Science at **IME-USP** (Institute of Mathematics and
 | **Author** | José Gonçalves Lima Neto |
 | **Advisor** | Prof. Dr. Paulo Roberto Miranda Meirelles |
 | **Program** | Graduate Program in Computer Science — IME-USP |
-| **Year** | 2026 |
+| **Document year** | 2026 |
+| **Repository status** | Near-final manuscript (spring 2026); PDFs in `main` track the latest integrated build |
 
 ## Read the Documents
 
 | Document | Description |
 |---|---|
-| **[thesis.pdf](thesis.pdf)** | Full thesis (latest compiled version) |
-| **[presentation.pdf](presentation.pdf)** | Defense presentation slides (Beamer/IME theme) |
+| **[thesis.pdf](thesis.pdf)** | Full thesis (latest compiled version committed to `main`) |
+| **[presentation.pdf](presentation.pdf)** | Defense presentation slides (Beamer / IME theme) |
 
 ## About
 
-This thesis empirically evaluates and refines **[Hypo-Stage](https://github.com/ArchHypo/hypo-stage)**, a support tool for the **ArchHypo** technique, by applying it with multiple software engineering teams working on a scaled software product in a real-world organization. The research assesses how Hypo-Stage supports managing architectural uncertainty and uses the findings to inform the tool's improvement.
+This dissertation reports a **flexible, multiple case study** of **[Hypo-Stage](https://github.com/ArchHypo/hypo-stage)** — a **Backstage** plugin that supports the **ArchHypo** technique for architectural hypothesis engineering — used by **two professional software development teams** (Product and Platform) over **four weeks** of real sprint work in a large organization. The study combines **formative evaluation** and **action-research** elements: empirical observations drive **iterative refinements** to the tool, which are traced to repository commits. The manuscript includes full **Results and Refinements** (Chapter 5), a discursive **Conclusion** (Chapter 6), **Appendix A** (research instruments and training communication), and **Appendix B** (anonymized hypothesis records and technical-plan catalog).
 
 ## Template
 
@@ -26,49 +27,46 @@ This repository is based on the [IME-USP LaTeX template](https://github.com/ccsl
 
 ## Context and Lineage
 
-### Qualification Work
+### Qualification work
 
-The author's qualification research (December 2024) explored centralization vs. decentralization of software architecture decision-making through a systematic mapping study and a multivocal literature review. The committee recommended narrowing the scope to specific teams and a concrete artifact.
+The author's qualification research (**December 2024**) explored centralization vs. decentralization of software architecture decision-making through a systematic mapping study and a multivocal literature review. The committee recommended narrowing the scope to specific teams and a concrete artifact.
 
 ### ArchHypo
 
-The **ArchHypo** technique (Silva et al., [IEEE Software 2024](https://doi.org/10.1109/MS.2024.3383628), [TSE 2025](https://doi.org/10.1109/TSE.2024.3520477)) uses hypotheses engineering to manage software architecture uncertainty. Prior evaluations demonstrated its value but highlighted significant adoption barriers — particularly the learning curve and cognitive load of manual application.
+The **ArchHypo** technique (Silva et al., [IEEE Software 2024](https://doi.org/10.1109/MS.2024.3383628); [IEEE TSE 2025](https://doi.org/10.1109/TSE.2024.3520477)) applies hypotheses engineering to manage software architecture uncertainty. Prior evaluations showed value but also **adoption barriers** — especially the learning curve and cognitive load of manual application.
 
-### Hypo-Stage Tool
+### Hypo-Stage (artifact)
 
-**Hypo-Stage** was designed and implemented as an undergraduate capstone project by Pedro Henrique Mariano Corrêa, supervised by the author and co-supervised by Prof. Paulo Meirelles. The initial tool is a Backstage Internal Developer Portal plugin, developed up to commit [`ceee509`](https://github.com/ArchHypo/hypo-stage/commit/ceee509776508081ebdd473c2c4f710b8ef55947) in the [`hypo-stage`](https://github.com/ArchHypo/hypo-stage) repository. The [senior thesis](https://github.com/ArchHypo/hypo-stage-senior-thesis) documents its design.
+**Hypo-Stage** was first designed and implemented as an undergraduate capstone project by Pedro Henrique Mariano Corrêa, supervised by the author and co-supervised by Prof. Paulo Meirelles. The initial design is documented in the [senior thesis](https://github.com/ArchHypo/hypo-stage-senior-thesis) repository; the code boundary referenced in this work is commit [`ceee509`](https://github.com/ArchHypo/hypo-stage/commit/ceee509776508081ebdd473c2c4f710b8ef55947) in [`ArchHypo/hypo-stage`](https://github.com/ArchHypo/hypo-stage).
 
-This master's thesis builds on that artifact: commits after `ceee509` reflect refinements from empirical use with real teams. The master's contribution is the empirical evaluation and evidence-driven refinement, not the tool's original design.
+**This master's thesis** treats Hypo-Stage as an existing artifact and contributes **empirical evaluation**, **thematic analysis** of registered hypotheses (including emerging pattern families), and **evidence-driven refinement** of the tool and usage guidance. Commits after `ceee509` in the plugin repository include refinements motivated by the field study.
 
-## Repository Structure
+## Repository structure
 
 ```
 .
-├── thesis.pdf                  # Compiled thesis (latest version)
+├── thesis.pdf                  # Compiled thesis (tracked on main when rebuilt)
 ├── thesis.tex                  # Thesis entry point
 ├── presentation.pdf            # Compiled presentation slides
-├── presentation.tex            # Presentation entry point (Beamer)
-├── references.bib              # Shared bibliography (BibLaTeX format)
-├── chapters/                   # Thesis content (author's writing)
-│   ├── abstract.tex            #   Abstract (EN) and Resumo (PT)
-│   ├── 01-introduction.tex     #   Chapter 1: Introduction
-│   ├── 02-background.tex       #   Chapter 2: Background
-│   ├── 03-related-work.tex     #   Chapter 3: Related Work
-│   ├── 04-research-design.tex  #   Chapter 4: Research Design
-│   ├── 05-results-and-refinements.tex  #   Chapter 5: Results and Refinements
-│   ├── 05-results.tex          #   Legacy stub (not included in thesis.tex)
-│   ├── 06-discussion.tex       #   Optional scaffold (omitted from thesis.tex)
-│   ├── 06-conclusion.tex       #   Chapter 6 in PDF: Conclusion
-│   └── appendix-a-instruments.tex  Appendix A: Research Instruments
-├── figures/                    # Thesis figures (.pdf, .png, .jpg)
-├── template/                   # IME-USP LaTeX template internals (do not edit)
-│   ├── *.sty                   #   Style packages (imegoodies, imelooks, etc.)
-│   ├── *.bst, *.bbx, ...      #   Bibliography styles (thesis + beamer)
-│   ├── logos/                  #   Institutional logos (IME, USP, CC-BY)
-│   ├── texlogsieve             #   Log filter tool
-│   └── latexmkrc               #   Template build settings
-├── latexmkrc                   # Build config (loads template/latexmkrc)
-├── .github/workflows/          # GitHub Actions CI (builds both PDFs on push)
+├── presentation.tex            # Beamer entry point
+├── references.bib              # Bibliography (BibLaTeX / biber)
+├── chapters/                   # Main text (input from thesis.tex)
+│   ├── abstract.tex            #   Abstract (EN) + Resumo (PT) + keywords
+│   ├── 01-introduction.tex     #   Chapter 1
+│   ├── 02-background.tex         #   Chapter 2
+│   ├── 03-related-work.tex       #   Chapter 3
+│   ├── 04-research-design.tex    #   Chapter 4
+│   ├── 05-results-and-refinements.tex  #   Chapter 5 (included via \include)
+│   ├── 05-results.tex            #   Legacy stub (not included in thesis.tex)
+│   ├── 06-conclusion.tex         #   Chapter 6
+│   ├── 06-discussion.tex         #   Optional scaffold (not included in thesis.tex)
+│   └── appendix-a-instruments.tex    #   Appendix A
+├── appendixes/
+│   └── app-b-hypotheses-data.tex     #   Appendix B (hypothesis data)
+├── figures/                    # Figures (.pdf, .png, .jpg, …)
+├── template/                   # IME template (styles, logos, latexmkrc)
+├── latexmkrc                   # Root build config (loads template/latexmkrc)
+├── .github/workflows/          # CI: build thesis + presentation on push
 ├── LICENSE
 └── README.md
 ```
@@ -171,13 +169,14 @@ latexmk -pdf thesis.tex
 # Build the presentation
 latexmk -pdf presentation.tex
 
-# Clean all build artifacts
-latexmk -C
+# Clean all build artifacts for a given job
+latexmk -C thesis.tex
+latexmk -C presentation.tex
 ```
 
 ### Continuous Integration
 
-Every push to `main` triggers a [GitHub Actions workflow](.github/workflows/latex.yml) that compiles both the thesis and the presentation, uploading each as a downloadable artifact.
+Pushes to the default branch run a [GitHub Actions workflow](.github/workflows/latex.yml) that compiles the thesis and the presentation and uploads each PDF as a workflow artifact.
 
 ## License
 
