@@ -7,63 +7,51 @@
 
 % English abstract (primary) --- single paragraph (ABNT NBR 6028; IME template convention)
 \abstract{
-Software engineering teams in continuous-delivery organizations routinely face architectural decisions
+Software engineering teams in continuous-delivery organizations recurrently encounter architectural decisions
 under incomplete information, yet few lightweight tools exist to help them record, prioritize, and learn from
-those uncertainties collaboratively; the ArchHypo technique addresses this gap by applying hypotheses
-engineering to software architecture --- teams formulate uncertainties as falsifiable hypotheses, assess each
-by uncertainty level and impact, and define a technical plan for handling it --- but prior evaluations reported
-a steep learning curve and dependence on expert facilitation, both exacerbated by the absence of tool support.
-This dissertation presents the first empirical account of a tool-mediated application of ArchHypo in a
-professional software development organization, through the evaluation and iterative refinement of
+those uncertainties collaboratively; the ArchHypo technique addresses this challenge by applying hypotheses
+engineering to software architecture context by enabling teams to formulate uncertainties as falsifiable hypotheses, assess each
+by uncertainty level and impact, and define a technical plan for handling them. However, prior works have reported
+a substantial learning curve and dependence on expert facilitation, both augmented by the absence of tool support.
+This present work presents an empirical study of a tool-mediated application of ArchHypo in a
+professional software engineering organization, through the evaluation and iterative refinement of
 Hypo-Stage, an open-source Backstage plugin deployed on a large organization's Internal Developer Portal
 where engineers already work; the study adopts a flexible, multiple case-study design with formative
 evaluation and action-research elements following \citet{robson2016}, involving two teams --- a
 Product team of twelve engineers and a Platform team of four --- over two agile sprints totalling four weeks,
 with data collected through participant observation, artifact analysis of thirteen registered hypotheses and
-their technical plans, and open-ended active listening sessions with each team's senior technical leader,
-analyzed via three-stage thematic coding.
+their technical plans, and open-ended active listening sessions with each team's senior technical leader, analyzed via three-stage thematic coding.
 Four contributions emerge from this work: (1) a detailed observational account of how both teams
 adopted and used Hypo-Stage, characterizing hypothesis registration dynamics, role stratification, and
 tool adoption patterns; (2) a characterization of the architectural uncertainties the teams made explicit,
-including their sources, dominant quality attributes (Reliability and Auditability), uncertainty-impact
-profiles, and technical plan strategies; (3) five novel technical architectural hypothesis archetypes ---
+including their sources, dominant quality attributes (e.g. Reliability and Auditability), uncertainty-impact
+profiles, and technical plan strategies; (3) five novel emerging technical architectural hypothesis patterns ---
 Hypothesis Cluster, Regulatory Trigger Hypothesis, Decoupling Seam Hypothesis, Load-Validated Hypothesis,
-and Shared Resource Governance Hypothesis --- constituting the first empirically grounded structural
-classification of recurring hypothesis shapes in the ArchHypo research line; and (4) nine categories of
-empirically grounded refinements to Hypo-Stage, each traced to a concrete observation and a code commit,
+and Shared Resource Governance Hypothesis; and (4) nine categories of
+empirically grounded refinements to Hypo-Stage, each traced to a concrete observation,
 including a hypothesis evolution chart, a prioritization dashboard, and inline formulation guidance that
 reduces the technique's learning barrier.
 }
 
 % Portuguese abstract (required by IME-USP regulations) --- parágrafo único
 \resumo{
-Equipes de engenharia de software em organizações de entrega contínua tomam rotineiramente decisões
-arquiteturais sob informação incompleta, mas dispõem de poucas ferramentas leves para registrar, priorizar
-e aprender com essas incertezas de forma colaborativa; a técnica ArchHypo aborda essa lacuna ao aplicar
-a engenharia de hipóteses à arquitetura de software --- as equipes formulam incertezas como hipóteses
-falsificáveis, avaliam cada uma por nível de incerteza e impacto, e definem um plano técnico para tratá-las
---- mas avaliações anteriores reportaram uma curva de aprendizado acentuada e dependência de facilitação
-especializada, ambos agravados pela ausência de suporte ferramental.
-Esta dissertação apresenta o primeiro relato empírico de uma aplicação mediada por ferramenta do ArchHypo
-em uma organização profissional de desenvolvimento de software, por meio da avaliação e do refinamento
-iterativo do Hypo-Stage, um plugin \textit{open source} para o Backstage implantado no Portal do Desenvolvedor
-Interno de uma grande organização, onde os engenheiros já atuam cotidianamente; o estudo adota um
-desenho flexível de múltiplos estudos de caso, com propósito avaliativo formativo e elementos de
-pesquisa-ação segundo \citet{robson2016}, envolvendo duas equipes --- uma equipe de Produto com
-doze engenheiros e uma equipe de Plataforma com quatro --- ao longo de duas \textit{sprints} ágeis totalizando
-quatro semanas, com dados coletados via observação participante, análise de artefatos das treze hipóteses
-registradas e seus planos técnicos, e sessões abertas de escuta ativa com o líder técnico sênior de cada
-equipe, analisados por codificação temática em três estágios.
-Quatro contribuições emergem deste trabalho: (1) um relato observacional detalhado de como ambas as
-equipes adotaram e utilizaram o Hypo-Stage, caracterizando a dinâmica de registro de hipóteses, a
-estratificação por papel e os padrões de adoção da ferramenta; (2) uma caracterização das incertezas
-arquiteturais tornadas explícitas pelas equipes, incluindo suas fontes, atributos de qualidade dominantes
-(Confiabilidade e Auditabilidade), perfis de incerteza-impacto e estratégias de plano técnico; (3) cinco
-arquétipos técnicos de hipóteses arquiteturais --- Hypothesis Cluster, Regulatory Trigger Hypothesis,
-Decoupling Seam Hypothesis, Load-Validated Hypothesis e Shared Resource Governance Hypothesis ---
-constituindo a primeira classificação estrutural empiricamente fundamentada de formas recorrentes de
-hipóteses na linha de pesquisa do ArchHypo; e (4) nove categorias de refinamentos empiricamente
-fundamentados ao Hypo-Stage, cada um rastreado a uma observação concreta e a um \textit{commit} no repositório,
-incluindo um gráfico de evolução das hipóteses, um painel de priorização e orientações de formulação
-\textit{inline} que reduzem mensuravelmente a barreira de aprendizado da técnica.
+Equipes de engenharia de software em organizações de entrega contínua enfrentam recorrentes decisões arquiteturais diante de informações incompletas, 
+porém poucas ferramentas existem para ajudá-las a registrar, priorizar e aprender com essas incertezas de forma colaborativa; a técnica 
+ArchHypo aborda esse desafio ao aplicar a engenharia de hipóteses ao contexto da arquitetura de software, permitindo que as equipes formulem 
+incertezas como hipóteses falseáveis, avaliem cada uma pelo nível de incerteza e impacto, e definam um plano técnico para tratá-las. 
+No entanto, trabalhos anteriores relataram uma **curva de aprendizado acentuada** e dependência de facilitação especializada, 
+ambas intensificadas pela ausência de suporte de ferramentas. O presente trabalho apresenta um estudo empírico de uma aplicação mediada por 
+ferramenta do ArchHypo em uma organização profissional de engenharia de software, por meio da avaliação e refinamento iterativo do Hypo-Stage, 
+um plugin de código aberto para o Backstage implantado no Portal Interno do Desenvolvedor de uma grande organização de software; 
+o estudo adota um design de estudo de caso múltiplo e flexível, com avaliação formativa e elementos de pesquisa-ação seguindo \citet{robson2016}, 
+envolvendo duas equipes — uma equipe de Produto de doze engenheiros e uma equipe de Plataforma de quatro — ao longo de dois sprints ágeis totalizando 
+quatro semanas, com dados coletados por meio de observação participante, análise de artefatos de treze hipóteses registradas e seus respectivos planos técnicos, 
+e sessões de escuta ativa com o líder técnico sênior de cada equipe, analisadas via codificação temática em três estágios. 
+Quatro contribuições emergem deste trabalho: (1) um relato observacional detalhado de como ambas as equipes adotaram e utilizaram o Hypo-Stage, 
+caracterizando a dinâmica de registro de hipóteses, estratificação de papéis e padrões de adoção da ferramenta; (2) uma caracterização das incertezas 
+arquiteturais que as equipes tornaram explícitas, incluindo suas fontes, atributos de qualidade dominantes (ex: Resiliência e Auditabilidade), 
+perfis de incerteza-impacto e estratégias de planos técnicos; (3) cinco novos padrões emergentes de hipóteses arquiteturais técnicas — *Hypothesis Cluster*, 
+*Regulatory Trigger Hypothesis*, *Decoupling Seam Hypothesis*, *Load-Validated Hypothesis* e *Shared Resource Governance Hypothesis*; e 
+(4) nove categorias de refinamentos fundamentados empiricamente para o Hypo-Stage, cada um rastreado a uma observação concreta, incluindo um 
+gráfico de evolução de hipóteses, um painel de priorização e orientações de formulação *inline* que reduzem a barreira de aprendizado da técnica.
 }
