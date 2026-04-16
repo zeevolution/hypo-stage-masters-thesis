@@ -10,32 +10,39 @@ concept structures a system into elements and relations that form the basis of
 its organization, conveying coherence, scalability, and maintainability for the
 evolving software over time. Despite the ever-changing practices of modern
 software development, SA still provides the basis for analyzing the quality
-attributes of contemporary systems, guiding technical decisions made throughout
-the development process via a diverse set of architectural methodologies, as
+attributes of modern systems, guiding technical decisions made throughout
+the development process via a diverse set of architectural methodologies, as the ones
 systematically mapped by \citet{souza2019}. In organizations that rely on
 software as a core part of their business, architecture is not a one-time design
-artifact but a continuous decision-making process that must accommodate changing
+artifact, but rather a continuous decision-making process that must accommodate changing
 requirements, evolving technologies, and critical organizational constraints
 \citep{silva2024tse}.
 
-In recent years, agile and continuous development practices have intensified this fast-paced pressure. Teams are expected to deliver more features in shorter cycles while preserving scalability, performance, and other quality attributes of their systems that continue to grow in size and complexity \cite{silva2024tse,silva2024ieeesw}. 
-In such environments, architecture decisions are frequently made under uncertainty: solutions or requirements may be incomplete or unstable, the impact of technology choices may not be fully understood, and the behavior of the system under realistic workloads may only become visible after deployment \cite{silva2024tse}. Despite this, architectural uncertainties often remain implicit and unmanaged, and decisions tend to rely on the tacit knowledge and intuition of a small group of experienced architects as observed by \cite{souza2019}.
+In recent years, agile and continuous development practices have intensified this fast-paced pressure. 
+Teams are expected to deliver more features in shorter cycles while preserving scalability, performance, and other quality attributes of their systems that continue to grow in size and complexity, as observed in \cite{silva2024tse,silva2024ieeesw}. 
+In such environments, architecture decisions are frequently made under uncertainty: solutions or requirements may be incomplete or unstable, the impact of technology choices may not be fully understood, and the behavior of the system under realistic workloads may only become visible after deployment \cite{silva2024tse}. 
+Despite such challenges, architectural uncertainties often remain implicit and unmanaged, and decisions tend to rely on the tacit knowledge and intuition of a small group of experienced architects as stated by \cite{souza2019}.
 
 At the same time, many organizations seek to organize themselves around autonomous, cross-functional teams responsible for end-to-end delivery of features. 
-Recent industry reports, such as the 2024 InfoQ Software Architecture and Design Trends Report \cite{infoq2024trends}, highlight socio-technical architecture as an emerging trend that emphasizes the co-design of technical and organizational structures, and the importance of considering how team boundaries and communication patterns shape system architectures. In this view, architecture work is distributed across teams rather than centralized in a separate function or role. Moreover, in these scenarios, the Conway's Law is treated as a design constraint to be intentionally leveraged rather than an accident to be ignored \cite{infoq2024trends}. 
+Recent industry reports, such as the 2024 InfoQ Software Architecture and Design Trends Report \cite{infoq2024trends}, highlight socio-technical architecture as an emerging trend that emphasizes the co-design of technical and organizational structures, and the importance of considering how team boundaries and communication patterns shape system architectures. 
+In such a scenario, architecture work is distributed across teams rather than centralized in a separate function or role. Moreover, in these scenarios, the Conway's Law is treated as a design constraint to be intentionally leveraged rather than an accident to be ignored \cite{infoq2024trends}. 
 However, when architecture decisions depend on implicit assumptions held by a few experts in the organization, this distribution becomes difficult in practice. Less experienced team members may struggle to participate meaningfully in architectural discussions, and teams may find it hard to reason about the risks and trade-offs of alternative solutions even when they are applying any one of the well-known and validated architectural methodologies mapped by \cite{souza2019}.
 This challenge reveals the case of the architectural uncertainty management, which still is a critical aspect of the architecture work, but is often neglected or poorly supported in practice by the available tools and methodologies.
 
 \section{Architectural Uncertainty and Hypotheses Engineering}
 
-Uncertainty in architecture decisions stems from limited knowledge about requirements, future usage scenarios, and the properties of candidate solutions as reviewed in \cite{silva2024tse}. Traditional risk management techniques assume that relevant events and their probabilities are known or can be estimated, which is not always the case when dealing with evolving systems and emerging technologies \cite{silva2024tse}. A complementary perspective is to acknowledge uncertainty explicitly and as an inevitable aspect of the architecture work, and therefore, to manage it as a first-class concern during the architecture work as proposed in \cite{silva2024tse}.
+Uncertainty in architecture decisions proceeds from limited knowledge about requirements, future usage scenarios, and the properties of candidate solutions as reviewed in \cite{silva2024tse}. 
+Traditional risk management techniques assume that relevant events and their probabilities are known or can be estimated, which is not always the case when dealing with evolving systems and emerging technologies \cite{silva2024tse}. 
+A complementary perspective is to acknowledge uncertainty explicitly and as an inevitable aspect of the architecture work, and therefore, to manage it as a first-class concern during the architecture work as proposed in \cite{silva2024tse}.
 
 In this regard, Hypotheses Engineering has emerged as an approach to manage uncertainty in software development by treating assumptions as explicit, falsifiable hypotheses that can be prioritized and tested through experiments \cite{silva2024tse,silva2024ieeesw}. In this context, ArchHypo is the technique that adapts hypotheses engineering to software architecture. 
 It proposes that teams identify \emph{architectural hypotheses} --- statements capturing uncertainties that may affect architectural decisions --- assess each hypothesis by its uncertainty level and impact, and define a technical plan for handling it \cite{silva2024tse}.
 
-The technical plan may include actions to reduce uncertainty, such as experiments, architectural spikes, or tracer bullets, and actions to reduce the impact of potential changes, such as modularization or flexible deployment strategies \cite{silva2024tse}. By iteratively updating hypotheses and technical plans over time, ArchHypo aims to support a more deliberate and distributed approach to architectural decision-making, allowing teams to postpone irreversible decisions when justified and to focus their efforts on the most critical uncertainties \cite{silva2024tse,silva2024ieeesw}.
+The technical plan may include actions to reduce uncertainty, such as experiments, architectural spikes, or tracer bullets, and actions to reduce the impact of potential changes, such as modularization or flexible deployment strategies \cite{silva2024tse}. 
+By iteratively updating hypotheses and technical plans over time, ArchHypo aims to support a more deliberate and distributed approach to architectural decision-making, allowing teams to postpone irreversible decisions when justified and to focus their efforts on the most critical uncertainties \cite{silva2024tse,silva2024ieeesw}.
 
-Empirical studies have started to explore how ArchHypo works in practice. An experience report in a software start-up describes how the technique helped the founder identify and prioritize architectural uncertainties related to availability, usability, and scalability over a ten-month period, guiding the evolution of the product and avoiding premature investments in infrastructure \cite{silva2024ieeesw}. A design science study in a mission-critical public-sector system shows that integrating ArchHypo into the development process enabled the team to distribute architectural work across iterations and to make better-informed decisions in the face of changing requirements \cite{silva2024tse}. 
+Empirical studies have started to explore how ArchHypo works in practice. An experience report in a software start-up describes how the technique helped the founder identify and prioritize architectural uncertainties related to availability, usability, and scalability over a ten-month period, guiding the evolution of the product and avoiding premature investments in infrastructure \cite{silva2024ieeesw}. 
+A design science study in a mission-critical public-sector system shows that integrating ArchHypo into the development process enabled the team to distribute architectural work across iterations and to make better-informed decisions in the face of changing requirements \cite{silva2024tse}. 
 At the same time, both studies report that the technique introduces a non-trivial learning curve and requires adjustments to existing processes, which might pose a challenge to its adoption by the team as reported in \cite{silva2024tse,silva2024ieeesw}.
 
 \section{From Requirements to Architecture and the Role of Tool Support}
@@ -46,17 +53,17 @@ Many methods describe high-level processes or frameworks, but offer little guida
 
 The same study highlighted gaps in tool support. A significant portion of the methods did not include any supporting tool, and when tools were present, they tended to address only parts of the process as also reported in \cite{souza2019}. 
 The authors called for more automation, better mechanisms to capture and reuse architectural knowledge, and empirical validation of tools in realistic settings. 
-These findings resonate with the observations from ArchHypo studies: while the technique provides a structured way to make architectural uncertainties explicit and to plan actions, applying it in practice is highly demanding without adequate supporting tool.
+These findings resonate with the observations from ArchHypo studies: while the technique provides a structured way to make architectural uncertainties explicit and to plan actions, applying it in practice is highly demanding without adequate supporting tool \citep{silva2024tse,silva2024ieeesw}.
 
-Grounded in these studies' insights, \cite{correa2025} developed the Hypo-Stage, a support tool designed to help teams apply the ArchHypo technique in practice.
+Grounded in these studies' contributions, \cite{correa2025} developed the Hypo-Stage, a support tool designed to help teams apply the ArchHypo technique in practice.
 Up to a specific point in its history, the work focused on designing and implementing the core functionality for enabling ArchHypo capabilities, such as representing architectural hypotheses, recording their uncertainty and impact assessments, and managing associated technical plans. \footnote{The first version of Hypo-Stage and the corresponding source code history up to commit \texttt{ceee509776508081ebdd473c2c4f710b8ef55947} document the initial design and implementation of Hypo-Stage proposed by \cite{correa2025}.} 
 The work also discussed initial design decisions and limitations, including usability aspects and open questions about how the tool would fit into different team workflows.
 A more detailed description of Hypo-Stage and the contributions by \cite{correa2025} are presented in Chapter~\ref{chap:background}.
 
 \section{Problem Statement}
 
-When reviewed in intersection, these studies outline a clear problem. 
-On the one hand, modern software organizations need to manage architectural uncertainty in a way that supports continuous evolution and involves the broader development team \cite{silva2024tse,silva2024ieeesw,infoq2024trends}. 
+When reviewed in intersection, the reviewed studies in this present work outline a clear problem. 
+On the one hand, modern software organizations need to manage architectural uncertainty in a way that supports continuous evolution and involves the broader development team. 
 On the other hand, empirical evidence and systematic mapping studies indicate that:
 
 \begin{itemize}
@@ -67,10 +74,9 @@ On the other hand, empirical evidence and systematic mapping studies indicate th
 
 In this context, there is a need to understand how software engineering teams,
 with diverse roles, tenures, and responsibilities, interact with a tool like
-Hypo-Stage when working on their products and services. Addressing this problem, this work seeks to gain an understanding of what architectural uncertainties
-teams manage through such a tool, and which aspects of Hypo-Stage and its
-integration into the development process still require refinement.
-Addressing these concerns can contribute both to the practical adoption of ArchHypo via Hypo-Stage and to the broader discussion on how to support teams in sharing architectural responsibilities for accelerating adoption of the socio-technical architecture paradigm mapped in \cite{infoq2024trends}.
+Hypo-Stage when working on their products and services. By addressing this problem, this work seeks to gain an understanding of what architectural uncertainties
+teams manage through such the tool, and which aspects of Hypo-Stage and its integration into the development process still require refinement.
+Investigating these concerns can contribute both to the practical adoption of ArchHypo via Hypo-Stage and to the broader discussion on how to support teams in sharing architectural responsibilities for accelerating adoption of the socio-technical architecture paradigm mapped by \cite{infoq2024trends}.
 
 \section{Objectives}
 
@@ -79,12 +85,12 @@ More specifically, this work aims to:
 
 \begin{itemize}
   \item Investigate how software engineering teams appropriate and use Hypo-Stage and ArchHypo in their day-to-day activities when working on an existing, scaled product.
-  \item Characterize the architectural uncertainties that teams make explicit and manage through Hypo-Stage, and how these uncertainties evolve over time.
-  \item Identify benefits and challenges perceived by team members regarding the use of Hypo-Stage, including its learning curve, usability, and fit with existing practices.
+  \item Characterize the architectural hypotheses that teams register and manage through Hypo-Stage, identifying emerging patterns among them.
+  \item Identify benefits and challenges perceived by team members regarding the use of Hypo-Stage, including their engagement with the tool, usability, and fit with existing practices.
   \item Derive and implement refinements to Hypo-Stage and its usage guidelines based on empirical findings, with the goal of improving its suitability for supporting architectural work in teams.
 \end{itemize}
 
-These objectives deliberately build on, rather than replicate, the previous studies' contributions in the ArchHypo research line. 
+These objectives deliberately build on, rather than replicate, the previous studies' contributions in the ArchHypo research area. 
 While the \cite{correa2025} focused on designing and implementing Hypo-Stage, this work treats the tool as an existing artifact and concentrates on its evaluation and evolution in a professional software development context.
 
 \section{Research Questions}
@@ -112,7 +118,7 @@ RQ1 & How do software engineering teams use Hypo-Stage and ArchHypo when working
 \midrule
 RQ2 & What types and recurring structural shapes of architectural uncertainties do teams identify, record, and manage using Hypo-Stage, and what patterns emerge from their content and organizational context? & Characterize architectural uncertainties by source, quality attribute, and lifecycle; identify recurring structural archetypes of hypotheses that emerge from the empirical data as a novel contribution to the ArchHypo pattern literature. \\
 \midrule
-RQ3 & What benefits and challenges do team members perceive in using Hypo-Stage? & Identify perceived benefits and challenges related to learning curve, usability, and workflow fit. \\
+RQ3 & What benefits and challenges do team members perceive in using Hypo-Stage? & Identify perceived benefits and challenges related to engagement with the tool, usability, and workflow fit. \\
 \midrule
 RQ4 & Which refinements emerge from the empirical study and how do they address identified challenges? & Derive and implement empirically grounded refinements to Hypo-Stage and its usage guidelines. \\
 \bottomrule
@@ -126,28 +132,26 @@ By answering its set of research questions, this work attempts to make the follo
 \begin{itemize}
   \item An empirical account of how multiple professional software development teams use Hypo-Stage --- the tool-supported implementation of ArchHypo \citep{correa2025} --- while working on a scaled software product, including observed adoption patterns, practices, and obstacles.
   \item A characterization of the architectural uncertainties these teams made explicit and managed through Hypo-Stage, describing their sources, quality attributes, structural archetypes, and evolution.
-  \item A set of five novel \textit{technical architectural hypothesis archetypes} (Group~B patterns) derived from thematic analysis of the thirteen hypotheses registered during the study. These archetypes --- Hypothesis Cluster, Regulatory Trigger Hypothesis, Decoupling Seam Hypothesis, Load-Validated Hypothesis, and Shared Resource Governance Hypothesis --- constitute the first empirically grounded answer to the question of what recurring shapes architectural hypotheses take when ArchHypo is applied in practice, addressing a gap explicitly identified as future work in the prior ArchHypo pattern literature \citep{silva2024patterns}.
-  \item A set of empirically grounded refinements to the Hypo-Stage tool and its usage guidelines, aimed at reducing the learning curve, improving usability, and better integrating the technique into team workflows as reported in \cite{correa2025}.
+  \item A set of novel \textit{technical architectural hypothesis patterns} derived from thematic analysis of the hypotheses registered during the study. These patterns --- Hypothesis Cluster, Regulatory Trigger Hypothesis, Decoupling Seam Hypothesis, Load-Validated Hypothesis, and Shared Resource Governance Hypothesis --- constitute the first empirically grounded answer to the question of what recurring shapes architectural hypotheses take when ArchHypo is applied in practice, addressing a gap explicitly identified as future work in the prior ArchHypo pattern literature \citep{silva2024patterns}.
+  \item A set of empirically grounded refinements to the Hypo-Stage tool and its usage guidelines, aimed at improveing the tool's usability and engagement, and better integrating the technique into team workflows as reported in \cite{correa2025}.
   \item Reflections on the implications of these findings for supporting distributed architectural work in agile and continuous development settings, connecting the ArchHypo experience to broader concerns about tacit knowledge and tool support in software architecture as reported in \cite{souza2019,infoq2024trends}.
 \end{itemize}
 
 \paragraph{Preview of key findings.}
-The study yields three families of concrete results.
+This study produced three families of concrete results.
 First, hypothesis registration proved consistently senior-led in both teams:
-twelve of the thirteen hypotheses were authored by staff or principal engineers,
+twelve of the thirteen hypotheses were authored by senior or staff engineers,
 and sprint delivery pressure was the dominant barrier to broader participation ---
 a finding that directly motivates both the tool improvements of RQ4 and the
 organizational pattern A3 (Section~\ref{sec:group-a-patterns}).
 Second, the thirteen hypothesis profiles reveal a strong concentration of
 compliance-driven and shared-infrastructure uncertainties, producing two of
-the five Group~B archetypes (\textit{Regulatory Trigger Hypothesis} and
+the five emerging patterns (\textit{Regulatory Trigger Hypothesis} and
 \textit{Shared Resource Governance Hypothesis}) that are novel contributions
 to the ArchHypo pattern literature.
 Third, the refinement cycle produced nine categories of empirically grounded
-improvements to Hypo-Stage --- including an evolution chart for tracking
-assessment changes over time --- each directly traceable to a specific observation
-and a code commit, making the formative evaluation contribution auditable.
-These findings are previewed here to orient the reader; full analysis and
+improvements to Hypo-Stage, including an evolution chart for tracking
+assessment changes over time. These findings are previewed here to orient the reader. A complete result analysis and
 discussion appear in Chapter~\ref{chap:results} and Chapter~\ref{chap:conclusion}.
 
 \section{Research Structure}
@@ -167,7 +171,7 @@ derivation methods and tool support.
 Chapter~\ref{chap:related-work} synthesizes related literature and industry context relevant to tool-supported architectural decision-making and positions this work within that space.
 
 Chapter~\ref{chap:research-design} presents the research design and methods adopted
-in this dissertation. It describes the research strategy (a flexible multiple case study
+in this work. It describes the research strategy (a flexible multiple case study
 with formative evaluation and action research elements), the conceptual research
 framework that organizes the key constructs of the study, the organizational context and
 case selection rationale for the two participating teams (a Product Team and a Platform
@@ -182,11 +186,12 @@ ArchHypo in practice (RQ1); the architectural uncertainties and hypotheses they
 recorded, including aggregate data characterization and Group~B structural patterns
 (RQ2); the benefits and challenges they perceived (RQ3); and the refinements to
 Hypo-Stage and its usage guidelines that emerged from the study, each traced to
-observations and linked primarily to RQ4. Presenting results and refinements together
-makes explicit how empirical findings drove iterative tool evolution throughout the
+observations and linked primarily to (RQ4). Presenting results and refinements together
+makes explicit how empirical findings have driven iterative tool evolution throughout the
 observation period.
 
-Finally, Chapter~\ref{chap:conclusion} builds on the integrated empirical account in Chapter~\ref{chap:results}: it synthesizes findings in relation to the research questions and to prior ArchHypo evidence, discusses implications for practitioners adopting
+Finally, Chapter~\ref{chap:conclusion} builds on the integrated empirical account in Chapter~\ref{chap:results}. 
+It synthesizes findings in relation to the research questions and to prior ArchHypo evidence, discusses implications for practitioners adopting
 hypothesis-engineering tools and for researchers studying tool-mediated architectural
 practices, and outlines limitations together with directions for future work on Hypo-Stage and on broader
 support for distributed architectural decision-making in agile organizations.
