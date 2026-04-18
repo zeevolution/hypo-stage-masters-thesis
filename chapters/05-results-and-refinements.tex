@@ -7,71 +7,71 @@
 \label{chap:results}
 \label{ch:results}
 
-This chapter presents the empirical findings of the study and the refinements to
+This chapter presents the empirical findings of this study and the refinements applied to
 Hypo-Stage that emerged from them. The results are organized around the four
-research questions defined in Chapter~\ref{chap:introduction}: RQ1 addresses how
-teams used the tool and the technique in practice; RQ2 characterizes the
-architectural uncertainties they registered; RQ3 reports the benefits and
-challenges perceived by participants; and RQ4 documents each refinement, tracing
-it to a concrete observation and to the question it addresses.
-Section~\ref{sec:emerging-patterns} goes beyond a direct answer to the four
+research questions defined in Chapter~\ref{chap:introduction}: 
+\begin{itemize}
+  \item RQ1 addresses how teams used the tool and the technique in practice;
+  \item RQ2 characterizes the architectural uncertainties they registered;
+  \item RQ3 reports the benefits and challenges perceived by participants;
+  \item RQ4 documents each refinement, tracing it to a concrete observation and to the question it addresses.
+\end{itemize}
+
+The section~\ref{sec:emerging-patterns} goes beyond a direct answer to those four
 questions by drawing two families of \textit{emerging patterns}: team-behavior
 patterns (Group~A) and a set of novel technical architectural patterns for
-hypothesis engineers (Group~B). The latter constitutes a distinct contribution
+hypothesis engineers (Group~B). Group~B constitutes a distinct contribution
 of this work, addressing a gap left open by prior research in the ArchHypo line,
 as discussed in Section~\ref{sec:group-b-patterns}.
 
-\section*{Methodological Traceability}
+\section*{Research Methodology Traceability}
 \addcontentsline{toc}{section}{Methodological Traceability}
 
 The evidence presented in this chapter was collected and analyzed strictly in
 accordance with the research design described in Chapter~\ref{chap:research-design}.
-This preamble makes the correspondence explicit so that readers can assess
-compliance at a glance.
+This section explicitly describes this correspondence, so that we can assess
+compliance with the research methodology at a glance.
 
-\paragraph{Data collection.}
-Three data sources were employed, as specified in Section~\ref{sec:data-collection}:
+Regarding data collection, three data sources were employed, as specified in Section~\ref{sec:data-collection}:
 \begin{enumerate}
-  \item \textbf{Participant observation.} Evidence was gathered through the
+  \item \textbf{Participant observation:} Evidence was gathered through the
     researcher's continuous presence within the organization. Observations
     were the author's own first-hand field notes, recorded as close as
     possible in time to the observed events (Section~\ref{subsec:participant-observation}). They covered
     team reactions during and after training, patterns of tool use and
     non-use during the observation sprints, informal commentary, and all
     instances in which team members requested conceptual or tool support.
-  \item \textbf{Artifact analysis.} At the end of the observation period, the
-    complete set of hypotheses, assessments, technical plans, and lifecycle
-    records created by each team in Hypo-Stage was extracted and analyzed
-    (Section~\ref{subsec:artifact-analysis}). The quantitative summaries in Sections~\ref{sec:rq2-results} and~\ref{subsec:refinement-summary}
-    are derived exclusively from this artifact record.
-  \item \textbf{Open-ended active listening sessions.} The researcher
+  \item \textbf{Artifact analysis:} At the end of the observation period, the
+    complete set of hypotheses, assessments, and technical plans records created by each team in Hypo-Stage was extracted and analyzed
+    (Section~\ref{subsec:artifact-analysis}). The quantitative summaries in Sections~\ref{sec:rq2-results} and~\ref{subsec:refinement-summary} 
+    are derived exclusively from those artifact records.
+  \item \textbf{Open-ended active listening sessions:} The researcher
     conducted brief, semi-structured active listening conversations with the
     senior technical leaders of each team at the end of the observation period
     (Section~\ref{subsec:active-listening}). The sessions were open-ended: each leader was invited to
     reflect on their experience of using Hypo-Stage and ArchHypo. Questions
     used in these sessions are reproduced in Appendix~\ref{apx:instruments}
-    (Section~\ref{sec:listening-guide}). Verbatim statements from these
+    (Section~\ref{sec:listening-guide}). Literal statements from these
     sessions are reported in this chapter only when they add evidence beyond
-    what is already documented in field notes or artifacts; in every case the
+    what is already documented in the recorded artifacts; in every case the
     participant's role is identified (e.g., ``Product Team technical leader'').
 \end{enumerate}
 
-\paragraph{Data analysis — three-stage thematic coding.}
-All field notes, artifact summaries, and active listening records were analyzed
+Regarding the data Analysis stage, all field notes, artifact summaries, and active listening records were analyzed
 using the thematic coding procedure described by \citet{robson2016} for
 qualitative data in flexible designs (Section~\ref{sec:data-analysis}). The three stages
-prescribed in the research design were followed as follows:
+described in the research design were followed as follows:
 \begin{enumerate}
-  \item \textbf{Stage 1 — Inductive open coding.} All primary data were
+  \item \textbf{Stage 1 — Inductive open coding:} All primary data were
     reviewed and a set of descriptive codes was generated inductively,
-    capturing recurring observations and verbatim themes without imposing
+    capturing recurring observations and literal themes without imposing
     prior categories. Examples of codes generated at this stage include:
     \textit{registration-barrier-time-pressure},
     \textit{senior-author-only},
     \textit{tool-positive-catalog-integration},
     \textit{falsifiability-confusion}, and
     \textit{kafka-cluster-burst-registration}.
-  \item \textbf{Stage 2 — Axial grouping into conceptual categories.} Codes
+  \item \textbf{Stage 2 — Axial grouping into conceptual categories:} Codes
     were grouped into higher-level categories corresponding to the constructs
     of the conceptual framework (Figure~\ref{fig:conceptual-framework}): patterns of tool use ($\rightarrow$ RQ1,
     Section~\ref{sec:results-rq1}); types of architectural uncertainty and structural archetypes
@@ -79,7 +79,7 @@ prescribed in the research design were followed as follows:
     Section~\ref{subsec:benefits}); perceived challenges ($\rightarrow$ RQ3, Section~\ref{subsec:challenges}); candidate
     tool refinements ($\rightarrow$ RQ4, Section~\ref{sec:refinements}); and organizational conditions for
     adoption ($\rightarrow$ Group~A patterns, Section~\ref{sec:group-a-patterns}).
-  \item \textbf{Stage 3 — Cross-case comparison.} Patterns within and across
+  \item \textbf{Stage 3 — Cross-case comparison:} Patterns within and across
     the two cases (Product Team and Platform Team) were compared to identify
     findings common to both teams and findings specific to each team's context.
     Similarities are reported as shared observations; differences are attributed
