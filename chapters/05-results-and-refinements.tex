@@ -265,7 +265,7 @@ H13 & Payload immutability before re-enqueueing & Platform & Sol. & VL & VH \\
 \label{subsec:source-types}
 
 Eight of the thirteen hypotheses were classified as \textit{Requirements}-sourced:
-the uncertainty stems from an incompletely specified quality-attribute goal or
+the uncertainty arose from an incompletely specified quality-attribute goal or
 an external obligation whose implementation path is unknown. Five were classified
 as \textit{Solution}-sourced: the team has an existing or candidate architectural
 decision and is uncertain about its consequences. The predominance of
@@ -313,10 +313,10 @@ Reusability        & 1 &  8\% \\
 Reliability and Auditability emerge as the two dominant concerns. The prominence
 of Auditability is especially notable and directly traceable to two contextual
 forces: the organization's internal security audit requirements, which drove H03,
-and the applicable privacy regulation governing binary document storage (H04),
+and the applicable privacy regulation governing document storage (H04),
 as well as the Kafka immutability and DLT governance questions (H09, H13).
 This concentration reveals a recurring archetype in which external compliance
-obligations crystallize into architectural hypotheses — a pattern discussed in
+obligations materialized into architectural hypotheses — a pattern discussed in
 Section~\ref{sec:group-b-patterns} as the \textit{Regulatory Trigger Hypothesis}.
 
 \subsection{Uncertainty and Impact Profile}
@@ -372,12 +372,12 @@ Other (implementation) & 1 & 1 \\
 \end{table}
 
 Guideline Implementation and Architectural Spikes were the most frequently
-chosen strategies, consistent with findings from the PropSEP/Jetsoft evaluation
-\citep{silva2025archhypo}. The Tracer Bullet strategy appeared once — for H10,
+chosen technical plans, consistent with findings from the PropSEP/Jetsoft evaluation
+\citep{silva2025archhypo}. The Tracer Bullet plan appeared once for hypothesis H10,
 where the Platform~Team planned a controlled injection of transient failures into
-a real consumer path to measure ordering and latency characteristics. This
-application illustrates how the Tracer Bullet differs from a Spike: rather than
-an isolated experiment, the plan exercises the full production consumer path
+a real Kafka consumer path to measure ordering and latency characteristics. This
+application illustrates how the Tracer Bullet differs from an Architectural Spike. Rather than
+an isolated experiment, the Tracer Bullet plan exercises the full production consumer path
 under representative conditions \citep{silva2024agilepatterns}.
 
 Six hypotheses had no technical plan at the end of the study. Three of these
@@ -390,9 +390,8 @@ discovery but the plan document was still being prepared.
 \label{subsec:lifecycle-status}
 
 At the end of the observation period, ten hypotheses had \textit{Open} status,
-one was \textit{In Review} (H05, the credit-bureau decoupling, which had moved
-to a structured discovery phase), and two were \textit{Validated} (H07 and H08,
-both in the blob storage domain). No hypothesis was invalidated or discarded
+one was \textit{In Review} (H05), and two were \textit{Validated} (H07 and H08,
+both in the document storage domain). No hypothesis was invalidated or discarded
 during the study window. The predominance of the Open status is consistent with
 the short duration of the study (approximately nine calendar weeks, five two-week agile sprints spanned by hypothesis registrations) and with the
 nature of the uncertainties: most concern mid- to long-horizon architectural
@@ -411,25 +410,23 @@ Active listening sessions with all four interviewed participants (the two
 technical leaders from each team) converged on three recurring themes regarding
 the perceived value of using Hypo-Stage.
 
-\paragraph{Externalization of tacit architectural knowledge.}
-Both teams described the act of registering a hypothesis as valuable independent
-of what the tool subsequently did with the record. Articulating an uncertainty
-in falsifiable form forced a degree of precision that normal sprint conversations
-do not require. Participants noted that seeing a hypothesis written down — with
+\paragraph{Externalization of tacit architectural knowledge:}
+Both teams described the act of registering a hypothesis as valuable in itself.
+Participants noted that seeing a hypothesis written down with a clear statement,
 an explicit uncertainty rating, an impact rating, and a related quality attribute
-— made it easier to share the concern with colleagues who had not been involved
+made it easier to share the concern with other colleagues who had not been involved
 in the original discussion.
 
-\paragraph{Prioritization support.}
-The \textit{Where to Focus} panel of the Hypo-Stage dashboard — distinguishing
+\paragraph{Prioritization support:}
+The \textit{Where to Focus} panel of the Hypo-Stage dashboard, distinguishing
 hypotheses that \textit{Need Attention} (high uncertainty and high impact) from
-those that \textit{Can Postpone} (low impact) — was described by both technical
-leaders as a useful aid in architectural conversations. One participant noted that
-the "Can Postpone" category in particular gave them a principled way to explain
-to product managers why a known concern was being deliberately deferred rather
-than ignored.
+those that \textit{Can Postpone} (low impact), was described by both technical
+leaders as a useful input in architectural conversations. One participant noted that
+the "Can Postpone" category in particular gave them a way to explain
+to other engineers outside of the team why a known concern was being deliberately deferred rather
+than being ignored.
 
-\paragraph{Collective memory for architectural decisions.}
+\paragraph{Collective memory for architectural decisions:}
 Both teams observed that the hypothesis backlog served a documentation function
 that was distinct from Architecture Decision Records (ADRs) or design documents.
 Whereas ADRs capture decisions after they are made, an architectural hypothesis
@@ -444,32 +441,29 @@ Chapter~\ref{chap:conclusion} revisits this distinction when discussing implicat
 
 Three challenges were consistently raised across participants.
 
-\paragraph{Negative-formulation learning curve.}
-The convention of writing hypotheses as falsifiable statements — phrased in a
+\paragraph{Negative-formulation learning curve:}
+The convention of writing hypotheses as falsifiable statements, phrased in a
 form that specifies under which evidence the team would conclude the hypothesis
-is incorrect — was described by all four participants as non-intuitive. Engineers
+is incorrect, was described by all four participants as non-intuitive. Engineers
 are accustomed to stating what they believe to be true. Inverting that belief
 into a falsifiable form that describes what would prove it false requires a
 deliberate cognitive effort that is easy to skip under time pressure. This finding
-replicates the learning curve reported in both prior ArchHypo evaluations
+replicates the hard learning curve reported in both prior ArchHypo evaluations
 \citep{silva2024tse, silva2024ieeesw}.
 
-\paragraph{Registration time cost.}
+\paragraph{Registration time cost:}
 Both technical leaders described the difficulty of dedicating the focused time
-required to register a hypothesis properly. Fast-moving architectural micro-decisions
-— resolved within a day or less — were rarely registered because, by the time a
+required to register a hypothesis properly. Fast-moving architectural micro-decisions, 
+usually resolved within a day or less, were rarely registered because, by the time a
 hypothesis could be written, the question had already been answered informally.
 This creates a systematic under-representation of short-lifecycle uncertainties
 in the hypothesis backlog, which may be consequential when the same question
 re-emerges in a future context.
 
-\paragraph{Absence of team-visible ceremonies.}
-Neither team had established a recurring ceremony — such as an architectural
-review or a hypothesis triage meeting — in which Hypo-Stage records were consulted
+\paragraph{Absence of team-visible ceremonies:}
+Neither team had established a recurring ceremony, such as an architectural
+review or a hypothesis triage meeting, in which Hypo-Stage records were reviewed
 as a team. Tool usage remained largely individual during the observation period.
-Both technical leaders expressed the view that realizing the collaborative
-potential of hypothesis engineering would require the team to institutionalize at
-least one touchpoint where the backlog is reviewed together.
 
 % ─────────────────────────────────────────────────────────────
 \section{RQ4 — Refinements to Hypo-Stage}
@@ -480,63 +474,73 @@ least one touchpoint where the backlog is reviewed together.
 
 This section presents the refinements implemented in Hypo-Stage from commit
 \texttt{ceee509} (the artifact boundary established by \citealt{correa2025}) to
-commit \texttt{3a53d4e} (HEAD at the time of writing). Each refinement is traced
+commit \texttt{3a53d4e}. Each refinement was traced
 to a concrete observation from the study and linked to the research question it
 primarily addresses. All refinements address RQ4 by definition; selected
-refinements also bear on RQ1 (adoption ease) and RQ3 (usability and learning
+refinements also related to RQ1 (adoption ease) and RQ3 (usability and learning
 curve).
 
 \subsection{Backstage Integration and Catalog Surfacing}
 \label{subsec:refinement-backstage}
 
-\textbf{Observation.} During the training session and the first week of
+\textbf{Observation:} During the training session and the first week of
 observation, both teams navigated to Hypo-Stage via a standalone entry point
 that was separate from their regular Backstage workflow. Engineers who were not
 technical leaders rarely revisited the tool after the initial session.
 
-\textbf{Refinement.} Hypo-Stage was wired as a first-class Backstage experience,
+\textbf{Refinement:} Hypo-Stage was wired as a first-class Backstage experience,
 with routable pages for home, hypothesis creation, detail view, and edit flows.
-Crucially, a catalog component tab (\texttt{EntityHypothesesTab}) was introduced,
+Crucially, a catalog component tab (\texttt{EntityHypothesesTab}), shown in Figure~\ref{fig:entity-hypotheses-tab}, was introduced,
 surfacing all hypotheses linked to the component an engineer is currently viewing
-in the Backstage catalog. A feature flag (\texttt{hypo-stage}) was added to allow
-gradual, team-controlled rollout.
+in the Backstage catalog.
 
-\textbf{Impact.} Reducing navigation friction lowered the perceived cost of
+\textbf{Impact:} Reducing navigation friction lowered the perceived cost of
 checking the hypothesis backlog while already working with a service's catalog
-entry. The Platform~Team's technical leader noted that the component tab made
-hypothesis review a natural side-effect of existing Backstage usage patterns.
+entry.
 
 \subsection{Backend API and Filtering}
 \label{subsec:refinement-api}
 
-\textbf{Observation.} Engineers with cross-team or platform-wide responsibilities
-needed to filter hypotheses by team and by specific service component. The initial
+\textbf{Observation:} Engineers with cross-team or platform-wide responsibilities
+needed to filter hypotheses by team and by specific service. The initial
 version of Hypo-Stage returned all hypotheses without server-side filtering,
 which degraded usability as the hypothesis data grew.
 
-\textbf{Refinements.} Three new API capabilities were implemented:
-(i)~\texttt{GET /hypotheses} extended with \texttt{entityRef} and \texttt{team}
-query parameters; (ii)~\texttt{GET /hypotheses/referenced-entity-refs} to populate
-the component filter without listing the entire catalog; and
-(iii)~\texttt{GET /hypotheses/teams} deriving team names from catalog metadata
-for components referenced by hypotheses.
+\textbf{Refinements:} Three new API capabilities were implemented:
+\begin{itemize}
+  \item \texttt{GET /hypotheses} extended with \texttt{entityRef} and \texttt{team}
+    query parameters;
+  \item \texttt{GET /hypotheses/referenced-entity-refs} to populate the component
+    filter without listing the entire catalog;
+  \item \texttt{GET /hypotheses/teams} deriving team names from catalog metadata
+    for components referenced by hypotheses.
+\end{itemize}
+
+\textbf{Impact:} On the Hypo-Stage home page, these capabilities enabled filtering
+of the hypothesis list by team and by service (the Backstage catalog entity linked
+to a hypothesis), so engineers with cross-team or platform-wide responsibilities
+could narrow the backlog without loading the full unfiltered dataset.
 
 \subsection{Prioritization Dashboard}
 \label{subsec:refinement-dashboard}
 
-\textbf{Observation.} Both technical leaders expressed the desire to quickly
+\textbf{Observation:} The technical leaders expressed the desire to quickly
 identify which hypotheses deserved immediate attention and which could safely be
 deferred. Manually scanning the full hypothesis list imposed an unnecessary
-cognitive burden, especially when the backlog grew.
+cognitive burden, especially when the hypothesis data grew.
 
-\textbf{Refinement.} A \texttt{HypothesisListDashboard} component was introduced
-above the hypothesis table, presenting: (i)~overview cards with total count,
-validated count, and hypotheses created in the last thirty days;
-(ii)~a \textit{Where to Focus} section distinguishing \textit{Need Attention}
-(high uncertainty and high impact) from \textit{Can Postpone} (low impact),
-with explanatory subtext aligned with ArchHypo's prioritization model
-\citep{silva2025archhypo}; and (iii)~distribution panels for uncertainty and
-impact Likert values. The dashboard respects entity, team, and component scoping.
+\textbf{Refinement:} A \texttt{HypothesisListDashboard} component was introduced
+above the hypothesis table (Figure~\ref{fig:prioritization-dashboard}), presenting:
+\begin{itemize}
+  \item Overview cards with total count, validated count, and hypotheses created
+    in the last thirty days;
+  \item A \textit{Where to Focus} section distinguishing \textit{Need Attention}
+    (high uncertainty and high impact) from \textit{Can Postpone} (low impact),
+    with explanatory subtext aligned with ArchHypo's prioritization model
+    \citep{silva2025archhypo};
+  \item Distribution panels for uncertainty and impact Likert values.
+\end{itemize}
+The dashboard respects entity, team, and component scoping.
 
 \textbf{Impact (RQ3).} The "Can Postpone" segment was specifically cited by
 participants as resolving a communication challenge: it provided a principled
@@ -554,13 +558,13 @@ vocabulary for explaining deliberate deferral to non-technical stakeholders.
 \subsection{Hypothesis Lifecycle Consistency}
 \label{subsec:refinement-lifecycle}
 
-\textbf{Observation.} In the initial implementation, create and update operations
+\textbf{Observation:} In the initial implementation, create and update operations
 were not wrapped in database transactions, which created a risk of partial writes
 (hypothesis row updated without the corresponding event entry, or vice versa).
 Artifact analysis revealed two records with missing event entries, suggesting that
 this race condition had occurred in practice.
 
-\textbf{Refinements.} Create and update paths were refactored to use explicit
+\textbf{Refinements:} Create and update paths were refactored to use explicit
 database transactions. Delete was extended to cascade to technical planning rows
 and events, with clear API semantics and a confirmation dialog that requires the
 exact hypothesis statement before proceeding (paste-enabled to avoid penalizing
@@ -570,13 +574,13 @@ for destructive operations.
 \subsection{Technical-Planning-Driven Assessment Updates}
 \label{subsec:refinement-tp-assessment}
 
-\textbf{Observation.} Engineers reported that after completing a technical plan
-action — such as an architectural spike — they updated the hypothesis uncertainty
+\textbf{Observation:} Engineers reported that after completing a technical plan
+action, such as an architectural spike, they updated the hypothesis's uncertainty
 rating separately from the plan record. This two-step process was error-prone
 and led to hypotheses whose assessment was stale relative to their technical
 plans.
 
-\textbf{Refinements.} Technical planning create and update operations were
+\textbf{Refinements:} Technical planning create and update operations were
 extended to accept optional \texttt{uncertainty} and \texttt{impact} fields.
 When present, the service updates the parent hypothesis's Likert values in the
 same transaction. The event model was refined to distinguish
@@ -587,12 +591,12 @@ which assessment changes were driven by plan actions.
 \subsection{Evolution Chart Improvements}
 \label{subsec:refinement-chart}
 
-\textbf{Observation.} The initial uncertainty/impact evolution chart used opaque
+\textbf{Observation:} The initial uncertainty/impact evolution chart used opaque
 numeric y-axis ticks that participants could not interpret without consulting the
 Likert scale documentation separately. Multiple events on the same calendar day
 produced ambiguous x-axis labels.
 
-\textbf{Refinements.} The chart was updated to render verbal y-axis ticks
+\textbf{Refinements:} The chart was updated to render verbal y-axis ticks
 (Very Low through Very High). Event source was made visually distinguishable:
 circles for manual or creation-driven points, squares for technical-planning-driven
 points. A legend explaining the marker shapes was added. When multiple events
@@ -613,18 +617,19 @@ the plan number when identifiable.
 \subsection{Form Usability Improvements}
 \label{subsec:refinement-forms}
 
-\textbf{Observation.} Participants found the hypothesis creation form cognitively
+\textbf{Observation:} Participants found the hypothesis creation form cognitively
 demanding, particularly the uncertainty and impact selectors, which displayed
 only numeric values, and the quality attribute field, which accepted free text
 without suggesting valid values.
 
-\textbf{Refinements.} Uncertainty and impact selectors were redesigned as Likert
+\textbf{Refinements:} Uncertainty and impact selectors were redesigned as Likert
 star pickers showing both a numeric button (1–5) and an adjacent text label
 (Very Low through Very High) with disambiguating icons. Quality attributes were
 replaced by a multi-select autocomplete showing attribute name and description
 in the dropdown. Entity references for linking hypotheses to catalog components
 were given a catalog-backed autocomplete. Documentation link fields were given an
-improved list editor with add/remove and basic URL validation.
+improved list editor with add/remove and basic URL validation. 
+Figure~\ref{fig:hypothesis-form} shows the improved hypothesis creation form.
 
 \begin{figure}[ht]
   \centering
