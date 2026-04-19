@@ -744,55 +744,53 @@ the need for empirical validation before adoption as guidelines.
 \paragraph{A1 — Senior-Curated Hypothesis Backlog}
 
 \textbf{Problem:} In a team whose engineers operate at different scopes and
-timescales, who is positioned to surface and sustain the registration of the
-mid- and long-horizon architectural uncertainties whose consequences fall
-outside typical sprint-scope review practices?
+timescales, who is positioned to surface and sustain the registration of 
+architectural hypotheses in mid- and long-terms?
 
 \textbf{Observed evidence:} Twelve of the thirteen registered hypotheses were
 authored by senior technical leaders — engineers who carried explicit
-architectural responsibility and whose work horizon extended beyond the current
+architectural responsibility and whose work extended beyond the current
 sprint. Non-senior engineers did not sustain independent hypothesis registration
 after the initial training episode. The hypotheses that were registered shared
-a common trait: they concerned uncertainties whose consequences would materialize
+a common trait: they concerned architectural uncertainties whose consequences would materialize
 weeks or months in the future, making them invisible to typical sprint-scope
 review practices.
 
 \paragraph{A2 — Fast-Resolution Blind Spot.}
 
-\textbf{Problem.} Many architectural micro-decisions are made and resolved within
+\textbf{Problem:} Many architectural micro-decisions are made and resolved within
 hours or a single day. Their speed makes them feel too transient to register, yet
-their cumulative architectural effect may only become visible — as drift or
-inconsistency — long after the original decision context is forgotten.
+their cumulative architectural effect may only become visible, as a drift or an
+inconsistency, long after the original decision context is forgotten.
 
-\textbf{Observed evidence.} Both technical leaders reported that the majority of
+\textbf{Observed evidence:} Both technical leaders reported that the majority of
 architectural decisions encountered day-to-day were resolved before a hypothesis
 could be written. This speed made registration feel retrospectively unnecessary.
 Yet both also described recurring situations where the same question re-surfaced
 in a new context, requiring the team to reconstruct reasoning that had previously
-been resolved informally.
+been resolved informally and in a rapid pace.
 
 \paragraph{A3 — Registration as a Slack-Dependent Practice.}
-\textbf{Problem.} Translating a tacit architectural concern into a properly
+
+\textbf{Problem:} Translating a tacit architectural concern into a properly
 formulated ArchHypo hypothesis requires focused, uninterrupted attention.
 Sprint delivery pressure makes this kind of attention scarce and unreliable as
 a basis for sustained practice.
 
-\textbf{Observed evidence.} Senior leaders explicitly described the difficulty
+\textbf{Observed evidence:} Senior leaders explicitly described the difficulty
 of "dedicating proper time to register all possible hypotheses they encounter
 day-to-day." The observed set of thirteen hypotheses is known to
 under-represent the total uncertainties that leaders were aware of. Registration
-activity clustered around protected discussion time — the training session and
-a structured team session on Kafka strategy — rather than being distributed
+activity clustered around protected and restricted discussion time rather than being distributed
 across normal sprint work.
 
 \paragraph{A4 — Negative-Formulation Barrier.}
-\textbf{Problem.} The ArchHypo convention of writing hypotheses as falsifiable
-statements — specifying the evidence that would prove the hypothesis false — is
-cognitively inverted relative to how engineers normally articulate beliefs.
+\textbf{Problem:} The ArchHypo convention of writing hypotheses as falsifiable
+statements represents a cognitive inversion of how engineers typically articulate their beliefs.
 This inversion is a persistent adoption barrier even for practitioners who
 understand the technique conceptually.
 
-\textbf{Observed evidence.} All four interviewed participants mentioned that the
+\textbf{Observed evidence:} All four interviewed participants mentioned that the
 falsifiability requirement is non-intuitive and difficult to apply under time
 pressure. This replicates findings reported in the PropSEP/Jetsoft evaluation
 \citep{silva2025archhypo} and remains unresolved in the current version of
@@ -815,9 +813,9 @@ hypotheses registered in practice:
 
 \begin{quote}
 \textit{What recurring shapes do architectural hypotheses take when teams apply
-ArchHypo to real systems? And what structural properties of a hypothesis — its
+ArchHypo to real systems? And what structural properties of a hypothesis, its
 source type, quality-attribute profile, and relation to its organizational
-context — should an engineer recognize in order to write and manage it more
+context, should an engineer recognize in order to write and manage it more
 effectively?}
 \end{quote}
 
@@ -827,36 +825,35 @@ documenting patterns for various types of hypotheses" and for "exploration of
 common uncertainties related to specific quality attributes"
 \citep{silva2024patterns}. The thirteen-hypothesis dataset produced by this
 study constitutes the first empirical dataset that enables such identification.
-The five patterns described below are therefore a \textbf{novel contribution}
+The five patterns described below represent a \textbf{novel contribution}
 of this work: they are grounded in real hypothesis data, not derived
-from theoretical analysis, and they provide a vocabulary that hypothesis
+from theoretical analysis, and they provide a vocabulary that 
 engineers can use both to recognize familiar situations more quickly and to
 communicate about hypothesis types across teams.
 
-\emph{Statistical scope:} All five archetypes were identified from the same
-thirteen-hypothesis dataset. While each archetype maps to two or more
-hypotheses in the dataset (and in some cases corresponds to a single rich
-instance, as discussed in the individual pattern entries), the small dataset
-size means that no frequency claims are made. The contribution lies in naming
-and structuring recurring shapes so that future practitioners and researchers
-have a vocabulary for recognition --- not in establishing that any archetype
+\emph{Statistical scope:} All five patterns were identified from the same
+thirteen-hypothesis dataset. While each pattern maps to two or more
+hypotheses in the dataset, the small dataset size means that no frequency claims are made. 
+The contribution lies in naming and structuring recurring shapes so that future practitioners and researchers
+have a vocabulary for recognition, not in establishing that any pattern
 will appear with a particular frequency in other organizational contexts, nor
-in prescribing solutions for each archetype. Solution-shaped guidance and
-consolidation into the broader ArchHypo pattern language are deferred to the
-future-work research agenda (Section~\ref{sec:future-work}).
+in prescribing solutions for each one. Solution-shaped guidance and
+consolidation into the broader ArchHypo pattern language are delegated to the
+future-work research agenda in (Section~\ref{sec:future-work}).
 
 \paragraph{B1 — Hypothesis Cluster.}
-\textbf{Context.} A team is responsible for a shared platform component on which
+
+\textbf{Context:} A team is responsible for a shared platform component on which
 multiple other service teams depend. An architectural question about that
 component cannot be decomposed into a single hypothesis because the design space
 has several interrelated dimensions, each of which involves a distinct trade-off.
 
-\textbf{Problem.} Formulating a single hypothesis for a multi-dimensional
+\textbf{Problem:} Formulating a single hypothesis for a multi-dimensional
 architectural concern either oversimplifies the problem (losing important
 trade-off structure) or produces an unmanageably broad statement that is hard
 to falsify.
 
-\textbf{Observed evidence.} Five hypotheses (H09–H13) all concern the shared
+\textbf{Observed evidence:} Five hypotheses (H09–H13) all concern the shared
 Kafka streaming infrastructure and were registered on the same day, as the
 Platform~Team's technical leader used Hypo-Stage to structure a design discussion.
 The five hypotheses address: (i)~DLT audit semantics versus offset-based replay;
@@ -868,38 +865,35 @@ decision space for consumer-side failure handling in the shared streaming
 platform.
 
 \paragraph{B2 — Regulatory Trigger Hypothesis.}
-\textbf{Context.} A software system operates in a regulated domain — financial
-services, healthcare, data privacy — where external compliance obligations
+\textbf{Context:} A software system operates in a regulated domain such as financial
+services, healthcare, or data privacy, where external compliance obligations
 create architectural constraints whose implementation path is not fully known.
 
-\textbf{Problem.} A compliance requirement imposes an architectural obligation
+\textbf{Problem:} A compliance requirement imposes an architectural obligation
 before the team has determined how to satisfy it. It is unclear whether the
 existing architecture already satisfies the obligation, what changes would be
 required if it does not, and what the cost of non-compliance would be.
 
-\textbf{Observed evidence.} Two hypotheses in the dataset arise directly from
-regulatory obligations: H04 (the GDPR right-to-erasure requirement for binary
+\textbf{Observed evidence:} Two hypotheses in the dataset arise directly from
+regulatory obligations: H04 (the GDPR, the General Data Protection Regulation, right-to-erasure requirement for binary
 documents in the blob storage service) and H03 (organization-wide security
 audit requirements for database log correlation across the platform framework).
 In both cases the uncertainty is not about whether to comply — that is a legal
-given — but about whether the current architecture \textit{can} comply and at
-what technical cost. Diagnostic markers: quality attributes Auditability and
-Security.
+requirement that must be met — but about whether the current architecture \textit{can} comply and at
+what technical cost.
 
 \paragraph{B3 — Decoupling Seam Hypothesis.}
-\textbf{Context.} A service currently handles multiple responsibilities — domain
-logic, external integrations, and identity management — in a tightly coupled
-implementation. The team believes the service could be restructured to serve
-multiple domain contexts, but the boundaries of the decoupling and the migration
-path are unknown.
+\textbf{Context:} A service currently handles multiple responsibilities such as domain
+logic, external integrations, and identity management. The team believes the service could be restructured to serve
+multiple domain contexts, but the boundaries of the decoupling and the migration path are unknown.
 
-\textbf{Problem.} Deciding \textit{whether} to decouple is itself uncertain: the
+\textbf{Problem:} Deciding \textit{whether} to decouple is itself uncertain: the
 team does not know what the correct contract boundary should be, which existing
 flows can be migrated without business-logic changes, and what the downstream
 impact on other teams would be. Committing to decoupling without this information
 risks a disruptive refactor that delivers less reuse than expected.
 
-\textbf{Observed evidence.} H05 (credit-bureau decoupling) captures this
+\textbf{Observed evidence:} H05 (credit-bureau decoupling) captures this
 precisely. The service currently handles identity, bureau integration, and
 confidential document flows using domain-specific entities tied to a single
 business vertical. The hypothesis asks whether these integrations can be
@@ -909,24 +903,23 @@ end of the observation period, H05 was the only hypothesis in \textit{In Review}
 status, with a discovery technical plan mapping (i)~the dependency matrix of
 current versus real dependencies per integration, (ii)~an agnostic interface
 contract proposal, and (iii)~a migration plan identifying which flows can isolate
-immediately. Diagnostic markers: quality attributes Interoperability,
-Extensibility, and Reusability.
+immediately.
 
 \paragraph{B4 — Load-Validated Hypothesis.}
-\textbf{Context.} A team has proposed a specific algorithmic or implementation
+\textbf{Context:} A team has proposed a specific algorithmic or implementation
 approach to handle a high-volume data processing challenge. The team has already
 conducted a capacity or volume test at scale, producing evidence that the
 approach works. However, the hypothesis has not been formally closed because
 the implementation is still in progress.
 
-\textbf{Problem.} The hypothesis occupies the lowest uncertainty quadrant
+\textbf{Problem:} The hypothesis occupies the lowest uncertainty quadrant
 (Very Low) while retaining the highest impact rating (Very High), reflecting a
 situation where the team \textit{knows} the solution works but the architectural
 commitment is still consequential. The hypothesis must be tracked until
 implementation is complete, yet its characterization as "Open" may suggest
 unresolved doubt that no longer exists.
 
-\textbf{Observed evidence.} H06 (billing aggregation chunked keyset pagination)
+\textbf{Observed evidence:} H06 (billing aggregation chunked keyset pagination)
 exemplifies this. The team validated the approach — chunked keyset pagination
 with isolated repository-level transactions — through a capacity test at five
 times production scale (45 million rows total, 1.5 million rows per month).
@@ -937,13 +930,13 @@ The hypothesis remains Open because the implementation is ongoing, but the
 uncertainty has been effectively resolved.
 
 \paragraph{B5 — Shared Resource Governance Hypothesis.}
-\textbf{Context.} A platform service manages a shared resource — binary objects,
-credentials, configuration data — on which multiple product domains depend. New
+\textbf{Context:} A platform service manages a shared resource such as binary objects,
+credentials, and configuration data, on which multiple product domains depend. New
 business requirements demand that the resource be shared across domain boundaries
 or transferred between owning services, but the governance rules for these
 operations have not been established.
 
-\textbf{Problem.} The team must decide how to model cross-domain access to the
+\textbf{Problem:} The team must decide how to model cross-domain access to the
 shared resource — specifically, which service "owns" the resource at any given
 point, who may read or write it, and under what conditions ownership can be
 transferred. These questions have significant security, consistency, and usability
@@ -951,15 +944,13 @@ implications. Without explicit governance decisions, different product teams wil
 adopt incompatible access patterns, creating consistency violations that are
 difficult to detect and remedy.
 
-\textbf{Observed evidence.} H07 (blob ownership transfer across service domains)
+\textbf{Observed evidence:} H07 (blob ownership transfer across service domains)
 and H08 (blob cross-client sharing governance) are two instances of this pattern
 in the secure blob storage domain. H08 was driven by a concrete usage scenario
 in which a customer-facing channel receives documents that are later routed to
-support tooling; the support team needs read access without breaking the blob
-vault's ownership invariants. Both hypotheses were validated through a Guideline
-technical plan — an alignment session that produced a governance decision enabling
-prioritization of the transfer and sharing implementation work. Diagnostic
-markers: quality attributes Security, Interoperability, and Usability.
+support tooling; the support team needs read access without breaking the blob's ownership invariants. 
+Both hypotheses were validated through a Guideline technical plan — an alignment session that produced a governance decision enabling
+prioritization of the transfer and sharing implementation work.
 
 \begin{table}[htbp]
 \caption{Emerging patterns identified in the case study: Group~A (team-behavior
@@ -1017,11 +1008,11 @@ B5 & Structural archetype & Shared Resource Governance Hypothesis
 \label{sec:rq-revisit}
 % ─────────────────────────────────────────────────────────────
 
-This section concludes the analytical body of the chapter by stating explicitly how
-the preceding empirical and design material bears on the four research questions
+This section concludes the analytical observations of the chapter by stating explicitly how
+the preceding empirical and design material responds to the four research questions
 formulated in Chapter~\ref{chap:introduction}. The intent is \emph{consolidative}:
 no additional empirical claims are introduced; the aim is to make the logical
-organization of the chapter legible relative to those questions.
+organization of the chapter legible relative to the research questions.
 
 \subsection{Correspondence between research questions and chapter sections}
 
