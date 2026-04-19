@@ -705,7 +705,7 @@ themselves. These two families address orthogonal dimensions: Group~A asks
 hypotheses take in practice.
 
 \begin{quote}
-\textbf{Scope and statistical caveat.}
+\textbf{Scope and statistical caveat:}
 The patterns described in this section were identified through thematic analysis
 of thirteen architectural hypotheses produced by two software engineering teams
 within a single organizational context over an observation period of approximately nine calendar weeks (five two-week agile sprints).
@@ -735,8 +735,10 @@ operational conditions in which ArchHypo mechanics operate in practice.
 \emph{Note:} The four conditions described below are emergent rather than
 confirmatory findings. Each is supported by convergent evidence from both
 teams but has not been tested in the broader population of software engineering
-organizations. They are presented here as candidate patterns, explicitly
-requiring further empirical validation before adoption as guidelines.
+organizations. They are presented here as candidate patterns in descriptive
+form; the derivation of actionable solutions from each pattern is deferred to
+the future-work research agenda (Section~\ref{sec:future-work}), which outlines
+the empirical validation required before adoption as guidelines.
 
 \paragraph{A1 — Senior-Curated Hypothesis Backlog.}
 \textbf{Problem.} How can a team ensure that mid- and long-horizon architectural
@@ -752,12 +754,6 @@ a common trait: they concerned uncertainties whose consequences would materializ
 weeks or months in the future, making them invisible to typical sprint-scope
 review practices.
 
-\textbf{Solution.} Assign senior engineers as the primary curators of the
-hypothesis backlog. Their architectural horizon and organizational authority
-position them to recognize which uncertainties are worth formalizing. Non-senior
-participation should be enabled by the tool but cannot be assumed to be
-self-sustaining in the early phases of adoption.
-
 \paragraph{A2 — Fast-Resolution Blind Spot.}
 \textbf{Problem.} Many architectural micro-decisions are made and resolved within
 hours or a single day. Their speed makes them feel too transient to register, yet
@@ -770,12 +766,6 @@ could be written. This speed made registration feel retrospectively unnecessary.
 Yet both also described recurring situations where the same question re-surfaced
 in a new context, requiring the team to reconstruct reasoning that had previously
 been resolved informally.
-
-\textbf{Solution.} Introduce a lightweight periodic review — for example, a brief
-end-of-sprint ceremony — specifically to identify decisions made in the past
-iteration that resolved quickly but may carry cumulative consequences. Decisions
-with cross-component impact or quality-attribute implications are candidates for
-retroactive registration or lightweight decision records.
 
 \paragraph{A3 — Registration as a Slack-Dependent Practice.}
 \textbf{Problem.} Translating a tacit architectural concern into a properly
@@ -791,12 +781,6 @@ activity clustered around protected discussion time — the training session and
 a structured team session on Kafka strategy — rather than being distributed
 across normal sprint work.
 
-\textbf{Solution.} Treat hypothesis registration as a deliberate activity
-requiring protected time — a recurring architectural hygiene session, separate
-from sprint ceremonies, where engineers externalize concerns that have been
-accumulating in tacit knowledge. The IDP integration of Hypo-Stage reduces
-navigation cost but does not substitute for protected cognitive time.
-
 \paragraph{A4 — Negative-Formulation Barrier.}
 \textbf{Problem.} The ArchHypo convention of writing hypotheses as falsifiable
 statements — specifying the evidence that would prove the hypothesis false — is
@@ -809,13 +793,6 @@ falsifiability requirement is non-intuitive and difficult to apply under time
 pressure. This replicates findings reported in the PropSEP/Jetsoft evaluation
 \citep{silva2025archhypo} and remains unresolved in the current version of
 the technique's guidance materials.
-
-\textbf{Solution.} Provide statement templates that scaffold the inversion:
-starting from an architectural belief ("We believe X is true") and guiding the
-engineer to express what observable outcome would prove it false. Embedding this
-scaffolding inline in the hypothesis creation form — as contextual guidance
-adjacent to the statement field — would reduce the cognitive overhead at the
-moment of registration without requiring prior training.
 
 % ─────────────────────────────────────────────────────────────
 \subsection{Group B — Technical Architectural Patterns for Hypothesis
@@ -859,9 +836,10 @@ instance, as discussed in the individual pattern entries), the small dataset
 size means that no frequency claims are made. The contribution lies in naming
 and structuring recurring shapes so that future practitioners and researchers
 have a vocabulary for recognition --- not in establishing that any archetype
-will appear with a particular frequency in other organizational contexts.
-Consolidating these patterns into the broader ArchHypo pattern language is
-identified as a priority future-work item in Section~\ref{sec:future-work}.
+will appear with a particular frequency in other organizational contexts, nor
+in prescribing solutions for each archetype. Solution-shaped guidance and
+consolidation into the broader ArchHypo pattern language are deferred to the
+future-work research agenda (Section~\ref{sec:future-work}).
 
 \paragraph{B1 — Hypothesis Cluster.}
 \textbf{Context.} A team is responsible for a shared platform component on which
@@ -885,14 +863,6 @@ re-enqueueing. Each is independently falsifiable yet together they map the full
 decision space for consumer-side failure handling in the shared streaming
 platform.
 
-\textbf{Solution.} When a shared platform component has architectural uncertainty
-involving multiple interrelated dimensions, decompose it into a cluster of
-related but independently falsifiable hypotheses. Assign the cluster to the same
-platform component in the tool so it appears together in the component-scoped
-tab. Manage technical plans at the individual hypothesis level but review the
-cluster as a unit in architectural discussions, as the resolution of one
-hypothesis may constrain the options available for others.
-
 \paragraph{B2 — Regulatory Trigger Hypothesis.}
 \textbf{Context.} A software system operates in a regulated domain — financial
 services, healthcare, data privacy — where external compliance obligations
@@ -909,15 +879,8 @@ documents in the blob storage service) and H03 (organization-wide security
 audit requirements for database log correlation across the platform framework).
 In both cases the uncertainty is not about whether to comply — that is a legal
 given — but about whether the current architecture \textit{can} comply and at
-what technical cost.
-
-\textbf{Solution.} When a regulatory obligation creates an architectural
-constraint, formulate it as a hypothesis stating what the system must be capable
-of and making falsifiable the belief that the current architecture satisfies this
-capability. This transforms compliance work from an implicit assumption into an
-explicit tracked uncertainty with a technical plan and a validation target. The
-quality attributes Auditability and Security are diagnostic markers for this
-pattern.
+what technical cost. Diagnostic markers: quality attributes Auditability and
+Security.
 
 \paragraph{B3 — Decoupling Seam Hypothesis.}
 \textbf{Context.} A service currently handles multiple responsibilities — domain
@@ -942,15 +905,8 @@ end of the observation period, H05 was the only hypothesis in \textit{In Review}
 status, with a discovery technical plan mapping (i)~the dependency matrix of
 current versus real dependencies per integration, (ii)~an agnostic interface
 contract proposal, and (iii)~a migration plan identifying which flows can isolate
-immediately.
-
-\textbf{Solution.} When a team suspects that a service boundary is too narrow
-for the reuse it should enable, formulate the uncertainty as a decoupling seam
-hypothesis targeting the specific boundary in question. The technical plan should
-follow a discovery strategy before any implementation is attempted: map existing
-dependencies, propose an interface contract free of domain-specific concepts,
-and identify the migration sequence. Quality attributes Interoperability,
-Extensibility, and Reusability are diagnostic markers for this pattern.
+immediately. Diagnostic markers: quality attributes Interoperability,
+Extensibility, and Reusability.
 
 \paragraph{B4 — Load-Validated Hypothesis.}
 \textbf{Context.} A team has proposed a specific algorithmic or implementation
@@ -976,14 +932,6 @@ garbage collector can reclaim memory, producing a healthy sawtooth heap pattern.
 The hypothesis remains Open because the implementation is ongoing, but the
 uncertainty has been effectively resolved.
 
-\textbf{Solution.} When a team has strong empirical evidence that a solution
-approach is correct but implementation is incomplete, retain the hypothesis in
-Open status with a Very Low uncertainty rating and document the validation
-evidence in the hypothesis notes. Plan the hypothesis lifecycle so that it
-transitions to Validated upon completion of the production implementation, not
-upon completion of the test. The hypothesis note field should reference the
-capacity test artifact explicitly, preserving the evidentiary chain.
-
 \paragraph{B5 — Shared Resource Governance Hypothesis.}
 \textbf{Context.} A platform service manages a shared resource — binary objects,
 credentials, configuration data — on which multiple product domains depend. New
@@ -1006,8 +954,59 @@ in which a customer-facing channel receives documents that are later routed to
 support tooling; the support team needs read access without breaking the blob
 vault's ownership invariants. Both hypotheses were validated through a Guideline
 technical plan — an alignment session that produced a governance decision enabling
-prioritization of the transfer and sharing implementation work. Quality attributes
-Security, Interoperability, and Usability are diagnostic markers for this pattern.
+prioritization of the transfer and sharing implementation work. Diagnostic
+markers: quality attributes Security, Interoperability, and Usability.
+
+\begin{table}[htbp]
+\caption{Emerging patterns identified in the case study: Group~A (team-behavior
+conditions for sustainable hypothesis engineering) and Group~B (structural
+archetypes of architectural hypotheses). Solution-shaped guidance for each
+pattern is deferred to the future-work research agenda
+(Section~\ref{sec:future-work}).}
+\label{tab:emerging-patterns}
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{clp{3.6cm}p{5.2cm}p{2.6cm}}
+\toprule
+\textbf{ID} & \textbf{Group} & \textbf{Pattern name} & \textbf{Signature} &
+\textbf{Primary evidence} \\
+\midrule
+A1 & Team behavior & Senior-Curated Hypothesis Backlog
+   & Mid-/long-horizon uncertainties stay visible because senior engineers
+     author them
+   & 12 of 13 hypotheses senior-authored \\
+A2 & Team behavior & Fast-Resolution Blind Spot
+   & Architectural micro-decisions resolve before registration, risking
+     cumulative drift
+   & Both technical leaders' testimony \\
+A3 & Team behavior & Registration as a Slack-Dependent Practice
+   & Well-formulated hypotheses require protected time, not sprint slack
+   & Registration clustering at training and Kafka session \\
+A4 & Team behavior & Negative-Formulation Barrier
+   & Falsifiable inversion is persistently cognitively costly
+   & All four interviewed participants \\
+\midrule
+B1 & Structural archetype & Hypothesis Cluster
+   & Multi-dimensional platform concern decomposes into linked falsifiable
+     hypotheses
+   & H09--H13 (Kafka failure handling) \\
+B2 & Structural archetype & Regulatory Trigger Hypothesis
+   & External compliance obligation surfaces as tracked architectural
+     uncertainty
+   & H03, H04 \\
+B3 & Structural archetype & Decoupling Seam Hypothesis
+   & Uncertainty about whether and where to split a tightly coupled service
+   & H05 (credit-bureau decoupling) \\
+B4 & Structural archetype & Load-Validated Hypothesis
+   & Very-low uncertainty, very-high impact: solution empirically validated
+     but implementation open
+   & H06 (billing aggregation) \\
+B5 & Structural archetype & Shared Resource Governance Hypothesis
+   & Cross-domain access and ownership rules for a shared platform resource
+   & H07, H08 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 % ─────────────────────────────────────────────────────────────
 \section{Revisiting the Research Questions}
