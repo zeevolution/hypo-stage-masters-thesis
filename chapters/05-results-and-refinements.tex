@@ -703,9 +703,7 @@ emerging patterns in the content of the architectural hypotheses
 themselves. These two families address orthogonal dimensions: Group~A asks
 \textit{when} hypothesis engineering works; Group~B asks \textit{what shape}
 hypotheses take in practice. Table~\ref{tab:emerging-patterns} at the end of
-this section summarizes the nine patterns across both groups and serves as the
-anchor for the pattern-anchored research agenda in
-Section~\ref{sec:future-work}.
+this section summarizes the nine patterns across both groups.
 
 \begin{quote}
 \textbf{Scope and statistical caveat:}
@@ -737,18 +735,20 @@ operational conditions in which ArchHypo mechanics operate in practice.
 
 \emph{Note:} The four conditions described below are emergent rather than
 confirmatory findings. Each is supported by convergent evidence from both
-teams but has not been tested in the broader population of software engineering
+teams but they have not been tested in the broader population of software engineering
 organizations. They are presented here as candidate patterns in descriptive
-form; the derivation of actionable solutions from each pattern is deferred to
-the future-work research agenda (Section~\ref{sec:future-work}), which outlines
-the empirical validation required before adoption as guidelines.
+form; the derivation of actionable solutions from each pattern has been delegated to
+a future-work research agenda in (Section~\ref{sec:future-work}), which outlines
+the need for empirical validation before adoption as guidelines.
 
-\paragraph{A1 — Senior-Curated Hypothesis Backlog.}
-\textbf{Problem.} How can a team ensure that mid- and long-horizon architectural
-uncertainties remain visible and actively managed over time, even though
-individual engineers work at different scopes and timescales?
+\paragraph{A1 — Senior-Curated Hypothesis Backlog}
 
-\textbf{Observed evidence.} Twelve of the thirteen registered hypotheses were
+\textbf{Problem:} In a team whose engineers operate at different scopes and
+timescales, who is positioned to surface and sustain the registration of the
+mid- and long-horizon architectural uncertainties whose consequences fall
+outside typical sprint-scope review practices?
+
+\textbf{Observed evidence:} Twelve of the thirteen registered hypotheses were
 authored by senior technical leaders — engineers who carried explicit
 architectural responsibility and whose work horizon extended beyond the current
 sprint. Non-senior engineers did not sustain independent hypothesis registration
@@ -758,6 +758,7 @@ weeks or months in the future, making them invisible to typical sprint-scope
 review practices.
 
 \paragraph{A2 — Fast-Resolution Blind Spot.}
+
 \textbf{Problem.} Many architectural micro-decisions are made and resolved within
 hours or a single day. Their speed makes them feel too transient to register, yet
 their cumulative architectural effect may only become visible — as drift or
