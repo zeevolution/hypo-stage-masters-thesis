@@ -1,0 +1,30 @@
+% !TeX root = ../thesis.tex
+% Examination Committee (Comissão Julgadora).
+%
+% This file is the single source of truth for the confirmed committee
+% roster. It is NOT \input{} into the original-version PDF (the original
+% version of the thesis deliberately does not list committee members,
+% per IME-USP convention). The macros defined here are available for:
+%   (a) rendering the post-defense "Versão Corrigida" title page, and
+%   (b) copy-paste into the "Defesa de Mestrado" Google Form and the
+%       Janus deposit dossier (see docs/defense-banca.md).
+%
+% If/when the corrected version is prepared, \input{front-matter/banca}
+% can be added to thesis.tex so \bancaTitulares and \bancaSuplentes
+% become available to the template.
+
+\newcommand{\bancaTitulares}{%
+    \begin{itemize}
+        \item Prof. Dr. Paulo Roberto Miranda Meirelles (Presidente) --- IME-USP
+        \item Prof. Dr. Jorge Melegati --- Free University of Bozen-Bolzano (UniBZ)
+        \item Prof. Dr. Marco Túlio de Oliveira Valente --- UFMG
+    \end{itemize}
+}
+
+\newcommand{\bancaSuplentes}{%
+    \begin{itemize}
+        \item Prof. Dr. Eduardo Martins Guerra --- Free University of Bozen-Bolzano (UniBZ)
+        \item Prof. Dr. Fabio Kon --- IME-USP
+        \item Prof\textsuperscript{a}. Dr\textsuperscript{a}. Carla Ilane Moreira Bezerra --- UFC
+    \end{itemize}
+}
