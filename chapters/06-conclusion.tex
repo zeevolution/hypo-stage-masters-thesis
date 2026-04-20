@@ -32,73 +32,80 @@ mechanics themselves.
 \section{Synthesis of Contributions}
 \label{sec:conclusion-synthesis}
 
-The four research questions of this work produced observations of how hypothesis
-engineering behaves when it is embedded in a professional team's daily tooling.
+The four research questions of this work yielded four contributions that,
+taken together, described what a tool-mediated instantiation of ArchHypo
+delivered in a professional team setting and where its limits lay. The
+contributions were empirical (RQ1, RQ2, RQ3) and methodological (RQ4); each
+was anchored in the thirteen-hypothesis dataset and the field-study evidence
+reported in Chapter~\ref{chap:results}.
 
-With respect to \textbf{how teams used Hypo-Stage in practice} (RQ1), the study
-revealed a pattern of senior-dependent adoption. Both technical leaders
-treated the hypothesis backlog as an externalization instrument for concerns that had
-until then existed only as tacit knowledge; they used registration events as structured
-prompts for architectural discussions --- most visibly during the Platform Team's
-Kafka failure-handling session --- rather than as a continuous logging practice. This
-usage pattern carries a significant implication: the value of Hypo-Stage in the observed
-context was less about individual hypothesis tracking and more about creating
-structured occasions for architectural reasoning. Junior and mid-level engineers
-remained peripheral to registration, not because of the tool's interface but because
-their day-to-day work horizon rarely extended beyond sprint scope. This observation
-connects to the broader literature on tacit knowledge in architectural decision-making
-\citep{souza2019}: the knowledge asymmetry that prevents less experienced engineers
-from participating meaningfully in architectural discussions is not dissolved by tool
-availability alone.
+\paragraph{RQ1 --- An empirical characterization of senior-led, burst-mode tool
+use.} When ArchHypo was delivered through a tool embedded in the team's daily
+workflow, hypothesis registration concentrated in senior technical leaders and
+clustered around protected discussion time rather than distributing across
+continuous sprint work. Both technical leaders treated the backlog as an
+externalization instrument for tacit concerns and used registration events as
+structured prompts for architectural reasoning, most visibly during the
+Platform Team's Kafka failure-handling session. The contribution was the
+empirical observation that, in this context, the tool's value lay less in
+individual hypothesis tracking than in creating recurring occasions for
+architectural reasoning --- and that the persistence of the senior-dependent
+authorship pattern, even with tool support in place, located the remaining
+adoption barrier in the organizational rather than the interface layer
+\citep{souza2019}.
 
-With respect to \textbf{the structural character of the architectural uncertainties
-registered} (RQ2), the thirteen-hypothesis dataset reveals a landscape dominated by
-compliance-driven and shared-infrastructure concerns. Reliability and Auditability
-emerged as the dominant quality attributes, reflecting the operational reality of a
-scaled financial services product subject to both internal security audit and
-data-privacy regulation. The five Group~B archetypes --- Hypothesis Cluster, Regulatory
-Trigger Hypothesis, Decoupling Seam Hypothesis, Load-Validated Hypothesis, and
-Shared Resource Governance Hypothesis --- constitute the first empirically grounded
-vocabulary for the recurring shapes that architectural hypotheses take when ArchHypo
-is applied in a professional software development context. Their significance lies not
-in frequency claims --- the dataset is too small for that --- but in naming: by giving
-recognizable structure to hypothesis types that engineers encounter intuitively but
-cannot currently articulate, the archetypes provide a vocabulary that can accelerate
-both hypothesis formulation and cross-team communication. The relationship between
-these archetypes and the existing ArchHypo pattern language
-\citep{silva2024patterns} is one of complementarity: the existing patterns address
-the mechanics of assessment and deferral; the Group~B archetypes address the content
-of what is being assessed.
+\paragraph{RQ2 --- A first empirically grounded vocabulary for the content of
+architectural hypotheses.} The five Group~B archetypes --- \textit{Hypothesis
+Cluster}, \textit{Regulatory Trigger Hypothesis}, \textit{Decoupling Seam
+Hypothesis}, \textit{Load-Validated Hypothesis}, and \textit{Shared Resource
+Governance Hypothesis} --- named recurring shapes that architectural
+hypotheses took when ArchHypo was applied in a regulated, platform-heavy
+professional context. They complemented the mechanics-focused patterns of the
+existing ArchHypo pattern language \citep{silva2024patterns}: the existing
+patterns addressed \emph{how} hypotheses were assessed and deferred; the
+Group~B archetypes addressed \emph{what kind} of hypothesis was being
+assessed. The contribution was nominative --- providing a vocabulary for
+recognition and cross-team communication --- and was explicitly bounded by
+the dataset size, with no frequency claims being made.
 
-With respect to \textbf{perceived benefits and challenges} (RQ3), the study
-documents a consistent tension between the intellectual value that participants
-attributed to hypothesis management and the operational cost they experienced in
-exercising it. The formalization of tacit architectural knowledge into a traceable,
-prioritized artifact was perceived as genuinely valuable --- participants described
-hypotheses as filling a gap that ADRs leave open, capturing the pre-decision state of
-uncertainty rather than the post-decision rationale. Yet this value was consistently
-held hostage to sprint delivery pressure and to the cognitive demand of the
-falsifiability requirement. The four Group~A organizational patterns (A1--A4)
-condense these tensions into actionable propositions: they suggest that the adoption
-of hypothesis engineering as a sustainable team practice depends not only on tool
-usability but on the organizational conditions --- protected time, explicit role
-assignment, statement scaffolding, and ceremonial touchpoints --- that the tool alone
-cannot provide.
+\paragraph{RQ3 --- A benefit-cost characterization of tool-mediated hypothesis
+engineering, condensed into the Group~A patterns.} Participants recognized
+hypothesis management as filling a gap that ADRs leave open, capturing the
+pre-decision state of uncertainty rather than the post-decision rationale; yet
+this perceived value was consistently held hostage to sprint delivery pressure
+and to the cognitive demand of the falsifiability requirement. The four
+Group~A patterns (A1--A4) condensed this tension into named organizational
+conditions on which sustainable hypothesis engineering depended: senior
+curation, protected cognitive time, statement-level scaffolding, and
+ceremonial touchpoints. The contribution was the explicit observation that
+these conditions lay systematically outside what a tool alone could supply,
+making them the proper locus for follow-up intervention research.
 
-With respect to \textbf{empirically grounded refinements to Hypo-Stage} (RQ4), the
-nine refinement categories produced during the observation period operationalize a
-formative evaluation cycle in which observations feed directly into tool changes that
-are then redeployed and re-observed. This cycle is consistent with the action-research
-element of the research design and demonstrates that the formative evaluation model
-advocated in flexible-design guidance \citep{robson2016} is well-suited to tool
-artifacts whose value proposition is tightly coupled to workflow fit. The most
-structurally significant refinement --- the evolution chart that tracks uncertainty and
-impact ratings across successive assessments --- directly addresses the absence of
-assessment history in the initial Hypo-Stage version \citep{correa2025} and provides
-teams with a mechanism for evaluating whether their technical plan actions are having
-the intended effect. That this refinement emerged from observation rather than from
-design foresight is itself a finding: the value of longitudinal assessment tracking
-only becomes visible when the tool is used in a real product context over multiple sprint cycles.
+\paragraph{RQ4 --- A worked instance of formative evaluation for
+hypothesis-engineering tools.} Nine refinement categories were derived during
+the observation period, each grounded in observed friction rather than in
+design foresight, and several were redeployed and re-observed within the same
+study. This operationalized the formative-evaluation model advocated in
+flexible-design guidance \citep{robson2016} for artifacts whose value
+proposition is tightly coupled to workflow fit. The most structurally
+consequential refinement --- the evolution chart that tracked uncertainty and
+impact ratings across successive assessments --- directly addressed the
+assessment-history gap of the initial Hypo-Stage version \citep{correa2025}
+and gave teams a mechanism for judging whether their technical-plan actions
+had the intended effect. The contribution was twofold: a concrete catalog of
+empirically motivated refinements, and a demonstration that the formative
+cycle revealed design needs --- such as longitudinal assessment tracking ---
+that only became visible when the tool was exercised in a real product
+context across multiple sprint cycles.
+
+\paragraph{Overarching synthesis.} The four contributions converged on a
+single bounded claim: tool-mediated ArchHypo succeeded at the integration and
+traceability layer (RQ1, RQ4) and produced a usable vocabulary for the
+content of architectural hypotheses (RQ2), while its adoption ceiling lay at
+the organizational layer (RQ3). The Group~A organizational patterns therefore
+functioned as the thesis's principal hand-off to the future-work agenda
+(Section~\ref{sec:future-work}), where they are read as open empirical
+problems rather than as actionable guidelines.
 
 \section{Implications for Practice and Research}
 \label{sec:implications}
