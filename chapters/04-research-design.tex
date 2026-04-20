@@ -65,6 +65,75 @@ In summary, the research strategy can be formally described as a
 \textbf{flexible, multiple case study design with formative evaluation purpose and
 action research elements}, following the taxonomy from \cite{robson2016}.
 
+\subsection{Key Methodological Concepts}
+\label{sec:methodological-concepts}
+
+Because the subsequent sections, and the results chapter, rely repeatedly on a
+compact set of methodological terms drawn from \citet{robson2016}, the
+definitions below clarify their meaning for the remainder of this work. They are
+collected here so that every later mention resolves to an unambiguous referent.
+
+\paragraph{Flexible design:} A research design in which the detailed plan (data
+sources, instruments, and categories of analysis) is allowed to evolve during
+the study in response to what the researcher learns in the field, in contrast
+to a \emph{fixed design}, where all elements are pre-specified before data
+collection begins~\citep{robson2016}. Flexible designs are the standard choice
+for case studies, ethnographies, and grounded-theory work, where the phenomenon
+under study is only partially understood at the outset and the researcher
+expects to refine the analytical lens as evidence accumulates.
+
+\paragraph{Multiple case study:} An empirical investigation that examines two
+or more contemporary phenomena within their real-life contexts, using multiple
+sources of evidence, where the boundary between phenomenon and context is not
+clearly distinct~\citep{robson2016,yin2009}. The cases are selected not as a
+statistical sample but as analytical units that either replicate findings
+(\emph{literal replication}) or produce theoretically predicted contrasts
+(\emph{theoretical replication}).
+
+\paragraph{Formative evaluation} An evaluative purpose aimed at understanding
+and improving an ongoing program, intervention, or artifact while it is still
+being shaped, as distinguished from \emph{summative evaluation}, which delivers
+a retrospective pass-or-fail verdict on overall effectiveness~\citep{robson2016}.
+In the present study, the evaluative object is the Hypo-Stage tool, and the
+formative stance justifies the iterative refinement cycle described in
+Section~\ref{sec:procedure}.
+
+\paragraph{Action research:} A tradition of inquiry in which the researcher
+deliberately alternates between observing a setting, intervening in it, and
+reflecting on the effects of that intervention, following a recurrent
+\emph{plan--act--observe--reflect} cycle~\citep{robson2016}. The present study
+borrows the cycle as a design element without
+adopting the emancipatory or organizational-change commitments that define
+full action research.
+
+\paragraph{Purposive sampling:} A non-probabilistic sampling strategy in which
+participants or cases are chosen because they are expected to be informative
+about the phenomenon of interest, rather than because they are representative
+of a population~\citep{robson2016}. The two teams in this study were selected
+purposively to provide complementary contrast (product vs. platform scope),
+not to constitute a statistical sample of engineering teams.
+
+\paragraph{Analytic generalization:} The form of generalization proper to case
+study research, in which findings are extended to theoretical propositions
+rather than to populations~\citep{robson2016,yin2009}. It is contrasted with
+\emph{statistical generalization}, which requires a representative sample and
+probabilistic inference. The claims in Chapter~\ref{chap:results} are analytic:
+they describe conditions under which the observed patterns are theoretically
+expected to recur, not the frequency with which they would appear in a wider
+population.
+
+\paragraph{Member checking:} A trustworthiness procedure in which
+interpretations derived by the researcher are returned to the participants
+whose behavior or statements produced them, so that the participants may
+verify, correct, or elaborate on the researcher's reading~\citep{robson2016}.
+Section~\ref{sec:trustworthiness} describes how member checking was
+operationalized in this study through the active-listening debriefs with each
+team's technical leader.
+
+These concepts recur throughout Sections~\ref{sec:research-context},
+\ref{sec:data-collection}, and~\ref{sec:data-analysis}, and frame the claims
+made in Chapters~\ref{chap:results} and~\ref{chap:conclusion}.
+
 % ---------------------------------------------------------------------------
 \section{Conceptual Research Framework}
 % ---------------------------------------------------------------------------
@@ -98,6 +167,7 @@ This framework is consistent with the formative evaluation and action research e
 
 % ---------------------------------------------------------------------------
 \section{Research Context}
+\label{sec:research-context}
 % ---------------------------------------------------------------------------
 
 The study was conducted within a technology organization that operates
@@ -110,6 +180,7 @@ The Hypo-Stage tool was deployed directly in the company's production environmen
 This allowed the researcher to observe the tool usage in a naturalistic setting, with minimal interference from the researcher.
 
 \subsection{Case Selection}
+\label{sec:case-selection}
 
 Two teams were selected as cases. Following \cite{robson2016}'s discussion of
 purposive sampling in flexible designs, the cases were not chosen
@@ -134,6 +205,18 @@ can be analytically compared.
     horizontal, with higher impact on organizational engineering practices and
     greater uncertainty about usage patterns and requirements.
 \end{description}
+
+\paragraph{Literal and theoretical replication.} In the multiple-case logic of
+\citet{yin2009}, two or more cases are deliberately selected to perform one of
+two complementary analytical roles. \emph{Literal replication} chooses cases
+that share the relevant conditions and are therefore predicted to produce
+similar findings; convergence across literal replications strengthens the
+claim that the finding is genuinely tied to the intervention rather than to
+idiosyncratic case features. \emph{Theoretical replication} chooses cases
+that differ on a theoretically meaningful dimension and are therefore
+predicted to produce contrasting findings; divergence along the predicted
+direction strengthens the theoretical account of \emph{why} the intervention
+behaves differently across conditions.
 
 The two cases represent a \emph{literal replication} in so far as both teams face
 the same intervention (use of Hypo-Stage and ArchHypo) and a \emph{theoretical
@@ -188,6 +271,7 @@ their own judgments and priorities.
 
 % ---------------------------------------------------------------------------
 \section{Procedure}
+\label{sec:procedure}
 % ---------------------------------------------------------------------------
 
 \subsection{Training and Introduction}
@@ -325,25 +409,66 @@ hypotheses as described by \cite{robson2016}.
 \label{sec:data-analysis}
 % ---------------------------------------------------------------------------
 
-Data from the three collection sources were analyzed using \textbf{thematic coding
-analysis}, following the procedure described by \cite{robson2016} for qualitative
-data in flexible designs \cite{robson2016}. The process proceeded in three stages.
+Data from the three collection sources described in
+Section~\ref{sec:data-collection} were analyzed using \emph{thematic coding
+analysis} as specified by \citet{robson2016} for qualitative data gathered
+under a flexible design. Thematic coding is a family of qualitative analytic
+techniques that produces a structured account of what is present textual or observational data by iteratively assigning short labels ---
+\emph{codes} --- to meaningful segments, aggregating those codes into
+higher-order \emph{categories} or \emph{themes}, and then comparing the
+resulting structure across units of analysis~\citep{robson2016}. It is
+distinguished from fully inductive \emph{grounded theory} by its willingness
+to accept a priori analytical constructs (in this study, those of the
+conceptual framework in Figure~\ref{fig:conceptual-framework}) and from fully
+deductive \emph{content analysis} by its commitment to letting the codebook
+emerge from the data rather than being fixed in advance.
 
-First, all field notes, artifact summaries, and active listening session records
-were reviewed and coded inductively, generating an initial set of descriptive codes
-capturing recurring observations and themes. Second, codes were grouped into
-higher-level categories corresponding to the constructs in the conceptual framework:
-\emph{patterns of tool use}, \emph{types of architectural uncertainty managed},
-\emph{perceived benefits}, \emph{perceived challenges}, and \emph{candidate tool
-refinements}. Third, patterns within and across the two cases were compared to
-identify what was common to both teams and what appeared specific to the product or
-platform context.
+In line with the guidance of \citet{robson2016}, the analysis proceeded
+through three stages, each answering a distinct analytical question.
 
-The artifact data from Hypo-Stage were also summarized descriptively (number of
-hypotheses per team, quality attributes addressed, evolution across sprints) to
-complement and illustrate the qualitative findings. The use of these summary
-statistics is consistent with \cite{robson2016}'s observation that flexible designs
-can include small amounts of quantitative data without becoming multistrategy designs.
+\paragraph{Stage 1 --- Inductive open coding:} All field notes, extracted
+Hypo-Stage artifact records, and active-listening transcripts were reviewed
+line-by-line. A short descriptive \emph{code} was assigned to each segment that carried
+analytical weight, capturing a recurring observation, a reported experience,
+or a notable silence. Codes at this stage are descriptive, not interpretive:
+the aim is faithful, low-inference labeling of what is present in the data.
+No a priori categories were imposed. Representative codes and their
+traceability to later sections appear in Table~\ref{tab:code-traceability}.
+
+\paragraph{Stage 2 --- Axial grouping into conceptual categories:} The
+descriptive codes produced in Stage~1 were grouped into higher-order
+\emph{axial categories} that correspond to the constructs of the conceptual
+framework. The term \emph{axial} follows the Strauss--Corbin tradition adopted
+by \citet{robson2016}: it denotes the relational re-organization of open codes
+around a central analytical axis, in this study the constructs of tool usage,
+architectural uncertainty, perceived benefits, perceived challenges, candidate
+refinements, and organizational-adoption conditions. Six axial categories
+emerged, each corresponding to one construct in
+Figure~\ref{fig:conceptual-framework} or to an axis along which the
+framework's observables were stratified.
+
+\paragraph{Stage 3 --- Cross-case comparison:} The axial categories were then
+examined across the two cases (Product Team and Platform Team) to identify
+findings common to both teams and findings that were specific to one.
+Similarities are reported as shared observations in
+Chapter~\ref{chap:results}; differences are attributed to the distinct scopes
+and compositions of product versus platform work, following the logic of
+literal and theoretical replication set out in
+Section~\ref{sec:case-selection}.
+
+The complete mapping from representative open codes to axial categories,
+research questions, and chapter sections appears in
+Table~\ref{tab:code-traceability} at the start of
+Chapter~\ref{chap:results}. That table is the primary audit trail linking
+raw observations to every empirical claim made in this thesis.
+
+Consistent with \citet{robson2016}'s observation that flexible designs may
+include modest quantitative summaries without becoming multi-strategy
+designs, the artifact data extracted from Hypo-Stage were also summarized
+descriptively (counts of hypotheses per team, frequency of quality
+attributes, technical-plan strategy distribution). These summaries
+complement and illustrate the qualitative findings; they do not constitute
+a separate quantitative strand of analysis.
 
 % ---------------------------------------------------------------------------
 \section{Establishing Trustworthiness}
@@ -378,7 +503,16 @@ through:
 \begin{itemize}
   \item[(i)] Prolonged engagement with both teams over approximately nine calendar weeks of real work in their natural environment (Hypo-Stage registrations span five consecutive two-week sprints; Appendix~\ref{app:hypotheses-data});
   \item[(ii)] Multiple data sources (observation, artifact analysis, active listening sessions), providing triangulation of evidence;
-  \item[(iii)] Member checking, in which interpretations derived from observations and conversations were shared with team members for verification and correction.
+  \item[(iii)] \textbf{Member checking.} Interpretations that the researcher
+    formed during the observation period --- for instance, the inference that
+    hypothesis registration clustered around protected discussion time ---
+    were surfaced back to each team's senior technical leader during the
+    active-listening sessions described in
+    Section~\ref{subsec:active-listening}. Each leader was explicitly invited
+    to confirm, correct, or elaborate on the researcher's reading. This
+    operationalizes the member-checking procedure recommended by
+    \citet{robson2016} as a core credibility control for flexible qualitative
+    designs.
 \end{itemize}
 
 \textbf{Transferability} --- the degree to which the findings may inform other
