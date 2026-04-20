@@ -255,49 +255,58 @@ For the Group~A patterns (team-behavior conditions for sustainable hypothesis
 engineering):
 
 \begin{itemize}
-  \item \textbf{A1 --- Senior-Curated Hypothesis Backlog:} investigate
-    longitudinally whether explicit curation roles and permission or review
-    models can shift authorship distribution across experience levels without
-    degrading hypothesis quality.
-  \item \textbf{A2 --- Fast-Resolution Blind Spot:} design and evaluate a
-    lightweight end-of-sprint or retroactive registration workflow that captures
-    architectural micro-decisions whose cumulative effect only becomes visible
-    after the fact.
-  \item \textbf{A3 --- Registration as a Slack-Dependent Practice:} compare
-    sustained registration rate and hypothesis quality under (i)~a periodic
-    architectural-review cadence with protected cognitive time versus (ii)~in-sprint
-    ad~hoc registration.
-  \item \textbf{A4 --- Negative-Formulation Barrier:} design and test statement
-    templates to measure whether falsifiability correctness improves without prior training.
+  \item \textbf{A1 --- Senior-Curated Hypothesis Backlog}
+    (\emph{mid- and long-horizon uncertainties stay visible mainly because
+    senior engineers author them}): investigate longitudinally whether
+    explicit curation roles and permission or review models can shift
+    authorship distribution across experience levels without degrading
+    hypothesis quality.
+  \item \textbf{A2 --- Fast-Resolution Blind Spot}
+    (\emph{architectural micro-decisions resolve before they reach the
+    backlog, risking cumulative drift}): design and evaluate a lightweight
+    end-of-sprint or retroactive registration workflow that captures
+    micro-decisions whose cumulative effect only becomes visible after the
+    fact.
+  \item \textbf{A3 --- Registration as a Slack-Dependent Practice}
+    (\emph{well-formulated registration depends on protected time, not on
+    sprint slack}): compare sustained registration rate and hypothesis
+    quality under (i)~a periodic architectural-review cadence with protected
+    cognitive time versus (ii)~in-sprint ad~hoc registration.
+  \item \textbf{A4 --- Negative-Formulation Barrier}
+    (\emph{the falsifiable inversion is persistently cognitively costly to
+    write}): design and test statement templates to measure whether
+    falsifiability correctness improves without prior training.
 \end{itemize}
 
 For the Group~B patterns (structural archetypes of architectural hypotheses):
 
 \begin{itemize}
-  \item \textbf{B1 --- Hypothesis Cluster:} investigate decomposition strategies
-    and cluster-level review practices for multi-dimensional platform concerns,
-    and evaluate how cluster-aware tooling affects traceability and decision
-    velocity.
-  \item \textbf{B2 --- Regulatory Trigger Hypothesis:} evaluate whether modeling
-    compliance obligations as tracked architectural hypotheses, with explicit
-    falsification criteria against the current architecture, improves regulated-domain
-    outcomes compared with implicit compliance assumptions.
-  \item \textbf{B3 --- Decoupling Seam Hypothesis:} investigate whether
-    requiring a discovery phase --- mapping the real (rather than declared)
-    dependencies of the candidate service, drafting a context-agnostic
-    interface contract, and scoping which existing flows can be migrated
-    without business-logic changes --- before a team commits to splitting a
-    tightly coupled service produces measurably better outcomes than
-    committing directly to the refactor. Candidate outcome measures include
-    the rate of abandoned or scope-reduced refactors, downstream disruption
-    to consumer teams, and the cross-domain reuse actually realized after
-    migration.
-  \item \textbf{B4 --- Load-Validated Hypothesis:} define and empirically test
-    lifecycle states that distinguish ``empirically validated but not yet
-    implemented'' from ``Open with unresolved uncertainty,'' and evaluate
-    reviewer comprehension across the two.
-  \item \textbf{B5 --- Shared Resource Governance Hypothesis:} investigate how
-    governance rules (ownership, cross-domain read and write, transfer) for
-    shared platform resources can be expressed and tracked as architectural
-    hypotheses, and measure the downstream effect on consistency violations.
+  \item \textbf{B1 --- Hypothesis Cluster}
+    (\emph{a multi-dimensional platform concern decomposing into a set of
+    linked falsifiable hypotheses}): investigate decomposition strategies and
+    cluster-level review practices for such concerns, and evaluate how
+    cluster-aware tooling affects traceability and decision velocity.
+  \item \textbf{B2 --- Regulatory Trigger Hypothesis}
+    (\emph{an external compliance obligation surfacing as tracked
+    architectural uncertainty}): evaluate whether modeling compliance
+    obligations as tracked hypotheses, with explicit falsification criteria
+    against the current architecture, improves regulated-domain outcomes
+    compared with implicit compliance assumptions.
+  \item \textbf{B3 --- Decoupling Seam Hypothesis}
+    (\emph{uncertainty about whether and where to split a tightly coupled
+    service}): investigate whether requiring a discovery phase before a team
+    commits to the split produces measurably better outcomes than committing
+    directly to the refactor.
+  \item \textbf{B4 --- Load-Validated Hypothesis}
+    (\emph{a solution empirically validated under load but with implementation
+    still open}): define and empirically test lifecycle states that
+    distinguish ``empirically validated but not yet implemented'' from
+    ``Open with unresolved uncertainty,'' and evaluate reviewer comprehension
+    across the two.
+  \item \textbf{B5 --- Shared Resource Governance Hypothesis}
+    (\emph{cross-domain access and ownership rules for a shared platform
+    resource}): investigate how such governance rules (ownership,
+    cross-domain read and write, transfer) can be expressed and tracked as
+    architectural hypotheses, and measure the downstream effect on
+    consistency violations.
 \end{itemize}
