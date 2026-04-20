@@ -741,7 +741,8 @@ form; the derivation of actionable solutions from each pattern has been delegate
 a future-work research agenda in (Section~\ref{sec:future-work}), which outlines
 the need for empirical validation before adoption as guidelines.
 
-\paragraph{A1 — Senior-Curated Hypothesis Backlog}
+\subsubsection{Senior-Curated Hypothesis Backlog}
+\label{subsubsec:pattern-a1}
 
 \textbf{Problem:} In a team whose engineers operate at different scopes and
 timescales, who is positioned to surface and sustain the registration of 
@@ -756,7 +757,8 @@ a common trait: they concerned architectural uncertainties whose consequences wo
 weeks or months in the future, making them invisible to typical sprint-scope
 review practices.
 
-\paragraph{A2 — Fast-Resolution Blind Spot.}
+\subsubsection{Fast-Resolution Blind Spot}
+\label{subsubsec:pattern-a2}
 
 \textbf{Problem:} Many architectural micro-decisions are made and resolved within
 hours or a single day. Their speed makes them feel too transient to register, yet
@@ -770,7 +772,8 @@ Yet both also described recurring situations where the same question re-surfaced
 in a new context, requiring the team to reconstruct reasoning that had previously
 been resolved informally and in a rapid pace.
 
-\paragraph{A3 — Registration as a Slack-Dependent Practice.}
+\subsubsection{Registration as a Slack-Dependent Practice}
+\label{subsubsec:pattern-a3}
 
 \textbf{Problem:} Translating a tacit architectural concern into a properly
 formulated ArchHypo hypothesis requires focused, uninterrupted attention.
@@ -784,7 +787,8 @@ under-represent the total uncertainties that leaders were aware of. Registration
 activity clustered around protected and restricted discussion time rather than being distributed
 across normal sprint work.
 
-\paragraph{A4 — Negative-Formulation Barrier.}
+\subsubsection{Negative-Formulation Barrier}
+\label{subsubsec:pattern-a4}
 \textbf{Problem:} The ArchHypo convention of writing hypotheses as falsifiable
 statements represents a cognitive inversion of how engineers typically articulate their beliefs.
 This inversion is a persistent adoption barrier even for practitioners who
@@ -841,7 +845,8 @@ in prescribing solutions for each one. Solution-shaped guidance and
 consolidation into the broader ArchHypo pattern language are delegated to the
 future-work research agenda in (Section~\ref{sec:future-work}).
 
-\paragraph{B1 — Hypothesis Cluster.}
+\subsubsection{Hypothesis Cluster}
+\label{subsubsec:pattern-b1}
 
 \textbf{Context:} A team is responsible for a shared platform component on which
 multiple other service teams depend. An architectural question about that
@@ -864,7 +869,8 @@ re-enqueueing. Each is independently falsifiable yet together they map the full
 decision space for consumer-side failure handling in the shared streaming
 platform.
 
-\paragraph{B2 — Regulatory Trigger Hypothesis.}
+\subsubsection{Regulatory Trigger Hypothesis}
+\label{subsubsec:pattern-b2}
 \textbf{Context:} A software system operates in a regulated domain such as financial
 services, healthcare, or data privacy, where external compliance obligations
 create architectural constraints whose implementation path is not fully known.
@@ -882,7 +888,8 @@ In both cases the uncertainty is not about whether to comply — that is a legal
 requirement that must be met — but about whether the current architecture \textit{can} comply and at
 what technical cost.
 
-\paragraph{B3 — Decoupling Seam Hypothesis.}
+\subsubsection{Decoupling Seam Hypothesis}
+\label{subsubsec:pattern-b3}
 \textbf{Context:} A service currently handles multiple responsibilities such as domain
 logic, external integrations, and identity management. The team believes the service could be restructured to serve
 multiple domain contexts, but the boundaries of the decoupling and the migration path are unknown.
@@ -905,7 +912,8 @@ current versus real dependencies per integration, (ii)~an agnostic interface
 contract proposal, and (iii)~a migration plan identifying which flows can isolate
 immediately.
 
-\paragraph{B4 — Load-Validated Hypothesis.}
+\subsubsection{Load-Validated Hypothesis}
+\label{subsubsec:pattern-b4}
 \textbf{Context:} A team has proposed a specific algorithmic or implementation
 approach to handle a high-volume data processing challenge. The team has already
 conducted a capacity or volume test at scale, producing evidence that the
@@ -929,7 +937,8 @@ garbage collector can reclaim memory, producing a healthy sawtooth heap pattern.
 The hypothesis remains Open because the implementation is ongoing, but the
 uncertainty has been effectively resolved.
 
-\paragraph{B5 — Shared Resource Governance Hypothesis.}
+\subsubsection{Shared Resource Governance Hypothesis}
+\label{subsubsec:pattern-b5}
 \textbf{Context:} A platform service manages a shared resource such as binary objects,
 credentials, and configuration data, on which multiple product domains depend. New
 business requirements demand that the resource be shared across domain boundaries
