@@ -4,43 +4,39 @@
 \label{ch:conclusion}
 \label{chap:conclusion}
 
-The central question motivating this dissertation was whether embedding the ArchHypo
+The central objective motivating this present work was whether embedding the ArchHypo
 technique into a tool deployed within a team's existing workflow could lower the barriers
 that prior evaluations had identified as threats to its adoption. Both prior studies of
 ArchHypo --- at the Catch Solve startup \citep{silva2024ieeesw} and at the PropSEP
 mission-critical project \citep{silva2024tse} --- demonstrated the technique's conceptual
 value, yet neither involved a supporting tool or a multi-team professional software development setting,
 and both documented a consistent limitation: without tool support and expert
-facilitation, hypothesis engineering remained a fragile, senior-anchored practice. This
+facilitation, hypothesis engineering remained a fragile, senior-dependent practice. This
 work takes up that limitation directly. By deploying Hypo-Stage as a Backstage plugin
-within a large-scale financial services organization and observing two teams over approximately nine calendar weeks of real sprint work (five consecutive two-week sprints between the first and last hypothesis registration dates in Hypo-Stage; Chapter~\ref{chap:research-design}), the study produces the first empirical account of ArchHypo in
-a tool-mediated setting --- and in doing so, extends the empirical base of a research line
-whose prior publications have called explicitly for this kind of evidence
-\citep{silva2024patterns}.
+within a large-scale financial services organization and observing two teams over approximately nine calendar weeks of real sprint work, the study produced empirical data of ArchHypo in
+a tool-mediated setting. This contribution extended the base of the research line whose prior publications have called explicitly for this kind of evidence \citep{silva2024patterns}.
 
-The results both confirm and complicate the expectations established by prior work.
+The results both confirmed and revealed the expectations established by prior work.
 On the side of confirmation: hypothesis registration remained predominantly senior-led
 across both teams, the falsifiability requirement continued to be described as cognitively
 demanding under sprint pressure, and the absence of team-visible ceremonies for reviewing
-the hypothesis backlog emerged as a structural obstacle --- all consistent with findings
-from the PropSEP evaluation \citep{silva2024tse}. On the side of complication: the
-Backstage integration proved to be a genuinely meaningful enabler rather than merely a
-convenience. The EntityHypothesesTab, which surfaces hypotheses in the context of the
-service an engineer is already viewing, reduced context-switching cost in a way that
-participants named explicitly as a design improvement over standalone tools. This
-suggests that the integration surface matters as much as the hypothesis engineering
-mechanics themselves --- a finding that is absent from prior ArchHypo literature because
-no prior study involved a tool.
+the hypothesis backlog emerged as a structural obstacle. These observations are consistent with findings
+from the PropSEP evaluation \citep{silva2024tse}. On the side of novelty: the
+Hypo-Stage tool integrated in the Backstage proved to be a genuinely meaningful enabler rather than merely a
+convenience. Visualizing and managing hypotheses in the context of a developer portal 
+that is already adopted by the team reduced context-switching costs in a way that
+participants named explicitly as a facilitating factor over standalone tools. This
+suggests that the tool's usage matters as much as the hypothesis engineering
+mechanics themselves.
 
 \section{Synthesis of Contributions}
 \label{sec:conclusion-synthesis}
 
-Taken together, the four research questions produce an account of how hypothesis
-engineering behaves when it is embedded in a professional team's daily tooling, rather
-than applied as an expert-facilitated intervention.
+The four research questions of this work produced observations of how hypothesis
+engineering behaves when it is embedded in a professional team's daily tooling.
 
 With respect to \textbf{how teams used Hypo-Stage in practice} (RQ1), the study
-reveals a pattern of senior-anchored, burst-mode adoption. Both technical leaders
+revealed a pattern of senior-dependent adoption. Both technical leaders
 treated the hypothesis backlog as an externalization instrument for concerns that had
 until then existed only as tacit knowledge; they used registration events as structured
 prompts for architectural discussions --- most visibly during the Platform Team's
