@@ -53,11 +53,13 @@ Um Estudo de Caso}[]
 
 \orientador{Prof. Dr. Paulo Roberto Miranda Meirelles}
 
-% TODO: fill in committee members before defense
+% Confirmed examination committee (titulares). The full roster of titulares
+% and suplentes, including institutional affiliations, lives in
+% front-matter/banca.tex (single source of truth for defense scheduling).
 \banca{
-  Prof. Dr. Paulo Roberto Miranda Meirelles (advisor) -- IME-USP,
-  % Prof. Dr. Second Member Name -- Institution,
-  % Prof. Dr. Third Member Name -- Institution,
+  Prof. Dr. Paulo Roberto Miranda Meirelles (Presidente) -- IME-USP,
+  Prof. Dr. Jorge Melegati -- Free University of Bozen-Bolzano (UniBZ),
+  Prof. Dr. Marco Túlio de Oliveira Valente -- UFMG,
 }
 
 \tipotese{
@@ -120,7 +122,7 @@ Versão original
 \vspace{1\baselineskip}
 
 
-1. Software Architecture. 2. Architectural Uncertainty. 3. Hypotheses Engineering. 4. ArchHypo. 5. Hypo-Stage. I. Miranda Meirelles, Paulo Roberto. II. Título.
+1. Software Architecture. 2. Architectural Uncertainty. 3. Hypotheses Engineering. 4. ArchHypo. 5. Hypo-Stage. 6. Internal Developer Portal. 7. Backstage. 8. Case Study. 9. Empirical Evaluation. I. Miranda Meirelles, Paulo Roberto. II. Título.
 
 \end{minipage}\par
 \vspace{1\baselineskip}\hrule\vspace{.5\baselineskip}\rmfamily
@@ -148,17 +150,15 @@ Maria Lúcia Ribeiro CRB-8/2766; Stela do Nascimento Madruga CRB 8/7534.
 
 \maketitle
 
-%%% Dedication %%%
-\begin{dedicatoria}
-% TODO: add dedication or epigraph. Examples:
-%
-% To my family, for their unwavering support.
-%
-% Or use an epigraph after \end{dedicatoria}:
-% \epigrafe{The only way to do great work is to love what you do.}{Steve Jobs}
-\end{dedicatoria}
+%%% Advisor-signed original-version declaration (pre-deposit) %%%
+\input{front-matter/signed-copy}
 
-\pagenumbering{roman}
+%%% Dedication %%%
+\input{front-matter/dedicatoria}
+
+% Note: \frontmatter (above) already enables roman page numbering, so no
+% explicit \pagenumbering{roman} is required here. Adding one would reset
+% the page counter and create duplicate hyperref anchors (name{page.v}).
 
 %%% Acknowledgments %%%
 \chapter*{Acknowledgments}
