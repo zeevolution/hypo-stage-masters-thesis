@@ -34,7 +34,7 @@ architecture evolution of their systems. Both outcomes can slow down delivery an
 quality over time, turning the software architecture into what Foote and Yoder \citeyearpar{footeYoder1999} famously characterized as a ``Big Ball of Mud.''
 
 Moreover, the concept of ``fast flow'', popularized by the Team Topologies
-framework in ~\citep{skelton2019}, emphasizes that organizations should design both their
+framework in \citet{skelton2019}, emphasizes that organizations should design both their
 teams and their architecture to enable a continuous, rapid stream of software changes.
 Achieving fast flow presupposes that teams can make local architectural decisions
 without waiting for a central architect to approve them. This in turn demands that architectural
@@ -51,7 +51,7 @@ asserting that a particular technology or pattern \emph{will} satisfy a quality
 requirement, teams state that it \emph{might} do so and then design experiments to
 gather evidence to validate or invalidate the hypothesis.
 
-The ArchHypo technique, proposed in ~\citep{silva2024tse}, operationalized this idea for
+The ArchHypo technique, proposed by \citet{silva2024tse}, operationalized this idea for
 software architecture. Grounded in Design Science Research (DSR)
 and evolved from a body of patterns for agile architecture first disseminated at
 conferences and through corporate training reported in~\citep{silva2024ieeesw}, ArchHypo provides
@@ -68,7 +68,7 @@ It is important to distinguish the concept from adjacent concepts:
 \begin{itemize}
   \item \textbf{Hypothesis versus\ Risk:} A risk involves a known event with estimable
   probability and impact. An architectural hypothesis, by contrast, stems from a \emph{lack of information} sufficient to make a decision. 
-  The distinguishing feature is the epistemic gap, not the probability of an outcome as observed in ~\citep{silva2024tse}.
+  The distinguishing feature is the epistemic gap, not the probability of an outcome as observed in \citet{silva2024tse}.
 
   \item \textbf{Hypothesis versus\ Requirement:} A requirement specifies what the system
   must do or how well it must do it. A hypothesis may be triggered by a requirement
@@ -127,7 +127,7 @@ Each hypothesis is evaluated along two independent dimensions:
 \end{enumerate}
 
 Both dimensions can be assessed using a 3-point or 5-point qualitative scale;
-assessments are made independently and relatively, not on absolute probability as reported in ~\citep{silva2024tse}.
+assessments are made independently and relatively, not on absolute probability as reported in \citet{silva2024tse}.
 
 % ------- 2.2.3
 \subsection{Technical Plans}
@@ -137,7 +137,7 @@ For hypotheses with significant uncertainty or impact, teams formulate a
 \emph{technical plan}: a set of concrete actions whose goal is to (a)~accept or refute
 the hypothesis, (b)~reduce its uncertainty level, (c)~reduce its potential impact, or
 (d)~define criteria under which the decision can responsibly be
-deferred. ArchHypo identifies the following plan strategies as observed in ~\citep{silva2024ieeesw}:
+deferred. ArchHypo identifies the following plan strategies as observed in \citet{silva2024ieeesw}:
 
 \begin{itemize}
   \item \textbf{Architectural Spike.} A time-boxed, isolated experiment to explore a
@@ -216,7 +216,7 @@ so late that deferral would create unnecessary risk.
 
 \paragraph{IEEE Software evaluation (Catch Solve startup).}
 The first evaluation of ArchHypo in a real operating environment was reported in an
-IEEE Software article in ~\citep{silva2024ieeesw}. The setting was Catch
+IEEE Software article in \citet{silva2024ieeesw}. The setting was Catch
 Solve, a startup offering web testing and monitoring services based in Italy's South
 Tyrol region. Four architectural hypotheses were formulated and
 tracked over approximately ten months, covering quality attributes of availability,
