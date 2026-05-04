@@ -249,7 +249,7 @@ H01 & Kotlin/JOOQ/Spring template readiness & Product  & Req. & VH & VH \\
 H02 & Kafka direct exposure via platform framework & Platform & Req. & VL & M  \\
 H03 & Decouple eng.\ logs from security/compliance audit & Platform & Req. & M  & VH \\
 H04 & Blob storage GDPR right-to-erasure & Product  & Req. & M  & VL \\
-H05 & Credit-bureau service decomposition & Product  & Sol. & H  & VH \\
+H05 & Credit-bureau context-agnostic restructuring & Product  & Sol. & H  & VH \\
 H06 & Billing aggregation chunked keyset pagination & Product  & Sol. & VL & VH \\
 H07 & Blob ownership transfer across service domains & Product  & Req. & VL & VH \\
 H08 & Blob cross-client sharing governance & Product  & Req. & VL & VH \\
@@ -889,19 +889,19 @@ In both cases the uncertainty is not about whether to comply — that is a legal
 requirement that must be met — but about whether the current architecture \textit{can} comply and at
 what technical cost.
 
-\subsubsection{Service Decomposition Hypothesis}
+\subsubsection{Context-Agnostic Restructuring Hypothesis}
 \label{subsubsec:pattern-b3}
 \textbf{Context:} A service currently handles multiple responsibilities such as domain
 logic, external integrations, and identity management. The team believes the service could be restructured to serve
-multiple domain contexts, but the boundaries of the service decomposition and the migration path are unknown.
+multiple domain contexts, but what a context-agnostic restructuring would entail---contract boundaries and migration path---remains unknown.
 
-\textbf{Problem:} Deciding \textit{whether} to pursue service decomposition is itself uncertain: the
+\textbf{Problem:} Deciding \textit{whether} to pursue context-agnostic restructuring is itself uncertain: the
 team does not know what the correct contract boundary should be, which existing
 flows can be migrated without business-logic changes, and what the downstream
-impact on other teams would be. Committing to a decomposition without this information
+impact on other teams would be. Committing to that restructuring without this information
 risks a disruptive refactor that delivers less reuse than expected.
 
-\textbf{Observed evidence:} H05 (credit-bureau service decomposition) captures this
+\textbf{Observed evidence:} H05 (credit-bureau context-agnostic restructuring) captures this
 precisely. The service currently handles identity, bureau integration, and
 confidential document flows using domain-specific entities tied to a single
 business vertical. The hypothesis asks whether these integrations can be
@@ -999,9 +999,9 @@ B2 & Structural archetype & Regulatory Trigger Hypothesis
    & External compliance obligation surfaces as tracked architectural
      uncertainty
    & H03, H04 \\
-B3 & Structural archetype & Service Decomposition Hypothesis
-   & Uncertainty about whether and how to decompose a tightly coupled service
-   & H05 (credit-bureau service decomposition) \\
+B3 & Structural archetype & Context-Agnostic Restructuring Hypothesis
+   & Uncertainty about whether and how to restructure toward context-agnostic boundaries
+   & H05 (credit-bureau context-agnostic restructuring) \\
 B4 & Structural archetype & Load-Validated Hypothesis
    & Very-low uncertainty, very-high impact: solution empirically validated
      but implementation open
@@ -1081,7 +1081,7 @@ assessment, deferral, and uncertainty management, but does not name the
 \emph{kinds} of hypotheses engineers actually register. When applied in a
 compliance-heavy, platform-dominant environment, the thirteen registered
 hypotheses concentrate on regulatory triggers, shared-resource governance,
-service decomposition, and multi-dimensional platform concerns, which are categories the
+context-agnostic restructuring, and multi-dimensional platform concerns, which are categories the
 existing patterns do not index. Group~B therefore complements the
 mechanics-focused patterns rather than competing with them, and provides
 the first empirically grounded vocabulary for the content of hypotheses
