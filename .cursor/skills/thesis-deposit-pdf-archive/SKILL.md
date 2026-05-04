@@ -1,17 +1,22 @@
 ---
 name: thesis-deposit-pdf-archive
-description: Rebuilds thesis.pdf with latexmk and copies it to archive/thesis-deposit-original-YYYYMMDD.pdf using the session update date. Use when the user edits LaTeX thesis sources, asks for a PDF rebuild, mentions deposit or archive copy, or before pushing thesis content changes that should ship a matching binary snapshot.
+description: Required whenever thesis sources change. Rebuilds thesis.pdf with latexmk and copies it to archive/thesis-deposit-original-YYYYMMDD.pdf using the session update date. Run before completing any thesis change (including PRs) so the deposit snapshot always matches the proposed text.
 ---
 
 # Thesis deposit PDF archive
 
-## When to run
+## When to run (required)
 
-Apply this workflow after **substantive** updates to anything that affects the built PDF, for example:
+**This workflow is mandatory, not optional.** Whenever a change touches anything that affects the built thesis PDF, complete the steps below in the same change set before the work is considered done (including before push / PR).
 
-- `thesis.tex`, `chapters/`, `appendixes/`, `front-matter/`, `references.bib`, thesis graphics included from TeX
+Typical triggers:
+
+- Edits to `thesis.tex`, `chapters/`, `appendixes/`, `front-matter/`, `references.bib`, or thesis graphics pulled in from TeX
+- Any task described as updating or proposing changes to the thesis
 
 Also run when the user explicitly asks to refresh **`thesis.pdf`**, the **deposit** copy, or **`archive/thesis-deposit-original-*.pdf`**.
+
+Skipping the archive copy is incorrect for this repository: the canonical deposit under `archive/` must stay aligned with `thesis.pdf` for the same calendar date token.
 
 ## Date token (YYYYMMDD)
 
@@ -51,7 +56,7 @@ This repo keeps **one** canonical deposit PDF under `archive/`, named with the u
 
 ## Git
 
-When thesis sources or the deposit PDF changed in the same change set, stage **`thesis.pdf`** and **`archive/thesis-deposit-original-${DEPOSIT_DATE}.pdf`** together with the TeX/Bib edits so the binaries stay in sync with the text.
+Whenever thesis sources change, stage **`thesis.pdf`** and **`archive/thesis-deposit-original-${DEPOSIT_DATE}.pdf`** together with the TeX/Bib (or other source) edits so tracked binaries stay in sync with the text. Do not merge or ship a thesis-only PR without this pair.
 
 ## Quick checklist
 
@@ -59,4 +64,4 @@ When thesis sources or the deposit PDF changed in the same change set, stage **`
 - [ ] `latexmk -g -pdf -interaction=nonstopmode thesis.tex` from repo root
 - [ ] `cp thesis.pdf archive/thesis-deposit-original-${DEPOSIT_DATE}.pdf`
 - [ ] Drop obsolete `archive/thesis-deposit-original-*.pdf` if the date suffix changed
-- [ ] Stage `thesis.pdf` + archive PDF with related source changes
+- [ ] Stage `thesis.pdf` + archive PDF with related source changes (required for every thesis update)

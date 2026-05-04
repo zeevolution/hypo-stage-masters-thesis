@@ -15,18 +15,17 @@ by uncertainty level and impact, and define a technical plan for handling them. 
 a substantial learning curve and dependence on expert facilitation, both augmented by the absence of tool support.
 This present work presents an empirical study of a tool-mediated application of ArchHypo in a
 professional software engineering organization, through the evaluation and iterative refinement of
-Hypo-Stage, an open-source Backstage plugin deployed on a large organization's Internal Developer Portal
-where engineers already work; the study adopts a flexible, multiple case-study design with formative
+Hypo-Stage, an open-source Backstage plugin deployed on the organization's environment; the study adopts a flexible, multiple case-study design with formative
 evaluation and action-research elements in line with flexible-design guidance \citep{robson2016}, involving two teams --- a
-Product team of twelve engineers and a Platform team of four --- over five agile sprints totalling nine weeks,
+Product team of twelve engineers and a Platform team of four --- over five 2-week sprints,
 with data collected through participant observation, artifact analysis of thirteen registered hypotheses and
-their technical plans, and open-ended active listening sessions with each team's senior technical leader, analyzed via three-stage thematic coding.
-Four contributions emerge from this work: (1) a detailed observational account of how both teams
-adopted and used Hypo-Stage, characterizing hypothesis registration dynamics, role stratification, and
+their technical plans, and open-ended active listening sessions with the involved senior technical leaders.
+Four contributions emerge from this work: (1) a detailed observational report of how both teams
+adopted and used Hypo-Stage, characterizing their hypothesis registration dynamics, role stratification, and
 tool adoption patterns; (2) a characterization of the architectural uncertainties the teams made explicit,
-including their sources, dominant quality attributes (e.g. Reliability and Auditability), uncertainty-impact
+including their sources, dominant quality attributes, uncertainty-impact
 profiles, and technical plan strategies; (3) five novel emerging technical architectural hypothesis patterns ---
-Hypothesis Cluster, Regulatory Trigger Hypothesis, Decoupling Seam Hypothesis, Load-Validated Hypothesis,
+Hypothesis Cluster, Regulatory Trigger Hypothesis, Context-Agnostic Restructuring Hypothesis, Load-Validated Hypothesis,
 and Shared Resource Governance Hypothesis; and (4) nine categories of
 empirically grounded refinements to Hypo-Stage, each traced to a concrete observation,
 including a hypothesis evolution chart, a prioritization dashboard, and inline formulation guidance that
@@ -39,19 +38,19 @@ Equipes de engenharia de software em organizações de entrega contínua enfrent
 porém poucas ferramentas existem para ajudá-las a registrar, priorizar e aprender com essas incertezas de forma colaborativa; a técnica 
 ArchHypo aborda esse desafio ao aplicar a engenharia de hipóteses ao contexto da arquitetura de software, permitindo que as equipes formulem 
 incertezas como hipóteses falseáveis, avaliem cada uma pelo nível de incerteza e impacto, e definam um plano técnico para tratá-las. 
-No entanto, trabalhos anteriores relataram uma \textbf{curva de aprendizado acentuada} e dependência de facilitação especializada, 
+No entanto, trabalhos anteriores relataram uma curva de aprendizado acentuada e dependência de facilitação especializada, 
 ambas intensificadas pela ausência de suporte de ferramentas. O presente trabalho apresenta um estudo empírico de uma aplicação mediada por 
 ferramenta do ArchHypo em uma organização profissional de engenharia de software, por meio da avaliação e refinamento iterativo do Hypo-Stage, 
-um plugin de código aberto para o Backstage implantado no Portal Interno do Desenvolvedor de uma grande organização de software; 
+um plugin de código aberto para o Backstage implantado no ambiente da organização; 
 o estudo adota um design de estudo de caso múltiplo e flexível, com avaliação formativa e elementos de pesquisa-ação alinhados à orientação sobre designs flexíveis \citep{robson2016}, 
-envolvendo duas equipes — uma equipe de Produto de doze engenheiros e uma equipe de Plataforma de quatro — ao longo de aproximadamente cinco sprints ágeis totalizando nove semanas, 
+envolvendo duas equipes — uma equipe de Produto de doze engenheiros e uma equipe de Plataforma de quatro — ao longo de cinco sprints de duas semanas, 
 com dados coletados por meio de observação participante, análise de artefatos de treze hipóteses registradas e seus respectivos planos técnicos, 
-e sessões de escuta ativa com o líder técnico sênior de cada equipe, analisadas via codificação temática em três estágios. 
-Quatro contribuições emergem deste trabalho: (1) um relato observacional detalhado de como ambas as equipes adotaram e utilizaram o Hypo-Stage, 
-caracterizando a dinâmica de registro de hipóteses, estratificação de papéis e padrões de adoção da ferramenta; (2) uma caracterização das incertezas 
-arquiteturais que as equipes tornaram explícitas, incluindo suas fontes, atributos de qualidade dominantes (ex: Resiliência e Auditabilidade), 
+e sessões abertas de escuta ativa com os líderes técnicos seniores envolvidos. 
+Quatro contribuições emergem deste trabalho: (1) um relatório observacional detalhado de como ambas as equipes adotaram e utilizaram o Hypo-Stage, 
+caracterizando suas dinâmicas de registro de hipóteses, estratificação de papéis e padrões de adoção da ferramenta; (2) uma caracterização das incertezas 
+arquiteturais que as equipes tornaram explícitas, incluindo suas fontes, atributos de qualidade dominantes, 
 perfis de incerteza-impacto e estratégias de planos técnicos; (3) cinco novos padrões emergentes de hipóteses arquiteturais técnicas --- \emph{Hypothesis Cluster},
-\emph{Regulatory Trigger Hypothesis}, \emph{Decoupling Seam Hypothesis}, \emph{Load-Validated Hypothesis} e \emph{Shared Resource Governance Hypothesis}; e 
+\emph{Regulatory Trigger Hypothesis}, \emph{Context-Agnostic Restructuring Hypothesis}, \emph{Load-Validated Hypothesis} e \emph{Shared Resource Governance Hypothesis}; e 
 (4) nove categorias de refinamentos fundamentados empiricamente para o Hypo-Stage, cada um rastreado a uma observação concreta, incluindo um 
 gráfico de evolução de hipóteses, um painel de priorização e orientações de formulação \emph{inline} que reduzem a barreira de aprendizado da técnica.
 }

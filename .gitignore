@@ -9,6 +9,8 @@
 *.blg
 *.brf
 *.bcf
+# Biber renames a malformed thesis.bcf to this path; it is not covered by *.bcf
+*.bcf-SAVE-ERROR
 *.fls
 *.run.xml
 *.synctex
