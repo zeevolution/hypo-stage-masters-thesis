@@ -2,7 +2,7 @@
 
 Master's thesis in Computer Science at **IME-USP** (Institute of Mathematics and Statistics, University of São Paulo).
 
-**Agents / automation:** for thesis work, read [`.cursor/agents/AGENTS.md`](.cursor/agents/AGENTS.md) and [`.memory/README.md`](.memory/README.md) first (IME workflow, defense metadata, editorial conventions). If you still need context, follow [`.memory/knowledge-sources.md`](.memory/knowledge-sources.md) before broad searching.
+**Agents / automation:** for thesis work, read [`.cursor/agents/hypo-stage-masters-thesis-agent-instructions.md`](.cursor/agents/hypo-stage-masters-thesis-agent-instructions.md) and [`.memory/README.md`](.memory/README.md) first (IME workflow, defense metadata, editorial conventions). If you still need context, follow [`.memory/knowledge-sources.md`](.memory/knowledge-sources.md) before broad searching.
 
 | | |
 |---|---|

@@ -5,6 +5,6 @@ alwaysApply: true
 
 # Thesis project memory
 
-Before editing thesis LaTeX, BibTeX, or chapter content, read **`.cursor/agents/AGENTS.md`** and **`.memory/README.md`**, then the specific `.memory/*.md` files they index (workflow, defense roster, writing conventions). If more context is still needed, read **`.memory/knowledge-sources.md`** before broad searching.
+Before editing thesis LaTeX, BibTeX, or chapter content, read **`.cursor/agents/hypo-stage-masters-thesis-agent-instructions.md`** and **`.memory/README.md`**, then the specific `.memory/*.md` files they index (workflow, defense roster, writing conventions). If more context is still needed, read **`.memory/knowledge-sources.md`** before broad searching.
 
 When institutional facts or defense metadata change, update **both** `.memory/` and the relevant LaTeX or `docs/` files so the repo stays self-consistent.

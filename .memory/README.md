@@ -2,7 +2,7 @@
 
 This directory stores persistent operational memory for the master's thesis repository.
 
-Read **`.cursor/agents/AGENTS.md`** first for the full agent workflow, then use the files below when editing the thesis.
+Read **`.cursor/agents/hypo-stage-masters-thesis-agent-instructions.md`** first for the full agent workflow, then use the files below when editing the thesis.
 
 Use these files before making changes:
 
