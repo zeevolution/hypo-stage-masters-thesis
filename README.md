@@ -8,13 +8,14 @@ Master's thesis in Computer Science at **IME-USP** (Institute of Mathematics and
 | **Advisor** | Prof. Dr. Paulo Roberto Miranda Meirelles |
 | **Program** | Graduate Program in Computer Science — IME-USP |
 | **Document year** | 2026 |
-| **Repository status** | Near-final manuscript (spring 2026); PDFs in `main` track the latest integrated build |
+| **Repository status** | **Final version submitted to the Examining Committee** (May 2026). The immutable deposit snapshot is [`archive/thesis-deposit-original-20260503.pdf`](archive/thesis-deposit-original-20260503.pdf). Commits on `main` may still refresh `thesis.pdf` / `presentation.pdf` from the same sources for convenience and CI. |
 
 ## Read the Documents
 
 | Document | Description |
 |---|---|
-| **[thesis.pdf](thesis.pdf)** | Full thesis (latest compiled version committed to `main`) |
+| **[thesis.pdf](thesis.pdf)** | Full thesis (latest build committed to `main`; should match the submitted sources) |
+| **[archive/thesis-deposit-original-20260503.pdf](archive/thesis-deposit-original-20260503.pdf)** | **Deposit snapshot** — PDF exactly as submitted to the Examining Committee (3 May 2026) |
 | **[presentation.pdf](presentation.pdf)** | Defense presentation slides (Beamer / IME theme) |
 
 ## About
@@ -45,6 +46,7 @@ The **ArchHypo** technique (Silva et al., [IEEE Software 2024](https://doi.org/1
 
 ```
 .
+├── archive/                    # Immutable PDF snapshots (e.g. committee submission)
 ├── thesis.pdf                  # Compiled thesis (tracked on main when rebuilt)
 ├── thesis.tex                  # Thesis entry point
 ├── presentation.pdf            # Compiled presentation slides
