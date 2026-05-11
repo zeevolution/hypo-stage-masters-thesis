@@ -18,6 +18,13 @@
 \usepackage{imegoodies}
 \usepackage[thesis]{imelooks}
 
+% Corrected-version hook: keep false for pre-defense / original builds.
+% For the post-defense PDF, set \correctedversiontrue and uncomment
+% `definitiva` inside \tipotese below so the committee block renders.
+% Keep \banca{...} and front-matter/banca.tex aligned with .memory/defense-and-committee.md.
+\newif\ifcorrectedversion
+\correctedversionfalse
+
 % Directories where figures are located
 \graphicspath{{figures/},{template/logos/}}
 
@@ -53,24 +60,27 @@ Um Estudo de Caso}[]
 
 \orientador{Prof. Dr. Paulo Roberto Miranda Meirelles}
 
-% Confirmed examination committee (titulares). The full roster of titulares
-% and suplentes, including institutional affiliations, lives in
-% front-matter/banca.tex (single source of truth for defense scheduling).
+% Confirmed examining committee (IME form). Rendered on the title page only
+% when `definitiva` is enabled in \tipotese (see imelooks \@committeeBlock).
+% Titulares first, then suplentes; braced items avoid clist comma issues.
 \banca{
-  Prof. Dr. Paulo Roberto Miranda Meirelles (Presidente) -- IME-USP,
-  Prof. Dr. Jorge Melegati -- Free University of Bozen-Bolzano (UniBZ),
-  Prof. Dr. Marco Túlio de Oliveira Valente -- UFMG,
+  {Prof. Dr. Eduardo Martins Guerra (Presidente) --- UniBz},
+  {Prof. Dr. Jorge Augusto Melegati Gonçalves --- U.Porto},
+  {Prof. Dr. Marco Tulio de Oliveira Valente --- UFMG},
+  {Prof. Dr. Paulo Roberto Miranda Meirelles (Suplente) --- USP},
+  {Prof\textsuperscript{a}. Dr\textsuperscript{a}. Carla Ilane Moreira Bezerra (Suplente) --- UFC},
+  {Prof. Dr. Breno Bernard Nicolau de Fran\c{c}a (Suplente) --- Unicamp}
 }
 
 \tipotese{
   mestrado,
-  %definitiva, % TODO: uncomment after defense to switch to "final version" title page
+  %definitiva, % After defense: uncomment for "versão corrigida" title page; set \correctedversiontrue above.
   programa={Computer Science},
 }
 
 \defesa{
   local={São Paulo},
-  data=2026-05-15, % TODO: confirm exact defense date (expected May 2026)
+  data=2026-06-11, % Official defense date (IME form); update if rescheduled
 }
 
 % TODO: uncomment and fill when funding source is confirmed

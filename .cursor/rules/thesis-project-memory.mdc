@@ -1,0 +1,10 @@
+---
+description: Point agents to repository thesis memory before editing sources
+alwaysApply: true
+---
+
+# Thesis project memory
+
+Before editing thesis LaTeX, BibTeX, or chapter content, read **`AGENTS.md`** and **`.memory/README.md`**, then the specific `.memory/*.md` files they index (workflow, defense roster, writing conventions).
+
+When institutional facts or defense metadata change, update **both** `.memory/` and the relevant LaTeX or `docs/` files so the repo stays self-consistent.
