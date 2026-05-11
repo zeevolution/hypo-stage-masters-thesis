@@ -2,20 +2,23 @@
 
 Master's thesis in Computer Science at **IME-USP** (Institute of Mathematics and Statistics, University of São Paulo).
 
+**Agents / automation:** for thesis work, read [`.cursor/agents/hypo-stage-masters-thesis-agent-instructions.md`](.cursor/agents/hypo-stage-masters-thesis-agent-instructions.md) and [`.memory/README.md`](.memory/README.md) first (IME workflow, defense metadata, editorial conventions). If you still need context, follow [`.memory/knowledge-sources.md`](.memory/knowledge-sources.md) before broad searching.
+
 | | |
 |---|---|
 | **Author** | José Gonçalves Lima Neto |
 | **Advisor** | Prof. Dr. Paulo Roberto Miranda Meirelles |
 | **Program** | Graduate Program in Computer Science — IME-USP |
 | **Document year** | 2026 |
-| **Repository status** | **Final version submitted to the Examining Committee** (May 2026). The immutable deposit snapshot is [`archive/thesis-deposit-original-20260503.pdf`](archive/thesis-deposit-original-20260503.pdf). Commits on `main` may still refresh `thesis.pdf` / `presentation.pdf` from the same sources for convenience and CI. |
+| **Defense (scheduled)** | 11 June 2026, 09:00 (presencial) — see `.memory/defense-and-committee.md` and [`docs/defense-banca.md`](docs/defense-banca.md) |
+| **Repository status** | Original manuscript submitted to the examining committee; **defense scheduled** as above. The date-stamped PDF under `archive/` tracks the latest source-aligned build (see table below). Commits on `main` may refresh `thesis.pdf` / `presentation.pdf` for convenience and CI. The PDF submitted to the committee on **3 May 2026** remains recoverable from git history at the parent commit of `archive/thesis-deposit-original-20260503.pdf` if that filename was superseded. |
 
 ## Read the Documents
 
 | Document | Description |
 |---|---|
 | **[thesis.pdf](thesis.pdf)** | Full thesis (latest build committed to `main`; should match the submitted sources) |
-| **[archive/thesis-deposit-original-20260503.pdf](archive/thesis-deposit-original-20260503.pdf)** | **Deposit snapshot** — PDF exactly as submitted to the Examining Committee (3 May 2026) |
+| **[archive/thesis-deposit-original-20260511.pdf](archive/thesis-deposit-original-20260511.pdf)** | **Latest archived thesis PDF** — built from current sources; date suffix matches the refresh (see repository skill for naming) |
 | **[presentation.pdf](presentation.pdf)** | Defense presentation slides (Beamer / IME theme) |
 
 ## About
