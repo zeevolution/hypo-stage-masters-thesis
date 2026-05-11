@@ -2,6 +2,8 @@
 
 This directory stores persistent operational memory for the master's thesis repository.
 
+Read **`.cursor/agents/AGENTS.md`** first for the full agent workflow, then use the files below when editing the thesis.
+
 Use these files before making changes:
 
 - `thesis-project.md`: canonical thesis identity, scope, repo conventions.

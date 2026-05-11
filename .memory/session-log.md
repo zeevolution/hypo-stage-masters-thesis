@@ -9,8 +9,12 @@ Entries are chronological. Newest at bottom.
 - **Deposit / original:** manuscript in original form had been submitted to the examining committee; deposit PDF snapshot at that time was `archive/thesis-deposit-original-20260503.pdf`.
 - **Defense:** scheduled for **11 June 2026 at 09:00** (presencial), per IME defense form; meeting link recorded on form: `meet.google.com/kpe-csas-ryv`.
 - **Committee:** titulares and suplentes aligned with the IME form (see `defense-and-committee.md`).
-- **Repository:** added `.memory/` for persistent institutional and editorial context; pointed agents to it via `AGENTS.md` and README; updated `thesis.tex` defense metadata and `\banca` roster for post-**definitiva** builds; refreshed `front-matter/banca.tex` and `docs/defense-banca.md`.
+- **Repository:** added `.memory/` for persistent institutional and editorial context; pointed agents to it via `.cursor/agents/AGENTS.md` and README; updated `thesis.tex` defense metadata and `\banca` roster for post-**definitiva** builds; refreshed `front-matter/banca.tex` and `docs/defense-banca.md`.
 
 ## 2026-05-11 (addendum)
 
-- Added **`.memory/knowledge-sources.md`** as a retrieval-order index (repos, PDFs, IME pages, recurring papers, gray literature); linked from `README.md` index text, `AGENTS.md`, and this log.
+- Added **`.memory/knowledge-sources.md`** as a retrieval-order index (repos, PDFs, IME pages, recurring papers, gray literature); linked from `README.md` index text, `.cursor/agents/AGENTS.md`, and this log.
+
+## 2026-05-11 (agents path)
+
+- Moved repository agent instructions from root `AGENTS.md` to **`.cursor/agents/AGENTS.md`**; updated `README.md`, `.cursor/rules/thesis-project-memory.mdc`, and `.memory/README.md` / `session-log.md` references.
