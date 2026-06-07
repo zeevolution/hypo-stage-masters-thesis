@@ -177,16 +177,22 @@ Engineering in Professional Software Development Teams --- A Case Study}
 %          artifacts, and active listening to understand real tool use."
 \begin{frame}{Method \& study setup}
   \centering
-  {\small Single organization $\cdot$ scaled product $\cdot$ Backstage IDP}
-  \vspace{0.4em}
-
   \begin{tikzpicture}[font=\footnotesize,>=Stealth]
     % --- left column: term describing each row of boxes ---
+    \node[anchor=east,align=right,font=\bfseries] at (-6.5,1.3) {Environment};
     \node[anchor=east,align=right,font=\bfseries] at (-6.5,0) {Teams};
     \node[anchor=east,align=right] at (-6.5,-1.9)
       {\textbf{Timeline}\\ \scriptsize 5 sprints\\ ($\approx$9 weeks)};
     \node[anchor=east,align=right] at (-6.5,-3.65)
       {\textbf{Data sources}\\ \scriptsize triangulated};
+
+    % --- Row Z: environment ---
+    \node[draw,rounded corners,fill=black!8,minimum width=3.0cm,
+          minimum height=0.8cm,align=center] at (-3.4,1.3) {Single organization};
+    \node[draw,rounded corners,fill=black!8,minimum width=3.0cm,
+          minimum height=0.8cm,align=center] at (0,1.3) {Scaled product};
+    \node[draw,rounded corners,fill=black!8,minimum width=3.0cm,
+          minimum height=0.8cm,align=center] at (3.4,1.3) {Backstage IDP};
 
     % --- Row A: the two teams (cases) ---
     \node[draw,rounded corners,fill=structure.fg!10,minimum width=3.2cm,
