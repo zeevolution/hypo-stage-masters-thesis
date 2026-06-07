@@ -78,8 +78,9 @@ Engineering in Professional Software Development Teams --- A Case Study}
 % ============================================================================
 % Slide 1 — Title
 % ============================================================================
-% SCRIPT: "This dissertation studies how teams can manage architectural
-%          uncertainty with tool support in a professional software setting."
+% SCRIPT: "This work asks how professional software teams manage architectural
+%          uncertainty when they are given real tool support --- and what
+%          happens once they actually put it to use."
 \maketitle
 \note{%
   Script: This dissertation studies how teams can manage architectural
@@ -94,13 +95,18 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 2 — Big picture / dissertation overview  (CENTRAL VISUAL)
+% Slide 2 — Context / big-picture overview  (CENTRAL VISUAL)
 % ============================================================================
-% SCRIPT: "Uncertainty exists, ArchHypo structures it, Hypo-Stage operationalizes
-%          it, and the case study shows how teams used it in practice."
+% SCRIPT: "Here is the whole talk in one picture: architectural uncertainty is
+%          unavoidable, ArchHypo makes it explicit as falsifiable hypotheses,
+%          and Hypo-Stage operationalizes that inside the developer portal ---
+%          this case study asks how teams actually use it."
 \begin{frame}{Context}
   \begin{center}
-    \includegraphics[height=0.90\textheight]{dissertation-big-picture}
+    \begin{tikzpicture}
+      \node[rounded corners,fill=SandyPaper,inner sep=8pt]
+        {\includegraphics[height=0.85\textheight]{dissertation-big-picture}};
+    \end{tikzpicture}
   \end{center}
 \end{frame}
 \note{%
@@ -123,8 +129,9 @@ Engineering in Professional Software Development Teams --- A Case Study}
 % ============================================================================
 % Slide 3 — Problem & research questions
 % ============================================================================
-% SCRIPT: "The problem is not only uncertainty itself, but the lack of practical
-%          support for teams to share and act on architectural decisions."
+% SCRIPT: "The open problem is not uncertainty itself, but the lack of
+%          tool-supported, observed real-world practice --- the gap that RQ1
+%          through RQ4 set out to close."
 \begin{frame}{Problem \& research questions}
   \begin{columns}[T]
     \begin{column}{0.46\textwidth}
@@ -171,10 +178,11 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 4 — Method & study setup
+% Slide 4 — Study setup
 % ============================================================================
-% SCRIPT: "We observed two teams over five sprints using participant observation,
-%          artifacts, and active listening to understand real tool use."
+% SCRIPT: "We studied two teams in one organization across five sprints,
+%          triangulating participant observation, the tool's own hypothesis
+%          records, and active-listening sessions."
 \begin{frame}{Study setup}
   \centering
   \begin{tikzpicture}[font=\footnotesize,>=Stealth]
@@ -241,11 +249,11 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 4b — Conceptual Research Framework
+% Slide 5 — Research method / conceptual framework
 % ============================================================================
-% SCRIPT: "The framework ties the study constructs to the research questions:
-%          context shapes tool usage, which produces artifacts and observations
-%          that drive refinements."
+% SCRIPT: "Methodologically this is a flexible, real-world case study: context
+%          shapes how the tool is used, which yields observations and artifacts
+%          that in turn drive the tool's refinements."
 \begin{frame}[t]{Research Method}
   \begin{center}
     \small Grounded in the \alert{flexible design} approach to real-world
@@ -253,7 +261,10 @@ Engineering in Professional Software Development Teams --- A Case Study}
   \end{center}
   \vspace{0.4em}
   \begin{center}
-    \includegraphics[height=0.74\textheight]{conceptual-framework}
+    \begin{tikzpicture}
+      \node[rounded corners,fill=SandyPaper,inner sep=8pt]
+        {\includegraphics[height=0.70\textheight]{conceptual-framework}};
+    \end{tikzpicture}
   \end{center}
 \end{frame}
 \note{%
@@ -271,11 +282,12 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 5 — Advances (1): how teams used Hypo-Stage   [RQ1]
+% Slide 6 — Advances (1): how teams used Hypo-Stage   [RQ1]
 % ============================================================================
-% SCRIPT: "In practice, the tool was mainly adopted through senior-led
-%          interactions, which shaped how teams registered and discussed
-%          hypotheses."
+% SCRIPT: "In practice, adoption was senior-led and event-anchored ---
+%          registration concentrated in technical leaders and clustered around
+%          protected sessions, with Backstage integration lowering the cost of
+%          reaching the tool."
 \begin{frame}{How teams used Hypo-Stage \hfill {\small\normalfont RQ1}}
   \begin{columns}[T]
     \begin{column}{0.56\textwidth}
@@ -317,10 +329,11 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 6 — Advances (2): uncertainties & emerging patterns   [RQ2]
+% Slide 7 — Advances (2): uncertainties & emerging patterns   [RQ2]
 % ============================================================================
-% SCRIPT: "The empirical data shows recurring shapes of architectural
-%          uncertainty, which we abstracted into new patterns."
+% SCRIPT: "The thirteen registered uncertainties concentrate on compliance and
+%          shared-infrastructure concerns; from them we abstracted five
+%          recurring hypothesis patterns."
 \begin{frame}{Architectural uncertainties \& patterns \hfill {\small\normalfont RQ2}}
   \begin{columns}[T]
     \begin{column}{0.44\textwidth}
@@ -369,10 +382,10 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 7 — Advances (3): perceived benefits & challenges   [RQ3]
+% Slide 8 — Advances (3): perceived benefits & challenges   [RQ3]
 % ============================================================================
-% SCRIPT: "Beyond how the tool was used, the technical leaders converged on
-%          three clear benefits and three recurring challenges."
+% SCRIPT: "Beyond how the tool was used, participants converged on three clear
+%          benefits and three recurring challenges of working this way."
 \begin{frame}{Perceived benefits \& challenges \hfill {\small\normalfont RQ3}}
   \begin{columns}[T]
     \begin{column}{0.49\textwidth}
@@ -419,10 +432,10 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 8 — Advances (4): tool refinements   [RQ4]
+% Slide 9 — Advances (4): tool refinements   [RQ4]
 % ============================================================================
-% SCRIPT: "These refinements came directly from observed friction points, so
-%          each change is traceable to concrete use during the study."
+% SCRIPT: "Every refinement came from an observed friction point, so each of
+%          the nine is traceable to concrete use during the study."
 \begin{frame}{Tool refinements \hfill {\small\normalfont RQ4}}
   \centering\small
   \textbf{9 refinement categories} --- including prioritization, the evolution
@@ -457,10 +470,10 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 9 — Implications / lessons learned   [synthesis]
+% Slide 10 — Implications / lessons learned   [synthesis]
 % ============================================================================
-% SCRIPT: "Distributed architectural work needs lightweight structures that
-%          preserve team autonomy while maintaining shared decision quality."
+% SCRIPT: "The headline lesson: a tool removes friction but cannot, by itself,
+%          supply the organizational conditions for broad participation."
 \begin{frame}{Implications \& lessons learned}
   \vfill
   \begin{columns}[T]
@@ -507,10 +520,11 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 9 — Future work / closing
+% Slide 11 — Future work / closing
 % ============================================================================
-% SCRIPT: "The next step is to refine the tool and validate whether these
-%          patterns and refinements generalize to other teams and settings."
+% SCRIPT: "The bounded claim is that integration and traceability worked; what
+%          remains is broadening participation and validating these patterns
+%          across other teams and settings."
 \begin{frame}{Future work \& closing}
   \centering\small Four strategic directions:
   \begin{center}
