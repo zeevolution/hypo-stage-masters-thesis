@@ -1,6 +1,6 @@
 # Hypo-Stage: Tool-Supported Architectural Hypothesis Engineering in Professional Software Development Teams — A Case Study
 
-Master's thesis in Computer Science at **IME-USP** (Institute of Mathematics and Statistics, University of São Paulo).
+Master's dissertation in Computer Science at **IME-USP** (Institute of Mathematics and Statistics, University of São Paulo).
 
 **Agents / automation:** for thesis work, read [`.cursor/agents/hypo-stage-masters-thesis-agent-instructions.md`](.cursor/agents/hypo-stage-masters-thesis-agent-instructions.md) and [`.memory/README.md`](.memory/README.md) first (IME workflow, defense metadata, editorial conventions). If you still need context, follow [`.memory/knowledge-sources.md`](.memory/knowledge-sources.md) before broad searching.
 
@@ -17,8 +17,8 @@ Master's thesis in Computer Science at **IME-USP** (Institute of Mathematics and
 
 | Document | Description |
 |---|---|
-| **[thesis.pdf](thesis.pdf)** | Full thesis (latest build committed to `main`; should match the submitted sources) |
-| **[archive/thesis-deposit-original-20260511.pdf](archive/thesis-deposit-original-20260511.pdf)** | **Latest archived thesis PDF** — built from current sources; date suffix matches the refresh (see repository skill for naming) |
+| **[thesis.pdf](thesis.pdf)** | Full dissertation (latest build committed to `main`; should match the submitted sources) |
+| **[archive/thesis-deposit-original-20260511.pdf](archive/thesis-deposit-original-20260511.pdf)** | **Latest archived dissertation PDF** — built from current sources; date suffix matches the refresh (see repository skill for naming) |
 | **[presentation.pdf](presentation.pdf)** | Defense presentation deck (Beamer, IME-USP theme) — 12 slides with embedded speaker notes, prepared for the 11 June 2026 defense |
 
 ## About
@@ -27,9 +27,9 @@ This dissertation reports a **flexible, multiple case study** of **[Hypo-Stage](
 
 ## Defense presentation
 
-[`presentation.pdf`](presentation.pdf) is the Beamer deck (IME-USP theme) prepared for the **11 June 2026** defense, built from the deposited thesis (`archive/thesis-deposit-original-20260511.pdf`). The 12-slide flow is:
+[`presentation.pdf`](presentation.pdf) is the Beamer deck (IME-USP theme) prepared for the **11 June 2026** defense, built from the deposited dissertation (`archive/thesis-deposit-original-20260511.pdf`). The 12-slide flow is:
 
-1. **Title** — thesis, author, advisor, defense date
+1. **Title** — dissertation title, author, advisor, defense date
 2. **Context** — the ArchHypo "big picture" anchoring the talk
 3. **Problem & research questions** — the gap (tacit knowledge, learning curve, no real-world usage) and RQ1–RQ4
 4. **Study setup** — single organization, two teams, five sprints, triangulated data sources
@@ -62,15 +62,15 @@ The **ArchHypo** technique (Silva et al., [IEEE Software 2024](https://doi.org/1
 
 **Hypo-Stage** was first designed and implemented as an undergraduate capstone project by Pedro Henrique Mariano Corrêa, supervised by the author and co-supervised by Prof. Paulo Meirelles. The initial design is documented in the [senior thesis](https://github.com/ArchHypo/hypo-stage-senior-thesis) repository; the code boundary referenced in this work is commit [`ceee509`](https://github.com/ArchHypo/hypo-stage/commit/ceee509776508081ebdd473c2c4f710b8ef55947) in [`ArchHypo/hypo-stage`](https://github.com/ArchHypo/hypo-stage).
 
-**This master's thesis** treats Hypo-Stage as an existing artifact and contributes **empirical evaluation**, **thematic analysis** of registered hypotheses (including emerging pattern families), and **evidence-driven refinement** of the tool and usage guidance. Commits after `ceee509` in the plugin repository include refinements motivated by the field study.
+**This master's dissertation** treats Hypo-Stage as an existing artifact and contributes **empirical evaluation**, **thematic analysis** of registered hypotheses (including emerging pattern families), and **evidence-driven refinement** of the tool and usage guidance. Commits after `ceee509` in the plugin repository include refinements motivated by the field study.
 
 ## Repository structure
 
 ```
 .
 ├── archive/                    # Immutable PDF snapshots (e.g. committee submission)
-├── thesis.pdf                  # Compiled thesis (tracked on main when rebuilt)
-├── thesis.tex                  # Thesis entry point
+├── thesis.pdf                  # Compiled dissertation (tracked on main when rebuilt)
+├── thesis.tex                  # Dissertation entry point
 ├── presentation.pdf            # Compiled presentation slides
 ├── presentation.tex            # Beamer entry point
 ├── references.bib              # Bibliography (BibLaTeX / biber)
@@ -204,4 +204,4 @@ Pushes to the default branch run a [GitHub Actions workflow](.github/workflows/l
 
 ## License
 
-The LaTeX template files are distributed under the [MIT License](LICENSE). The thesis content is by José Gonçalves Lima Neto, licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The LaTeX template files are distributed under the [MIT License](LICENSE). The dissertation content is by José Gonçalves Lima Neto, licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
