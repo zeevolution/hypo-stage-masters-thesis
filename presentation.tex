@@ -23,7 +23,16 @@
 \usepackage{imegoodies}
 \usepackage[slides,hidelinks]{imelooks}
 
-\usetikzlibrary{positioning,arrows.meta,fit,backgrounds}
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc}
+
+% Minimal person glyph (head + shoulders) for the Context diagram.
+\tikzset{
+  person/.pic={
+    \fill (0,0) circle (2pt);
+    \fill (-3.6pt,-8pt) .. controls (-3.6pt,-2.6pt) and (3.6pt,-2.6pt) ..
+          (3.6pt,-8pt) -- cycle;
+  }
+}
 
 \graphicspath{{figures/},{template/logos/}}
 
@@ -96,9 +105,68 @@ Engineering in Professional Software Development Teams --- A Case Study}
 % SCRIPT: "Uncertainty exists, ArchHypo structures it, Hypo-Stage operationalizes
 %          it, and the case study shows how teams used it in practice."
 \begin{frame}{Context}
-  \begin{center}
-    \includegraphics[height=0.82\textheight]{dissertation-big-picture}
-  \end{center}
+  \centering
+  \resizebox{0.98\textwidth}{!}{%
+  \begin{tikzpicture}[
+      font=\footnotesize,>=Stealth,
+      box/.style={draw,rounded corners=1pt,align=center,inner sep=4pt},
+      lbl/.style={font=\scriptsize},
+    ]
+    % --- main horizontal flow ---
+    \node[box,minimum width=2cm,minimum height=1.2cm] (hyp)  at (0,0)   {Architectural\\Hypothesis};
+    \node[box,minimum width=2cm,minimum height=1.2cm] (dec)  at (3.6,0) {Architectural\\Decisions};
+    \node[box,minimum width=2cm,minimum height=1.2cm] (arch) at (7.2,0) {Software\\Architecture};
+    \draw[->] (hyp) -- node[above,lbl]{influences} (dec);
+    \draw[->] (dec) -- node[above,lbl]{evolves} (arch);
+
+    % --- requirements + top engineer ---
+    \node[box,align=left,minimum width=2.2cm] (req) at (-6.4,2.7) {$\bullet$~Requirements\\$\bullet$~Solutions};
+    \coordinate (eng1) at (-2.0,2.7);
+    \pic at (eng1) {person};
+    \node[lbl,below=4mm of eng1] {Engineer};
+    \draw[->] ([xshift=-4pt]eng1) -- node[above,lbl]{understands and consults} (req.east);
+    \draw[->] (eng1) -- node[right,lbl]{identifies and creates} (hyp.north);
+
+    % --- example input ---
+    \node[lbl,align=center] (ex) at (-5.6,0) {Example:\\``The application should handle\\1000 simultaneous requests''};
+    \draw[->] (ex.east) -- (hyp.west);
+
+    % --- technical plan ---
+    \node[box,align=left,minimum width=3cm] (plan) at (0,-3.4)
+      {\textbf{Technical Plan:}\\Architectural Trigger,\\Tracer Bullet, Spikes,\\Software Analytics,\\Modularity, Flexibility,\\Progressive Roll-out, etc.};
+    \draw[->] (plan.north) -- node[right,lbl,align=left]{manages both impact\\and uncertainty of} (hyp.south);
+
+    % --- iterative process glyph ---
+    \draw[->,thick] (2.3,-1.35) arc (95:-210:3.5pt);
+    \node[lbl,align=center] at (2.3,-2.05) {Iterative process};
+
+    % --- bottom engineer ---
+    \coordinate (eng2) at (3.6,-3.2);
+    \pic at (eng2) {person};
+    \node[lbl,below=4mm of eng2] {Engineer};
+    \draw[->] ([xshift=-4pt]eng2) -- node[above,lbl,align=center]{creates and\\executes} (plan.east);
+    \draw[->] (eng2) -- node[right,lbl]{takes or postpones} (dec.south);
+
+    % --- ArchHypo Framework dashed container ---
+    \begin{scope}[on background layer]
+      \node[draw,dashed,rounded corners,inner sep=12pt,
+            fit=(req)(arch)(plan)(ex)(eng1)(eng2)] (fw) {};
+    \end{scope}
+    \node[anchor=south west,font=\footnotesize\bfseries]
+      at ([shift={(2pt,3pt)}]fw.north west) {ArchHypo Framework};
+
+    % --- Hypo-Stage plugin (outside the framework) ---
+    \node[box,fill=black!12,minimum width=1.9cm,minimum height=1.3cm]
+          (plugin) at ([xshift=2.4cm]fw.east) {Hypo-Stage\\Plugin};
+    \draw[->] (fw.east) -- node[above,lbl]{supported by} (plugin.west);
+    \node[lbl,text=red!80!black,align=center,text width=3.4cm,below=6mm of plugin] (q)
+      {How engineers use Hypo-Stage to apply ArchHypo in a real-world organization?};
+    \coordinate (eng3) at ($(q.south)+(0,-0.9)$);
+    \pic at (eng3) {person};
+    \node[lbl,below=4mm of eng3] {Engineer};
+    \draw[->] (eng3) -- (q.south);
+  \end{tikzpicture}%
+  }
 \end{frame}
 \note{%
   Script: The core idea is simple --- uncertainty exists, ArchHypo structures
