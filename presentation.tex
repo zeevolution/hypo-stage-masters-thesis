@@ -1,72 +1,63 @@
 % Defense Presentation — José Gonçalves Lima Neto
-% IME-USP, Computer Science, 2026
+% IME-USP, Computer Science — Defense: 11 June 2026
 %
-% Based on the IME-USP Beamer template (ccsl-usp/modelo-latex).
+% Rebuilt from scratch for the defense, using the deposited thesis
+% (archive/thesis-deposit-original-20260511.pdf) as the authoritative
+% source and the IME defense template (Template.pdf) as the structure guide.
+% Flow: title -> big picture/context -> research questions -> method ->
+%        advances (usage, uncertainties/patterns, refinements) ->
+%        implications -> future work/closing.
+%
+% Built on the IME-USP Beamer template (ccsl-usp/modelo-latex).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT CLASS & PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% aspectratio: 149 = 14:9 (good balance), 169 = 16:9
 \documentclass[
   xcolor={hyperref,svgnames,x11names,table},
   hyperref={pdfencoding=unicode,plainpages=false,pdfpagelabels=true,breaklinks=true},
-  brazilian,english,12pt,aspectratio=149,
+  brazilian,english,12pt,aspectratio=169,
 ]{beamer}
 
 \usepackage{imegoodies}
 \usepackage[slides,hidelinks]{imelooks}
 
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc,shadows.blur}
+
 \graphicspath{{figures/},{template/logos/}}
 
 \babeltags{br = brazilian, en = english}
 
+% Roomy frames, large readable type: no navigation clutter.
+\setbeamertemplate{navigation symbols}{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% USER COMMANDS & SECTION RECAPS %%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Show overview slide at the start of each section
-\AtBeginSection[]{
-  \begin{frame}<beamer>[t]{Overview}
-    \intermezzo
-  \end{frame}
-}
-
-% Custom colored blocks
-\newenvironment{coloredblock}[2]%
-  {
-    \setbeamercolor{block title}{fg=white,bg=#1!80!white}
-    \setbeamercolor{block body}{fg=darkgray,bg=#1!20!white}
-    \setbeamercolor{local structure}{fg=darkgray,bg=#1!20!white}
-    \begin{block}{#2}
-  }
-  {\end{block}}
-
+% The full thesis title is long (must match the deposit); shrink the title
+% font so it fits the 16:9 title slide without clipping above the frame.
+\setbeamerfont{title}{size=\large,series=\bfseries}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%% METADATA & TITLE SLIDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Bibliography source (same keys as the deposited thesis) for inline citations.
 \addbibresource{references.bib}
 
-\title[Hypo-Stage]{Hypo-Stage: Tool-Supported Architectural Hypothesis Engineering\\in Professional Software Development Teams --- A Case Study}
+\title[Hypo-Stage]{Hypo-Stage: Tool-Supported Architectural Hypothesis
+Engineering in Professional Software Development Teams --- A Case Study}
 
 \author[Lima Neto]{José Gonçalves Lima Neto}
 
-\institute{\textbf{Master's Thesis Defense}\\
+\institute{\textbf{Master's Dissertation Defense}\\
+           Advisor: Prof.\ Dr.\ Paulo Roberto Miranda Meirelles\\
            Graduate Program in Computer Science\\
            IME -- University of São Paulo}
-%\institute{\textbf{Advisor:} Prof. Dr. Paulo Roberto Miranda Meirelles\\
-%           Graduate Program in Computer Science\\
-%           IME -- University of São Paulo}
 
-\date{11 June 2026} % Scheduled defense (IME form); update if rescheduled
+\date{11 June 2026}
 
-% Title page background image
+% Title page background image and footer logos (IME template assets).
 \titlebgimage{\includegraphics[width=\paperwidth,height=\paperheight]{bg-ime}}
 
-% Logos on the title slide footer
 \logos{%
   \includegraphics[height=.9\baselineskip]{ime-logo}%
   \quad\quad
@@ -75,225 +66,542 @@
   \hspace{.87\paperwidth}\includegraphics[width=.05\paperwidth]{cc-by}\par
 }
 
-% QR code linking to the thesis repo
 \qrcodeurl{https://github.com/ArchHypo/hypo-stage-masters-thesis}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-% ---- Title slide ----
+% ============================================================================
+% Slide 1 — Title
+% ============================================================================
+% SCRIPT: "This work asks how professional software teams manage architectural
+%          uncertainty when they are given real tool support --- and what
+%          happens once they actually put it to use."
 \maketitle
-
-% ---- QR code slide ----
-\showqrcode
-
-% ---- Overview ----
-\begin{frame}[t]{Overview}
-  \overview
-\end{frame}
-
-
-% ==============================================================================
-\section{Introduction}
-% ==============================================================================
-
-\begin{frame}{Motivation}
-  \begin{itemize}
-    \item Organizations strive for fast flow through autonomous teams
-    \item Architecture decisions often remain centralized in a few experts
-    \item Architectural uncertainty is natural but usually \alert{implicit}
-    \item[]
-    \item Existing derivation methods rely on architects' tacit knowledge
-          (Souza et al., 2019)
-    \item Teams without senior architects lack guidance and tooling
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{The Problem}
-  \begin{block}{Gap}
-    No consolidated approach exists for managing architectural uncertainty
-    within the daily engineering workflow of development teams.
-  \end{block}
-
-  \vspace{0.5\baselineskip}
-
-  \begin{itemize}
-    \item ArchHypo (Silva et al., TSE 2025) uses hypotheses engineering
-          to make uncertainty explicit and manageable
-    \item But: manual application has a \alert{steep learning curve}
-          (Finding 9: unanimously hard to learn)
-    \item Process-change resistance (Finding 8) hinders adoption
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Objective}
-  \begin{block}{Thesis Objective}
-    Empirically evaluate and refine \textbf{Hypo-Stage}, a support tool for
-    the ArchHypo technique, by applying it with diverse software engineering
-    teams in a real-world organization with a scaled software product.
-  \end{block}
-
-  % TODO: add research questions (see Chapter~1 / \texttt{chapters/01-introduction.tex})
-\end{frame}
+\note{%
+  Script: This dissertation studies how teams can manage architectural
+  uncertainty with tool support in a professional software development setting.\par
+  \medskip
+  Speaker notes: Greet the committee, state the title, your name, and the
+  advisor. Frame the talk in one breath: the work is an empirical case study
+  of Hypo-Stage --- a Backstage plugin for the ArchHypo technique --- used by
+  real teams in industry. Keep this to under a minute and move quickly to the
+  big-picture slide, which carries the rest of the framing.%
+}
 
 
-% ==============================================================================
-\section{Background}
-% ==============================================================================
-
-\begin{frame}{ArchHypo Technique}
-  \begin{enumerate}
-    \item \textbf{Identify} architectural hypotheses (uncertainties)
-    \item \textbf{Assess} each: uncertainty level + impact level
-    \item \textbf{Plan} technical actions (spikes, tracer bullets, triggers)
-    \item \textbf{Execute} plans and \textbf{reassess} iteratively
-  \end{enumerate}
-
-  \vspace{0.5\baselineskip}
-
-  \begin{itemize}
-    \item Prior evaluations: Catch Solve startup (IEEE SW), PropSEP at Jetsoft (TSE)
-    \item Both manual --- no tool support
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Hypo-Stage Tool}
-  \begin{itemize}
-    \item Open-source Backstage plugin for ArchHypo
-    \item Hypothesis CRUD, Likert-scale assessment, technical plans
-    \item Visualization: uncertainty vs. impact chart
-    \item Integrates into the Internal Developer Portal workflow
-  \end{itemize}
-
-  \vspace{0.5\baselineskip}
-
-  \begin{block}{Lineage}
-    Initial design \& implementation: undergrad capstone (Corrêa, 2025).\\
-    This thesis: empirical evaluation \& refinement with real teams.
-  \end{block}
-
-  % TODO: add Hypo-Stage screenshot here
-  % \includegraphics[width=0.9\textwidth]{arch-stage-screenshot}
-\end{frame}
-
-
-% ==============================================================================
-\section{Related Work}
-% ==============================================================================
-
-\begin{frame}{Related Work}
-  % TODO: fill in as the chapter matures
-  \begin{itemize}
-    \item ADR tools (adr-tools, Log4brains) --- capture decisions, not uncertainties
-    \item ATAM workshops --- heavyweight, not continuous
-    \item IDPs (Backstage, Port, Cortex) --- no native hypothesis support
-    \item[]
-    \item \textbf{Gap:} no existing tool combines hypothesis engineering with
-          developer portal integration
-  \end{itemize}
-\end{frame}
-
-
-% ==============================================================================
-\section{Research Design}
-% ==============================================================================
-
-\begin{frame}{Empirical Approach}
-  \begin{itemize}
-    \item \textbf{Context:} CompanyX, scaled product, multiple teams
-    \item \textbf{Method:} embedded case study, mixed methods
-    \item \textbf{Data sources:}
-    \begin{itemize}
-      \item Hypo-Stage artifacts (hypotheses, assessments, plans)
-      \item Questionnaires (usability, perceived value)
-      \item Semi-structured interviews
-    \end{itemize}
-    \item \textbf{Analysis:} thematic coding + descriptive statistics
-  \end{itemize}
-
-  % TODO: add research design diagram
-\end{frame}
-
-
-% ==============================================================================
-\section{Results}
-% ==============================================================================
-
-\begin{frame}{Results}
-  % TODO: fill in after data collection and analysis
+% ============================================================================
+% Slide 2 — Context / big-picture overview  (CENTRAL VISUAL)
+% ============================================================================
+% SCRIPT: "Here is the whole talk in one picture: architectural uncertainty is
+%          unavoidable, ArchHypo makes it explicit as falsifiable hypotheses,
+%          and Hypo-Stage operationalizes that inside the developer portal ---
+%          this case study asks how teams actually use it."
+\begin{frame}{Context}
   \begin{center}
-    \textit{(to be presented after the empirical study)}
+    \begin{tikzpicture}
+      \node[rounded corners,fill=white,draw=black!25,line width=0.5pt,inner sep=8pt,
+            blur shadow={shadow blur steps=6,shadow xshift=0.7pt,shadow yshift=-0.9pt}]
+        {\includegraphics[height=0.85\textheight]{dissertation-big-picture}};
+    \end{tikzpicture}
   \end{center}
 \end{frame}
+\note{%
+  Script: The core idea is simple --- uncertainty exists, ArchHypo structures
+  it, Hypo-Stage operationalizes it, and the case study shows how teams used
+  it in practice.\par
+  \medskip
+  Speaker notes: This is the single slide to anchor the whole talk. Walk the
+  ArchHypo framework: an engineer identifies architectural hypotheses from
+  requirements and solutions; each hypothesis influences architectural
+  decisions that evolve the software architecture; a technical plan manages
+  the impact and uncertainty of each hypothesis in an iterative cycle. Then
+  point to the right: Hypo-Stage is the plugin that supports this technique,
+  and the whole study asks how engineers use Hypo-Stage to apply ArchHypo in
+  a real-world organization. Everything that follows zooms into one part of
+  this picture.%
+}
 
 
-% ==============================================================================
-\section{Conclusion and Future Work}
-% ==============================================================================
-
-\begin{frame}{Conclusion and Future Work}
-  % TODO: fill in after the study is complete
-  \begin{itemize}
-    \item Summary of contributions
-    \item Limitations
-    \item Future directions
-  \end{itemize}
+% ============================================================================
+% Slide 3 — Problem & Research Questions
+% ============================================================================
+% SCRIPT: "The open problem is not uncertainty itself, but the lack of
+%          tool-supported, observed real-world practice --- the gap that RQ1
+%          through RQ4 set out to close."
+\begin{frame}{Problem \& Research Questions}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \begin{block}{The Problem}
+        \scriptsize
+        \begin{itemize}\setlength\itemsep{0.45em}
+          \item Deriving architectures still depends on architects'
+                \alert{tacit knowledge} and lacks \alert{tool support}
+                \citep{souza2019}.
+          \item ArchHypo structures uncertainty, but teams perceive it as \alert{hard to learn}
+                and missed guidance via supporting tools \citep{silva2024tse,silva2024ieeesw}.
+          \item Hypo-Stage gives the initial tool support, but 
+                \alert{impact on real teams} and refinements remained
+                \alert{unknown} \citep{correa2025}.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \begin{block}{Research questions}
+        \footnotesize
+        \textbf{RQ1.} How do teams \emph{use} Hypo-Stage and ArchHypo on a
+        scaled product?\\[0.6em]
+        \textbf{RQ2.} What \emph{uncertainties} and recurring \emph{patterns}
+        do they record?\\[0.6em]
+        \textbf{RQ3.} What \emph{benefits and challenges} do team members
+        perceive?\\[0.6em]
+        \textbf{RQ4.} Which \emph{refinements} to the tool emerge, and how do
+        they address the challenges?
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
+\note{%
+  Script: The problem is not only uncertainty itself, but the lack of
+  practical support for teams to share and act on architectural decisions.\par
+  \medskip
+  Speaker notes: State the gap in one sentence: prior ArchHypo studies showed
+  conceptual value but a steep learning curve and no tool support; existing
+  derivation methods (Souza et al., 2019) depend on architects' tacit
+  knowledge. Then read the four RQs quickly --- use, uncertainties/patterns,
+  perceived value, and refinements. Note they map one-to-one onto the boxes of
+  the previous diagram.%
+}
 
 
-% ==============================================================================
-\section{References}
-% ==============================================================================
-
-\begin{frame}[allowframebreaks]{References}
-  \nocite{silva2024tse, silva2024ieeesw, souza2019, correa2025,
-          bass2021, skelton2019, footeYoder1999, richardsFord2020}
-  \printbibliography
-\end{frame}
-
-% ---- Final slide: recap + repo link ----
-\begin{frame}[t]{\insertshorttitle}
-  \overview
-
-  \vspace{1\baselineskip}
-  \bgroup
+% ============================================================================
+% Slide 4 — Study Setup
+% ============================================================================
+% SCRIPT: "We studied two teams in one organization across five sprints,
+%          triangulating participant observation, the tool's own hypothesis
+%          records, and active-listening sessions."
+\begin{frame}{Study Setup}
   \centering
-    \url{https://github.com/ArchHypo/hypo-stage-masters-thesis}\par
-  \egroup
+  \begin{tikzpicture}[font=\footnotesize,>=Stealth]
+    % --- left column: term describing each row of boxes ---
+    \node[anchor=east,align=right,font=\footnotesize\bfseries] at (-6.5,1.3) {Environment};
+    \node[anchor=east,align=right,font=\footnotesize\bfseries] at (-6.5,0) {Teams};
+    \node[anchor=east,align=right] at (-6.5,-1.9)
+      {\textbf{Timeline}\\ \scriptsize 5 sprints\\ ($\approx$9 weeks)};
+    \node[anchor=east,align=right] at (-6.5,-3.65)
+      {\textbf{Data sources}\\ \scriptsize triangulated};
+
+    % --- Row Z: environment ---
+    \node[draw,rounded corners,fill=black!8,minimum width=3.0cm,
+          minimum height=0.8cm,align=center] at (-3.4,1.3) {Single organization};
+    \node[draw,rounded corners,fill=black!8,minimum width=3.0cm,
+          minimum height=0.8cm,align=center] at (0,1.3) {Scaled product};
+    \node[draw,rounded corners,fill=black!8,minimum width=3.0cm,
+          minimum height=0.8cm,align=center] at (3.4,1.3) {Backstage IDP};
+
+    % --- Row A: the two teams (cases) ---
+    \node[draw,rounded corners,fill=structure.fg!10,minimum width=3.2cm,
+          minimum height=1cm,align=center] (prod) at (-2.1,0)
+      {\textbf{Product team}\\12 engineers};
+    \node[draw,rounded corners,fill=structure.fg!10,minimum width=3.2cm,
+          minimum height=1cm,align=center] (plat) at (2.1,0)
+      {\textbf{Platform team}\\4 engineers};
+
+    % --- Row B: five-sprint timeline ---
+    \foreach \i [evaluate=\i as \x using {-4.4+(\i-1)*2.2}] in {1,2,3,4,5}{
+      \node[draw,rounded corners,fill=DarkSlateGray!12,minimum width=1.6cm,
+            minimum height=0.8cm] (s\i) at (\x,-1.9) {Sprint \i};
+    }
+    \foreach \i/\j in {1/2,2/3,3/4,4/5}{
+      \draw[->,thick] (s\i.east) -- (s\j.west);
+    }
+
+    % --- Row C: data sources arranged as a triangulation ---
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.2cm,
+          minimum height=0.9cm] (d2) at (0,-3.0) {Artifact analysis\\(13 hypotheses)};
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.2cm,
+          minimum height=0.9cm] (d1) at (-2.6,-4.3) {Participant\\observation};
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.2cm,
+          minimum height=0.9cm] (d3) at (2.6,-4.3) {Active-listening\\sessions};
+    \begin{scope}[on background layer]
+      \draw[densely dashed,gray!70,line width=0.7pt] (d1.north) -- (d2.south);
+      \draw[densely dashed,gray!70,line width=0.7pt] (d3.north) -- (d2.south);
+      \draw[densely dashed,gray!70,line width=0.7pt] (d1.east)  -- (d3.west);
+    \end{scope}
+  \end{tikzpicture}
 \end{frame}
+\note{%
+  Script: We observed two teams over five sprints using participant
+  observation, artifacts, and active listening to understand real tool use.\par
+  \medskip
+  Speaker notes: Flexible multiple-case study with formative-evaluation and
+  action-research elements (Robson, 2016). Setting: one organization with a
+  mature Backstage deployment and a scaled product in Latin America. Two
+  contrasting cases --- a 12-engineer Product team and a 4-engineer Platform
+  team --- observed over five two-week sprints (~9 calendar weeks). Three data
+  sources triangulate: participant observation, artifact analysis of the
+  thirteen registered hypotheses and their technical plans, and open-ended
+  active-listening sessions with senior technical leaders.%
+}
 
-\showqrcode
 
-% ---- Backup slides (not counted in page total) ----
-\appendix
-
-\begin{frame}{Backup: ArchHypo Nine Findings (TSE)}
-  \footnotesize
-  \begin{enumerate}
-    \item Some hypotheses monitored without full resolution until end
-    \item Avoided upfront architectural design; decisions through iterations
-    \item Improved process: safety, transparency, predictability
-    \item Different QAs handled with different creative strategies
-    \item Guideline implementation was the most-used strategy
-    \item Team recognized better architectural decision-making
-    \item Evidence of positive impact on product quality
-    \item \alert{Process-change obstacle}: mixing arch \& functional tasks
-    \item \alert{Unanimously hard to learn}: mapping, articulating, planning
-  \end{enumerate}
+% ============================================================================
+% Slide 5 — Research method / conceptual framework
+% ============================================================================
+% SCRIPT: "Methodologically this is a flexible, real-world case study: context
+%          shapes how the tool is used, which yields observations and artifacts
+%          that in turn drive the tool's refinements."
+\begin{frame}[t]{Research Method}
+  \begin{center}
+    \small Grounded in the \alert{flexible design} approach to real-world
+    research \citep{robson2016}.
+  \end{center}
+  \vspace{0.2em}
+  \begin{center}
+    \begin{tikzpicture}
+      \node[rounded corners,fill=white,draw=black!25,line width=0.5pt,inner sep=7pt,
+            blur shadow={shadow blur steps=6,shadow xshift=0.7pt,shadow yshift=-0.9pt}]
+        {\includegraphics[height=0.64\textheight]{conceptual-framework}};
+    \end{tikzpicture}
+  \end{center}
 \end{frame}
+\note{%
+  Script: The framework ties the study constructs to the research questions ---
+  context shapes tool usage, which produces artifacts and observations that
+  drive refinements.\par
+  \medskip
+  Speaker notes: This conceptual framework organizes the study's constructs and
+  maps them onto the four research questions. Team and organization context
+  (RQ1) shape and enable Arch-Stage tool usage; usage produces artifacts (RQ2)
+  and experiment observations (RQ3); together they feed an iterative refinement
+  cycle that generates tool refinements (RQ4). It is the lens through which the
+  next slides report the results.%
+}
 
-\begin{frame}{Backup: Souza et al. Key Findings}
-  \begin{itemize}
-    \item 2575 papers $\rightarrow$ 39 primary studies
-    \item All methods rely on architects' tacit knowledge
-    \item Limited support for inexperienced practitioners
-    \item Weak or absent tool support
-    \item Insufficient empirical evaluation
-  \end{itemize}
+
+% ============================================================================
+% Slide 6 — Advances (1): how teams used Hypo-Stage   [RQ1]
+% ============================================================================
+% SCRIPT: "In practice, adoption was senior-led and event-anchored ---
+%          registration concentrated in technical leaders and clustered around
+%          protected sessions, with Backstage integration lowering the cost of
+%          reaching the tool."
+\begin{frame}{How teams used Hypo-Stage \hfill {\small\normalfont RQ1}}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \includegraphics[width=\textwidth]{prioritization-dashboard}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \footnotesize
+      \textbf{13 hypotheses}, two teams --- adoption was \alert{senior-led}
+      and \alert{event-anchored}:
+      \smallskip
+      \begin{itemize}\setlength\itemsep{0.4em}
+        \item \textbf{12 of 13} authored by senior/staff engineers
+        \item Seniors used it for \alert{decision support}; junior/mid uncertainties resolved within a sprint, so went unregistered
+        \item Registration clustered around protected technical sessions
+        \item Backstage integration cut \alert{context-switching} cost
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
+\note{%
+  Script: In practice, the tool was mainly adopted through senior-led
+  interactions, which shaped how the teams registered and discussed
+  hypotheses.\par
+  \medskip
+  Speaker notes: This answers RQ1. Hypothesis registration did not spread
+  evenly across sprint work; it concentrated in senior technical leaders and
+  clustered around discrete events (protected discussion time, training, the
+  Platform team's Kafka failure-handling session) --- what the thesis calls
+  "event-anchored" use. The dashboard shows the resulting backlog (13
+  hypotheses, validated/open counts). Role-based engagement explains the skew:
+  senior technical leaders treated Hypo-Stage as a decision-support instrument
+  and referenced the backlog in architectural discussions, whereas mid- and
+  junior engineers operate at a scope where uncertainties resolve within a
+  sprint or less, leaving little perceived need to register --- not
+  disengagement. Key enabler: delivering ArchHypo inside Backstage, where teams
+  already work, lowered context-switching cost --- named explicitly by
+  participants as a facilitating factor.%
+}
+
+
+% ============================================================================
+% Slide 7 — Advances (2): uncertainties & emerging patterns   [RQ2]
+% ============================================================================
+% SCRIPT: "The thirteen registered uncertainties concentrate on compliance and
+%          shared-infrastructure concerns; from them we abstracted five
+%          recurring hypothesis patterns."
+\begin{frame}{Architectural Uncertainties \& Patterns \hfill {\small\normalfont RQ2}}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \includegraphics[width=\textwidth]{entity-hypotheses-tab}\\[0.3em]
+      \scriptsize \textbf{13 hypotheses} (6 Product, 7 Platform), surfaced per
+      service in the portal: \alert{8 requirements-} / \alert{5 solution-}sourced;
+      \textbf{9 of 13} carry high impact. Dominant quality attributes:
+      \textbf{Reliability} \& \textbf{Auditability}.
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \textbf{Five emerging hypothesis patterns}\\
+      {\scriptsize First empirically grounded answer to \emph{what shapes}
+      hypotheses take in practice.}
+      \smallskip
+      \begin{itemize}\setlength\itemsep{0.1em}
+        \item \textbf{Hypothesis Cluster} --- one platform concern $\rightarrow$ linked hypotheses
+        \item \textbf{Regulatory Trigger} --- compliance obligation as tracked uncertainty
+        \item \textbf{Context-Agnostic Restructuring} --- whether/how to decouple boundaries
+        \item \textbf{Load-Validated} --- proven under load, implementation still open
+        \item \textbf{Shared Resource Governance} --- ownership rules for shared infrastructure
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+\note{%
+  Script: The empirical data shows recurring shapes of architectural
+  uncertainty, which we abstracted into new patterns.\par
+  \medskip
+  Speaker notes: RQ2. Thirteen hypotheses (six Product, seven Platform); eight
+  were requirements-sourced (an unmet quality goal or external obligation) and
+  five solution-sourced (uncertain consequences of a candidate decision). Nine
+  of the thirteen carry High or Very High impact --- teams registered
+  consequential concerns, not peripheral ones --- and a Very-Low-uncertainty /
+  Very-High-impact cluster (H06-H08, H13) landed in the dashboard's "Can
+  Postpone" segment. They concentrated on
+  compliance-driven and shared-infrastructure concerns; Reliability and
+  Auditability dominated the quality-attribute distribution, reflecting the
+  regulated study site. From thematic analysis we named five emerging
+  structural patterns (Group B). They complement the existing ArchHypo pattern
+  language: prior patterns described HOW hypotheses are assessed/deferred;
+  these describe WHAT KIND of hypothesis is being assessed. Stress this is
+  nominative --- a vocabulary for recognition, not a frequency claim, given the
+  dataset size.%
+}
+
+
+% ============================================================================
+% Slide 8 — Advances (3): Perceived Benefits & Challenges   [RQ3]
+% ============================================================================
+% SCRIPT: "Beyond how the tool was used, participants converged on three clear
+%          benefits and three recurring challenges of working this way."
+\begin{frame}{Perceived Benefits \& Challenges \hfill {\small\normalfont RQ3}}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      \begin{block}{Benefits}
+        \footnotesize
+        \begin{itemize}\setlength\itemsep{0.55em}
+          \item \textbf{Externalizes tacit knowledge} --- a written hypothesis becomes shareable beyond the original discussion
+          \item \textbf{Supports prioritization} --- \alert{``Can Postpone''} justifies \emph{deliberate} deferral, not neglect
+          \item \textbf{Collective memory} --- records open questions \emph{before} a decision, where ADRs cannot
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{Challenges}
+        \footnotesize
+        \begin{itemize}\setlength\itemsep{0.55em}
+          \item \textbf{Falsifiable phrasing} --- the \alert{negative formulation} is non-intuitive and easy to skip under pressure
+          \item \textbf{Registration time cost} --- short-lived uncertainties go \alert{unregistered}
+          \item \textbf{No team ceremonies} --- usage stayed \alert{individual}, never a shared review ritual
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+\note{%
+  Script: Beyond how the tool was used, the two technical leaders from each team
+  converged on three clear benefits and three recurring challenges.\par
+  \medskip
+  Speaker notes: This answers RQ3, drawn from the active-listening sessions with
+  all four interviewed participants. Benefits: (1) the act of registering a
+  hypothesis externalizes tacit architectural knowledge --- a clear statement
+  with uncertainty/impact ratings makes the concern shareable with colleagues who
+  were not in the room; (2) the "Where to Focus" panel, and especially the "Can
+  Postpone" segment, gave them a principled vocabulary to explain deliberate
+  deferral rather than neglect; (3) the backlog acts as a collective memory that
+  captures open questions BEFORE a decision exists --- complementing ADRs, which
+  only record decisions after the fact. Challenges: (1) the falsifiable,
+  negative-formulation convention is non-intuitive and easy to skip under time
+  pressure --- replicating the learning curve from prior ArchHypo evaluations;
+  (2) the focused time to register a hypothesis means short-lifecycle
+  uncertainties get under-represented; (3) no team-visible ceremony emerged, so
+  usage remained largely individual within the observation window.%
+}
+
+
+% ============================================================================
+% Slide 9 — Advances (4): Tool Refinements   [RQ4]
+% ============================================================================
+% SCRIPT: "Every refinement came from an observed friction point, so each of
+%          the nine is traceable to concrete use during the study."
+\begin{frame}{Tool Refinements \hfill {\small\normalfont RQ4}}
+  \centering\small
+  \textbf{9 refinement categories} --- including prioritization, the evolution
+  chart, and form usability --- each traced to an observed friction point.
+  \vspace{0.4em}
+  \begin{columns}[c]
+    \begin{column}{0.58\textwidth}
+      \includegraphics[width=\textwidth]{evolution-chart}\\[0.2em]
+      \scriptsize Evolution chart: uncertainty \& impact tracked across
+      successive assessments.
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \includegraphics[width=\textwidth]{hypothesis-form}\\[0.2em]
+      \scriptsize Inline formulation guidance in the creation form lowers the
+      falsifiability barrier.
+    \end{column}
+  \end{columns}
+\end{frame}
+\note{%
+  Script: These refinements came directly from observed friction points, so
+  each change is traceable to concrete use during the study.\par
+  \medskip
+  Speaker notes: RQ4. Nine refinement categories emerged during the
+  observation window (not from upfront design), and several were redeployed
+  and re-observed in the same study --- a worked instance of formative
+  evaluation. The most consequential is the evolution chart (left): it closes
+  the assessment-history gap of the initial Hypo-Stage version and lets teams
+  judge whether technical-plan actions had the intended effect. The form
+  (right) adds inline guidance and a prioritization dashboard to reduce the
+  cognitive cost of writing falsifiable statements.%
+}
+
+
+% ============================================================================
+% Slide 10 — Implications / Lessons Learned   [synthesis]
+% ============================================================================
+% SCRIPT: "The headline lesson: a tool removes friction but cannot, by itself,
+%          supply the organizational conditions for broad participation."
+\begin{frame}{Implications \& Lessons Learned}
+  \vfill
+  \begin{columns}[T]
+    \begin{column}{0.31\textwidth}
+      \begin{block}{Finding}
+        Even with tool support, hypothesis work stayed \alert{senior-anchored}
+        (12 of 13).
+      \end{block}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{block}{Implication}
+        A tool removes \alert{friction} but cannot supply the
+        \alert{organizational conditions} for broad participation.
+      \end{block}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{block}{Lesson}
+        Ship hypothesis support \alert{inside} the developer portal ---
+        \emph{extend} the workflow, don't add a new one.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vfill
+  \centering\small
+  \textbf{Takeaway:} distributed architectural work needs lightweight structure
+  that preserves team autonomy while protecting shared decision quality.
+  \vfill
+\end{frame}
+\note{%
+  Script: The broader lesson is that distributed architectural work needs
+  lightweight structures that preserve team autonomy while maintaining shared
+  decision quality.\par
+  \medskip
+  Speaker notes: RQ3 framed as finding -> implication -> lesson. For
+  practitioners: embedding Hypo-Stage in Backstage removed adoption friction
+  (consistent with Team Topologies: tooling should follow team cognitive
+  pathways). But tool availability is necessary, not sufficient --- broad
+  participation also needs protected architectural time, statement-level
+  scaffolding, and a recurring backlog-review ceremony (the Group A
+  organizational patterns). For researchers: formative evaluation plus
+  artifact analysis of the tool's own data was a productive combination for
+  workflow-coupled artifacts.%
+}
+
+
+% ============================================================================
+% Slide 11 — Future work / Conclusion
+% ============================================================================
+% SCRIPT: "The bounded claim is that integration and traceability worked; what
+%          remains is broadening participation and validating these patterns
+%          across other teams and settings."
+\begin{frame}{Future Work \& Conclusion}
+  \centering\small Four strategic directions:
+  \begin{center}
+  \begin{tikzpicture}[font=\small,>=Stealth,node distance=6mm]
+    \node[draw,rounded corners,fill=structure.fg!10,align=center,
+          minimum height=1cm,text width=2.6cm] (a) {Replicate\\across orgs};
+    \node[draw,rounded corners,fill=structure.fg!10,align=center,
+          minimum height=1cm,text width=2.6cm,right=of a] (b)
+      {Longitudinal\\lifecycle study};
+    \node[draw,rounded corners,fill=structure.fg!10,align=center,
+          minimum height=1cm,text width=2.6cm,right=of b] (c)
+      {Integrate with\\ADR tools};
+    \node[draw,rounded corners,fill=structure.fg!10,align=center,
+          minimum height=1cm,text width=2.6cm,right=of c] (d)
+      {Broaden\\participation};
+  \end{tikzpicture}
+  \end{center}
+  \vfill
+  \begin{block}{Takeaway}
+    Tool-mediated ArchHypo succeeds at \alert{integration and traceability};
+    the remaining challenge is \alert{organizational and pedagogical}.
+  \end{block}
+  \vfill
+  \centering\footnotesize
+  \textbf{Limitations:} single organization \,$\cdot$\, 13 hypotheses
+  \,$\cdot$\, $\approx$9 weeks \,$\cdot$\, researcher as participant.\\[0.3em]
+  \emph{Emerging patterns, not consolidated findings.}
+\end{frame}
+\note{%
+  Script: The next step is to refine the tool and validate whether these
+  patterns and refinements generalize to other teams and settings.\par
+  \medskip
+  Speaker notes: State the limitations honestly first --- single organization
+  with a mature Backstage, thirteen hypotheses over ~9 weeks, eleven still
+  Open at study end, and the researcher's dual role. Then the roadmap:
+  (1) replicate in other organizations/domains; (2) a longitudinal design to
+  observe hypothesis closure and whether senior dependency relaxes over time;
+  (3) integrate Hypo-Stage with ADR tools to connect pre-decision uncertainty
+  to post-decision record; (4) intervention studies on broadening
+  participation. Close on the bounded claim: integration and traceability
+  worked; the deeper challenge is organizational and pedagogical. Thank the
+  committee and invite questions.%
+}
+
+
+% ============================================================================
+% Slide 12 — Closing / Thank you   (mirrors the title slide)
+% ============================================================================
+% SCRIPT: "Thank you --- I'd be glad to take your questions."
+\makeatletter
+{
+  \definecolor{bggray}{RGB}{238,238,236}
+  \setbeamercolor{background canvas}{bg=bggray}
+  \setbeamercolor{background}{bg=}
+  \setbeamertemplate{background}{%
+    \ifcsvoid{@IMEtitleBgImage}{}{\@IMEtitleBgImage\hspace{-\paperwidth}}%
+    \ifcsvoid{@IMElogos}{}{\@IMElogos}%
+  }
+  \begin{frame}[plain]
+    \vspace*{1.5\baselineskip}
+    \begin{minipage}{0.66\paperwidth}
+      \raggedright
+      {\Huge\bfseries\usebeamercolor[fg]{normal text}\color{fg} Thank you!}\par
+      \vspace{0.6\baselineskip}
+      {\large Questions \& discussion are welcome.}\par
+      \vspace{1.2\baselineskip}
+      {\small
+        \textbf{José Gonçalves Lima Neto}\\[0.25em]
+        Advisor: Prof.\ Dr.\ Paulo Roberto Miranda Meirelles\\
+        Graduate Program in Computer Science --- IME-USP\\[0.5em]
+        Master's Dissertation Defense \,$\cdot$\, 11 June 2026
+      }
+    \end{minipage}
+  \end{frame}
+}
+\makeatother
 
 \end{document}
