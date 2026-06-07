@@ -181,37 +181,42 @@ Engineering in Professional Software Development Teams --- A Case Study}
   \vspace{0.4em}
 
   \begin{tikzpicture}[font=\footnotesize,>=Stealth]
+    % --- left column: term describing each row of boxes ---
+    \node[anchor=east,align=right,font=\bfseries] at (-6.5,0) {Teams};
+    \node[anchor=east,align=right] at (-6.5,-1.9)
+      {\textbf{Timeline}\\ \scriptsize 5 sprints\\ ($\approx$9 weeks)};
+    \node[anchor=east,align=right] at (-6.5,-3.65)
+      {\textbf{Data sources}\\ \scriptsize triangulated};
+
     % --- Row A: the two teams (cases) ---
-    \node[draw,rounded corners,fill=structure.fg!10,minimum width=3.4cm,
-          minimum height=1cm,align=center] (prod) at (-2.4,0)
+    \node[draw,rounded corners,fill=structure.fg!10,minimum width=3.2cm,
+          minimum height=1cm,align=center] (prod) at (-2.1,0)
       {\textbf{Product team}\\12 engineers};
-    \node[draw,rounded corners,fill=structure.fg!10,minimum width=3.4cm,
-          minimum height=1cm,align=center] (plat) at (2.4,0)
+    \node[draw,rounded corners,fill=structure.fg!10,minimum width=3.2cm,
+          minimum height=1cm,align=center] (plat) at (2.1,0)
       {\textbf{Platform team}\\4 engineers};
 
     % --- Row B: five-sprint timeline ---
-    \node at (0,-1.3) {\textbf{Five 2-week sprints ($\approx$9 weeks)}};
-    \foreach \i [evaluate=\i as \x using {-4.8+(\i-1)*2.4}] in {1,2,3,4,5}{
-      \node[draw,rounded corners,fill=DarkSlateGray!12,minimum width=1.7cm,
-            minimum height=0.8cm] (s\i) at (\x,-2.1) {Sprint \i};
+    \foreach \i [evaluate=\i as \x using {-4.4+(\i-1)*2.2}] in {1,2,3,4,5}{
+      \node[draw,rounded corners,fill=DarkSlateGray!12,minimum width=1.6cm,
+            minimum height=0.8cm] (s\i) at (\x,-1.9) {Sprint \i};
     }
     \foreach \i/\j in {1/2,2/3,3/4,4/5}{
       \draw[->,thick] (s\i.east) -- (s\j.west);
     }
 
     % --- Row C: data sources arranged as a triangulation ---
-    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.4cm,
-          minimum height=0.9cm] (d2) at (0,-3.2) {Artifact analysis\\(13 hypotheses)};
-    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.4cm,
-          minimum height=0.9cm] (d1) at (-2.8,-4.5) {Participant\\observation};
-    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.4cm,
-          minimum height=0.9cm] (d3) at (2.8,-4.5) {Active-listening\\sessions};
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.2cm,
+          minimum height=0.9cm] (d2) at (0,-3.0) {Artifact analysis\\(13 hypotheses)};
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.2cm,
+          minimum height=0.9cm] (d1) at (-2.6,-4.3) {Participant\\observation};
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.2cm,
+          minimum height=0.9cm] (d3) at (2.6,-4.3) {Active-listening\\sessions};
     \begin{scope}[on background layer]
       \draw[densely dashed,gray!70,line width=0.7pt] (d1.north) -- (d2.south);
       \draw[densely dashed,gray!70,line width=0.7pt] (d3.north) -- (d2.south);
       \draw[densely dashed,gray!70,line width=0.7pt] (d1.east)  -- (d3.west);
     \end{scope}
-    \node at (0,-5.3) {\small Three triangulated data sources};
   \end{tikzpicture}
 \end{frame}
 \note{%
