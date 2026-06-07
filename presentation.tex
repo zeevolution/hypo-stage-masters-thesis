@@ -277,17 +277,20 @@ Engineering in Professional Software Development Teams --- A Case Study}
 %          interactions, which shaped how teams registered and discussed
 %          hypotheses."
 \begin{frame}{How teams used Hypo-Stage \hfill {\small\normalfont RQ1}}
-  \begin{columns}[c]
+  \begin{columns}[T]
     \begin{column}{0.56\textwidth}
       \includegraphics[width=\textwidth]{prioritization-dashboard}
     \end{column}
     \begin{column}{0.42\textwidth}
-      Adoption was \alert{senior-led} and \alert{event-anchored}:
-      \medskip
-      \begin{itemize}
-        \item \textbf{12 of 13} hypotheses authored by senior/staff engineers
+      \footnotesize
+      \textbf{13 hypotheses}, two teams --- adoption was \alert{senior-led}
+      and \alert{event-anchored}:
+      \smallskip
+      \begin{itemize}\setlength\itemsep{0.4em}
+        \item \textbf{12 of 13} authored by senior/staff engineers
+        \item Seniors used it for \alert{decision support}; junior/mid uncertainties resolved within a sprint, so went unregistered
         \item Registration clustered around protected technical sessions
-        \item Backstage integration cut context-switching cost
+        \item Backstage integration cut \alert{context-switching} cost
       \end{itemize}
     \end{column}
   \end{columns}
@@ -302,9 +305,14 @@ Engineering in Professional Software Development Teams --- A Case Study}
   clustered around discrete events (protected discussion time, training, the
   Platform team's Kafka failure-handling session) --- what the thesis calls
   "event-anchored" use. The dashboard shows the resulting backlog (13
-  hypotheses, validated/open counts). Key enabler: delivering ArchHypo inside
-  Backstage, where teams already work, lowered context-switching cost ---
-  named explicitly by participants as a facilitating factor.%
+  hypotheses, validated/open counts). Role-based engagement explains the skew:
+  senior technical leaders treated Hypo-Stage as a decision-support instrument
+  and referenced the backlog in architectural discussions, whereas mid- and
+  junior engineers operate at a scope where uncertainties resolve within a
+  sprint or less, leaving little perceived need to register --- not
+  disengagement. Key enabler: delivering ArchHypo inside Backstage, where teams
+  already work, lowered context-switching cost --- named explicitly by
+  participants as a facilitating factor.%
 }
 
 
@@ -354,7 +362,57 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 7 — Advances (3): tool refinements   [RQ4]
+% Slide 7 — Advances (3): perceived benefits & challenges   [RQ3]
+% ============================================================================
+% SCRIPT: "Beyond how the tool was used, the technical leaders converged on
+%          three clear benefits and three recurring challenges."
+\begin{frame}{Perceived benefits \& challenges \hfill {\small\normalfont RQ3}}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      \begin{block}{Benefits}
+        \footnotesize
+        \begin{itemize}\setlength\itemsep{0.55em}
+          \item \textbf{Externalizes tacit knowledge} --- a written hypothesis becomes shareable beyond the original discussion
+          \item \textbf{Supports prioritization} --- \alert{``Can Postpone''} justifies \emph{deliberate} deferral, not neglect
+          \item \textbf{Collective memory} --- records open questions \emph{before} a decision, where ADRs cannot
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{Challenges}
+        \footnotesize
+        \begin{itemize}\setlength\itemsep{0.55em}
+          \item \textbf{Falsifiable phrasing} --- the \alert{negative formulation} is non-intuitive and easy to skip under pressure
+          \item \textbf{Registration time cost} --- short-lived uncertainties go \alert{unregistered}
+          \item \textbf{No team ceremonies} --- usage stayed \alert{individual}, never a shared review ritual
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+\note{%
+  Script: Beyond how the tool was used, the two technical leaders from each team
+  converged on three clear benefits and three recurring challenges.\par
+  \medskip
+  Speaker notes: This answers RQ3, drawn from the active-listening sessions with
+  all four interviewed participants. Benefits: (1) the act of registering a
+  hypothesis externalizes tacit architectural knowledge --- a clear statement
+  with uncertainty/impact ratings makes the concern shareable with colleagues who
+  were not in the room; (2) the "Where to Focus" panel, and especially the "Can
+  Postpone" segment, gave them a principled vocabulary to explain deliberate
+  deferral rather than neglect; (3) the backlog acts as a collective memory that
+  captures open questions BEFORE a decision exists --- complementing ADRs, which
+  only record decisions after the fact. Challenges: (1) the falsifiable,
+  negative-formulation convention is non-intuitive and easy to skip under time
+  pressure --- replicating the learning curve from prior ArchHypo evaluations;
+  (2) the focused time to register a hypothesis means short-lifecycle
+  uncertainties get under-represented; (3) no team-visible ceremony emerged, so
+  usage remained largely individual within the observation window.%
+}
+
+
+% ============================================================================
+% Slide 8 — Advances (4): tool refinements   [RQ4]
 % ============================================================================
 % SCRIPT: "These refinements came directly from observed friction points, so
 %          each change is traceable to concrete use during the study."
@@ -392,7 +450,7 @@ Engineering in Professional Software Development Teams --- A Case Study}
 
 
 % ============================================================================
-% Slide 8 — Implications / lessons learned   [RQ3]
+% Slide 9 — Implications / lessons learned   [synthesis]
 % ============================================================================
 % SCRIPT: "Distributed architectural work needs lightweight structures that
 %          preserve team autonomy while maintaining shared decision quality."
