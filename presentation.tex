@@ -23,7 +23,7 @@
 \usepackage{imegoodies}
 \usepackage[slides,hidelinks]{imelooks}
 
-\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc}
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc,shadows.blur}
 
 \graphicspath{{figures/},{template/logos/}}
 
@@ -104,7 +104,8 @@ Engineering in Professional Software Development Teams --- A Case Study}
 \begin{frame}{Context}
   \begin{center}
     \begin{tikzpicture}
-      \node[rounded corners,fill=SandyPaper,inner sep=8pt]
+      \node[rounded corners,fill=white,draw=black!25,line width=0.5pt,inner sep=8pt,
+            blur shadow={shadow blur steps=6,shadow xshift=0.7pt,shadow yshift=-0.9pt}]
         {\includegraphics[height=0.85\textheight]{dissertation-big-picture}};
     \end{tikzpicture}
   \end{center}
@@ -262,7 +263,8 @@ Engineering in Professional Software Development Teams --- A Case Study}
   \vspace{0.4em}
   \begin{center}
     \begin{tikzpicture}
-      \node[rounded corners,fill=SandyPaper,inner sep=8pt]
+      \node[rounded corners,fill=white,draw=black!25,line width=0.5pt,inner sep=8pt,
+            blur shadow={shadow blur steps=6,shadow xshift=0.7pt,shadow yshift=-0.9pt}]
         {\includegraphics[height=0.70\textheight]{conceptual-framework}};
     \end{tikzpicture}
   \end{center}
