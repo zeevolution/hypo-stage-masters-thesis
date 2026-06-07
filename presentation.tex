@@ -555,4 +555,37 @@ Engineering in Professional Software Development Teams --- A Case Study}
   committee and invite questions.%
 }
 
+
+% ============================================================================
+% Slide 12 — Closing / Thank you   (mirrors the title slide)
+% ============================================================================
+% SCRIPT: "Thank you --- I'd be glad to take your questions."
+\makeatletter
+{
+  \definecolor{bggray}{RGB}{238,238,236}
+  \setbeamercolor{background canvas}{bg=bggray}
+  \setbeamercolor{background}{bg=}
+  \setbeamertemplate{background}{%
+    \ifcsvoid{@IMEtitleBgImage}{}{\@IMEtitleBgImage\hspace{-\paperwidth}}%
+    \ifcsvoid{@IMElogos}{}{\@IMElogos}%
+  }
+  \begin{frame}[plain]
+    \vspace*{1.5\baselineskip}
+    \begin{minipage}{0.66\paperwidth}
+      \raggedright
+      {\Huge\bfseries\usebeamercolor[fg]{normal text}\color{fg} Thank you!}\par
+      \vspace{0.6\baselineskip}
+      {\large Questions \& discussion are welcome.}\par
+      \vspace{1.2\baselineskip}
+      {\small
+        \textbf{José Gonçalves Lima Neto}\\[0.25em]
+        Advisor: Prof.\ Dr.\ Paulo Roberto Miranda Meirelles\\
+        Graduate Program in Computer Science --- IME-USP\\[0.5em]
+        Master's Thesis Defense \,$\cdot$\, 11 June 2026
+      }
+    \end{minipage}
+  \end{frame}
+}
+\makeatother
+
 \end{document}
