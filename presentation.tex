@@ -207,7 +207,9 @@ Engineering in Professional Software Development Teams --- A Case Study}
     \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.4cm,
           minimum height=0.9cm] (d3) at (2.8,-4.5) {Active-listening\\sessions};
     \begin{scope}[on background layer]
-      \draw[densely dashed,gray!70,line width=0.7pt] (d1) -- (d2) -- (d3) -- cycle;
+      \draw[densely dashed,gray!70,line width=0.7pt] (d1.north) -- (d2.south);
+      \draw[densely dashed,gray!70,line width=0.7pt] (d3.north) -- (d2.south);
+      \draw[densely dashed,gray!70,line width=0.7pt] (d1.east)  -- (d3.west);
     \end{scope}
     \node at (0,-5.3) {\small Three triangulated data sources};
   \end{tikzpicture}
