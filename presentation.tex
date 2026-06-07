@@ -128,17 +128,16 @@ Engineering in Professional Software Development Teams --- A Case Study}
 \begin{frame}{Problem \& research questions}
   \begin{columns}[T]
     \begin{column}{0.46\textwidth}
-      \begin{block}{The gap}
+      \begin{block}{The Problem}
         \scriptsize
         \begin{itemize}\setlength\itemsep{0.45em}
           \item Deriving architectures still depends on architects'
                 \alert{tacit knowledge} and lacks \alert{tool support}
                 \citep{souza2019}.
-          \item ArchHypo structures uncertainty, but is \alert{hard to learn}
-                and needs process changes, especially without support
-                \citep{silva2024tse,silva2024ieeesw}.
-          \item Hypo-Stage gives initial tool support, but its
-                \alert{impact on real teams} and needed refinements remain
+          \item ArchHypo structures uncertainty, but teams perceive it as \alert{hard to learn}
+                and missed guidance via supporting tools \citep{silva2024tse,silva2024ieeesw}.
+          \item Hypo-Stage gives the initial tool support, but 
+                \alert{impact on real teams} and refinements remained
                 \alert{unknown} \citep{correa2025}.
         \end{itemize}
       \end{block}
@@ -191,23 +190,26 @@ Engineering in Professional Software Development Teams --- A Case Study}
       {\textbf{Platform team}\\4 engineers};
 
     % --- Row B: five-sprint timeline ---
-    \node at (0,-1.5) {\textbf{Five 2-week sprints ($\approx$9 weeks)}};
+    \node at (0,-1.3) {\textbf{Five 2-week sprints ($\approx$9 weeks)}};
     \foreach \i [evaluate=\i as \x using {-4.8+(\i-1)*2.4}] in {1,2,3,4,5}{
       \node[draw,rounded corners,fill=DarkSlateGray!12,minimum width=1.7cm,
-            minimum height=0.8cm] (s\i) at (\x,-2.4) {Sprint \i};
+            minimum height=0.8cm] (s\i) at (\x,-2.1) {Sprint \i};
     }
     \foreach \i/\j in {1/2,2/3,3/4,4/5}{
       \draw[->,thick] (s\i.east) -- (s\j.west);
     }
 
-    % --- Row C: data sources ---
-    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.6cm,
-          minimum height=0.95cm] (d1) at (-4.1,-4.0) {Participant\\observation};
-    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.6cm,
-          minimum height=0.95cm] (d2) at (0,-4.0) {Artifact analysis\\(13 hypotheses)};
-    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.6cm,
-          minimum height=0.95cm] (d3) at (4.1,-4.0) {Active-listening\\sessions};
-    \node at (0,-4.95) {\small Three triangulated data sources};
+    % --- Row C: data sources arranged as a triangulation ---
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.4cm,
+          minimum height=0.9cm] (d2) at (0,-3.2) {Artifact analysis\\(13 hypotheses)};
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.4cm,
+          minimum height=0.9cm] (d1) at (-2.8,-4.5) {Participant\\observation};
+    \node[draw,rounded corners,fill=SteelBlue!15,align=center,minimum width=3.4cm,
+          minimum height=0.9cm] (d3) at (2.8,-4.5) {Active-listening\\sessions};
+    \begin{scope}[on background layer]
+      \draw[densely dashed,gray!70,line width=0.7pt] (d1) -- (d2) -- (d3) -- cycle;
+    \end{scope}
+    \node at (0,-5.3) {\small Three triangulated data sources};
   \end{tikzpicture}
 \end{frame}
 \note{%
